@@ -48,7 +48,10 @@ export default function ForgotPasswordPage() {
             </>
           )}
 
-          <Link href={`/${locale}/auth/login`} className="inline-flex text-sm font-semibold text-indigo-200 hover:text-indigo-100">
+          <Link
+            href={`/${locale}/auth/login`}
+            className="inline-flex text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+          >
             {t("backToSignIn")}
           </Link>
         </CardContent>

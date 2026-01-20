@@ -38,11 +38,9 @@ type VariableDraft = {
 export default function EditKpiPage() {
   const router = useRouter();
   const params = useParams<{ kpiId: string }>();
-  const { locale, t, tr, df, te } = useLocale();
+  const { locale, t, df, te } = useLocale();
   const { user, loading: sessionLoading } = useAuth();
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const userRole = (user as any)?.role as string | undefined;
+  const userRole = (user as unknown as { role?: string } | null | undefined)?.role;
   const isAdmin = userRole === "ADMIN";
 
   const [loading, setLoading] = useState(true);
@@ -148,8 +146,18 @@ export default function EditKpiPage() {
     if (!selectedId) return "";
     const found = primaryNodes.find((n) => n.id === selectedId);
     if (!found) return "";
-    const typeLabel = df(found.nodeType?.displayName, (found as any).nodeType?.nameAr) || t("type");
-    return `${typeLabel}: ${df(found.name, (found as any).nameAr)}`;
+    const nodeTypeNameAr =
+      found.nodeType && typeof found.nodeType === "object" && "nameAr" in found.nodeType
+        ? ((found.nodeType as { nameAr?: string | null }).nameAr ?? undefined)
+        : undefined;
+
+    const foundNameAr =
+      found && typeof found === "object" && "nameAr" in (found as Record<string, unknown>)
+        ? (((found as Record<string, unknown>).nameAr as string | null | undefined) ?? undefined)
+        : undefined;
+
+    const typeLabel = df(found.nodeType?.displayName, nodeTypeNameAr) || t("type");
+    return `${typeLabel}: ${df(found.name, foundNameAr)}`;
   }, [df, draft?.primaryNodeId, primaryNodes, t]);
 
   async function handleSave() {
@@ -222,7 +230,10 @@ export default function EditKpiPage() {
     return (
       <div className="rounded-2xl border border-border bg-card/50 p-8 text-foreground">
         <p className="text-sm text-muted-foreground">{t("unauthorized")}</p>
-        <Link href={`/${locale}/kpis`} className="mt-3 inline-flex text-sm font-semibold text-indigo-200 hover:text-indigo-100">
+        <Link
+          href={`/${locale}/kpis`}
+          className="mt-3 inline-flex text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+        >
           {t("back")}
         </Link>
       </div>
@@ -233,7 +244,10 @@ export default function EditKpiPage() {
     return (
       <div className="rounded-2xl border border-border bg-card/50 p-8 text-foreground">
         <p className="text-sm text-muted-foreground">{t("kpiNotFound")}</p>
-        <Link href={`/${locale}/kpis`} className="mt-3 inline-flex text-sm font-semibold text-indigo-200 hover:text-indigo-100">
+        <Link
+          href={`/${locale}/kpis`}
+          className="mt-3 inline-flex text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+        >
           {t("back")}
         </Link>
       </div>

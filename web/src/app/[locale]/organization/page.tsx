@@ -22,8 +22,7 @@ export default function OrganizationPage() {
   const { t, locale, formatDate } = useLocale();
   const { user, loading: sessionLoading } = useAuth();
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const userRole = (user as any)?.role as string | undefined;
+  const userRole = (user as unknown as { role?: string } | null | undefined)?.role;
   const isAdmin = userRole === "ADMIN";
 
   const [loading, setLoading] = useState(true);
@@ -184,7 +183,10 @@ export default function OrganizationPage() {
             <CardDescription>{t("availableToAdminsOnlyDesc")}</CardDescription>
           </CardHeader>
           <CardContent>
-            <Link href={`/${locale}/overview`} className="text-sm font-semibold text-primary hover:opacity-90">
+            <Link
+              href={`/${locale}/overview`}
+              className="text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+            >
               {t("back")}
             </Link>
           </CardContent>
@@ -463,7 +465,7 @@ export default function OrganizationPage() {
                               {t("level")}: {nt.levelOrder} · {String(nt.code)}
                             </p>
                           </div>
-                          <span className={active ? "text-xs font-semibold text-primary" : "text-xs text-muted-foreground"}>
+                          <span className={active ? "text-xs font-semibold text-foreground" : "text-xs text-muted-foreground"}>
                             {active ? t("enabled") : t("disabled")}
                           </span>
                         </button>

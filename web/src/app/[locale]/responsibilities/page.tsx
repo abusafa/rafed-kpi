@@ -338,7 +338,7 @@ export default function ResponsibilitiesPage() {
                                 <CardTitle className="text-base">
                                   <Link
                                     href={`/${locale}/entities/${entity.orgEntityType.code}/${entity.id}`}
-                                    className="hover:text-primary transition-colors"
+                                    className="hover:underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
                                   >
                                     {df(entity.title, entity.titleAr)}
                                   </Link>

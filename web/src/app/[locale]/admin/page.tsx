@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { PageHeader } from "@/components/page-header";
-import { Icon } from "@/components/icon";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLocale } from "@/providers/locale-provider";
 
@@ -34,7 +33,10 @@ export default function AdminPage() {
             <div className="rounded-xl border border-border bg-muted/30 px-4 py-3">
               <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{t("userManagement")}</p>
               <p className="mt-1 text-foreground">{t("manageUsersWithinOrgDesc")}</p>
-              <Link href={`/${locale}/admin/users`} className="mt-3 inline-flex text-sm font-semibold text-indigo-200 hover:text-indigo-100">
+              <Link
+                href={`/${locale}/admin/users`}
+                className="mt-3 inline-flex text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+              >
                 {t("openUsers")}
               </Link>
             </div>

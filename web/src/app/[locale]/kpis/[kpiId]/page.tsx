@@ -31,8 +31,7 @@ export default function KPIDetailPage() {
   const { t, locale, kpiValueStatusLabel, formatDate, formatNumber, df, te } = useLocale();
   const { user, loading: sessionLoading } = useAuth();
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const userRole = (user as any)?.role as string | undefined;
+  const userRole = (user as unknown as { role?: string } | null | undefined)?.role;
   const [data, setData] = useState<Awaited<ReturnType<typeof getOrgKpiDetail>> | null>(null);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -299,7 +298,10 @@ export default function KPIDetailPage() {
     return (
       <div className="rounded-2xl border border-border bg-card p-8 text-foreground">
         <p className="text-sm text-muted-foreground">{t("kpiNotFound")}</p>
-        <Link href={`/${locale}/kpis`} className="mt-3 inline-flex text-sm font-semibold text-primary hover:underline">
+        <Link
+          href={`/${locale}/kpis`}
+          className="mt-3 inline-flex text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+        >
           {t("backToKpis")}
         </Link>
       </div>
@@ -320,7 +322,7 @@ export default function KPIDetailPage() {
             <div className="flex items-start justify-between gap-3">
               <div>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <Icon name="tabler:target-arrow" className="h-4 w-4 text-primary" />
+                  <Icon name="tabler:target-arrow" className="h-4 w-4 text-muted-foreground" />
                   {t("currentVsTarget")}
                 </CardTitle>
                 <CardDescription>{t("atAGlanceKpiPerformanceDesc")}</CardDescription>
@@ -368,7 +370,7 @@ export default function KPIDetailPage() {
         <Card className="lg:col-span-2">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base">
-              <Icon name="tabler:chart-line" className="h-4 w-4 text-primary" />
+              <Icon name="tabler:chart-line" className="h-4 w-4 text-muted-foreground" />
               {t("trend")}
             </CardTitle>
             <CardDescription>{t("latestPeriods")}</CardDescription>
@@ -384,7 +386,7 @@ export default function KPIDetailPage() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-base">
-            <Icon name="tabler:edit" className="h-4 w-4 text-primary" />
+            <Icon name="tabler:edit" className="h-4 w-4 text-muted-foreground" />
             {t("updateInputs")}
           </CardTitle>
           <CardDescription>

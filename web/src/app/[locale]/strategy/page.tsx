@@ -52,7 +52,7 @@ export default function StrategyPage() {
                 <ul className="space-y-1 text-sm text-foreground">
                   {(isArabic ? pillar.goalsAr ?? pillar.goals : pillar.goals).map((goal) => (
                     <li key={goal} className="flex items-start gap-2">
-                      <Icon name="tabler:circle-check" className="mt-0.5 h-4 w-4 text-indigo-200" />
+                      <Icon name="tabler:circle-check" className="mt-0.5 h-4 w-4 text-muted-foreground" />
                       <span>{goal}</span>
                     </li>
                   ))}
@@ -61,7 +61,7 @@ export default function StrategyPage() {
 
               <Link
                 href={`/${locale}/strategy/${pillar.id}`}
-                className="inline-flex w-full items-center justify-center rounded-xl bg-white text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-100"
+                className="inline-flex w-full items-center justify-center rounded-xl bg-primary text-sm font-semibold text-primary-foreground shadow-sm transition hover:bg-primary/90"
               >
                 <span className="inline-flex items-center gap-2">
                   <Icon name="tabler:arrow-right" className="h-4 w-4" />

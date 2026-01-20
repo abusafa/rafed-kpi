@@ -53,7 +53,7 @@ export default function SuperAdminPage() {
             <div className="mt-3">
               <Link
                 href={`/${locale}/super-admin/organizations`}
-                className="inline-flex text-sm font-semibold text-indigo-200 hover:text-indigo-100"
+                className="inline-flex text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
               >
                 {t("openOrganizations")}
               </Link>
@@ -71,7 +71,7 @@ export default function SuperAdminPage() {
             <div className="mt-3">
               <Link
                 href={`/${locale}/super-admin/users`}
-                className="inline-flex text-sm font-semibold text-indigo-200 hover:text-indigo-100"
+                className="inline-flex text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
               >
                 {t("openUsers")}
               </Link>

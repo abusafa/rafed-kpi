@@ -93,7 +93,7 @@ export default function LandingPage() {
       >
         <section className="relative grid gap-12 lg:grid-cols-2 lg:items-center">
           {/* Background Gradient for Hero */}
-          <div className="absolute -start-20 -top-20 -z-10 h-[500px] w-[500px] rounded-full bg-indigo-500/20 blur-[120px] opacity-30 mix-blend-screen" />
+          <div className="absolute -start-20 -top-20 -z-10 h-[500px] w-[500px] rounded-full bg-primary/20 blur-[120px] opacity-30 mix-blend-screen" />
 
           <m.div
             className={cn("space-y-8", isArabic && "text-right")}
@@ -104,7 +104,7 @@ export default function LandingPage() {
           >
             <div className="space-y-6">
               <m.div
-                className="inline-flex w-fit items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1 text-xs font-medium text-indigo-300 backdrop-blur-sm"
+                className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium text-foreground backdrop-blur-sm dark:bg-primary/20"
                 variants={{
                   hidden: { opacity: 0, y: 10 },
                   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT } },
@@ -143,7 +143,7 @@ export default function LandingPage() {
               }}
             >
               {primaryCtaText ? (
-                <Button asChild size="lg" className="h-12 bg-white px-8 text-base text-slate-900 hover:bg-indigo-50 shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] transition-all">
+                <Button asChild size="lg" className="h-12 bg-primary px-8 text-base text-primary-foreground hover:bg-primary/90 shadow-[0_0_20px_rgba(23,55,99,0.25)] hover:shadow-[0_0_25px_rgba(23,55,99,0.35)] transition-all">
                   <Link href={primaryCtaHref}>{primaryCtaText}</Link>
                 </Button>
               ) : null}
@@ -184,10 +184,10 @@ export default function LandingPage() {
             }}
           >
              {/* Glow behind image */}
-            <div className="absolute -inset-10 -z-10 bg-gradient-to-tr from-indigo-500/20 via-purple-500/20 to-pink-500/20 blur-3xl opacity-50" />
+            <div className="absolute -inset-10 -z-10 bg-gradient-to-tr from-primary/25 via-primary/15 to-transparent blur-3xl opacity-50" />
             
             <m.div
-              className="relative overflow-hidden rounded-2xl border border-border bg-card/50 p-2 shadow-2xl shadow-sm backdrop-blur-xl ring-1 ring-border"
+              className="relative overflow-hidden rounded-2xl border border-border bg-card/50 p-2 shadow-2xl backdrop-blur-xl ring-1 ring-border"
               whileHover={shouldReduceMotion ? undefined : { y: -5, scale: 1.01 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
             >
@@ -220,10 +220,10 @@ export default function LandingPage() {
         <m.div className="grid gap-8 md:grid-cols-3" variants={gridVariants} initial={shouldReduceMotion ? false : "hidden"} whileInView={shouldReduceMotion ? undefined : "show"} viewport={{ once: true, amount: 0.25 }}>
           {landing.features.map((feature) => (
             <m.div key={feature.id} variants={cardVariants} whileHover={shouldReduceMotion ? undefined : { y: -8 }} transition={{ duration: 0.3, ease: "easeOut" }}>
-              <Card className="h-full border-border bg-card/50 p-6 backdrop-blur-sm transition-colors hover:border-indigo-500/30 hover:bg-card/80">
+              <Card className="h-full border-border bg-card/50 p-6 backdrop-blur-sm transition-colors hover:border-primary/30 hover:bg-card/80">
                 <CardHeader className="space-y-4 p-0">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 ring-1 ring-inset ring-border">
-                    <Icon name={iconForFeature(feature.icon)} className="h-6 w-6 text-indigo-300" />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 ring-1 ring-inset ring-border">
+                    <Icon name={iconForFeature(feature.icon)} className="h-6 w-6 text-foreground" />
                   </div>
                   <div className={cn("space-y-2", isArabic && "text-right")}>
                     <CardTitle className="text-xl text-foreground">{isArabic ? feature.titleAr : feature.title}</CardTitle>
@@ -276,8 +276,8 @@ export default function LandingPage() {
               <div className="group relative h-full rounded-2xl border border-border bg-card/40 p-8 backdrop-blur-sm transition-all hover:bg-card/60">
                 <div className="absolute top-8 end-8 text-4xl font-bold text-foreground/5 select-none">{step.step}</div>
                 <div className="space-y-6">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-border bg-card/50 group-hover:border-indigo-500/30 group-hover:bg-indigo-500/10 transition-colors">
-                    <Icon name={step.icon} className="h-7 w-7 text-foreground group-hover:text-indigo-300 transition-colors" />
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-border bg-card/50 group-hover:border-primary/30 group-hover:bg-primary/10 transition-colors">
+                    <Icon name={step.icon} className="h-7 w-7 text-foreground transition-colors" />
                   </div>
                   <div className={cn("space-y-2", isArabic && "text-right")}>
                     <h3 className="text-xl font-bold text-foreground">{step.title}</h3>
@@ -309,9 +309,9 @@ export default function LandingPage() {
         >
           {testimonials.map((item) => (
             <m.div key={item.id} variants={cardVariants} whileHover={shouldReduceMotion ? undefined : { y: -6 }} transition={{ duration: 0.3, ease: "easeOut" }}>
-              <div className="flex h-full flex-col justify-between rounded-2xl border border-border bg-card/40 p-6 shadow-xl shadow-sm backdrop-blur-sm transition-colors hover:bg-card/60">
+              <div className="flex h-full flex-col justify-between rounded-2xl border border-border bg-card/40 p-6 shadow-xl backdrop-blur-sm transition-colors hover:bg-card/60">
                 <div className="space-y-4">
-                  <div className="flex gap-1 text-indigo-400">
+                  <div className="flex gap-1 text-foreground/80">
                       {[...Array(5)].map((_, i) => (
                         <Icon key={i} name="tabler:star-filled" className="h-4 w-4" />
                       ))}
@@ -389,9 +389,9 @@ export default function LandingPage() {
         </m.div>
       </section>
 
-      <section className="relative overflow-hidden rounded-3xl border border-border bg-card/50 p-12 text-foreground shadow-2xl shadow-sm backdrop-blur-xl">
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 via-purple-500/5 to-transparent opacity-50" />
-        <div className="absolute -top-24 -end-24 h-64 w-64 rounded-full bg-indigo-500/20 blur-3xl opacity-30" />
+      <section className="relative overflow-hidden rounded-3xl border border-border bg-card/50 p-12 text-foreground shadow-2xl backdrop-blur-xl">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/15 via-primary/5 to-transparent opacity-50" />
+        <div className="absolute -top-24 -end-24 h-64 w-64 rounded-full bg-primary/20 blur-3xl opacity-30" />
         
         <m.div
           className={cn("relative z-10 flex flex-col gap-8 md:flex-row md:items-center md:justify-between", isArabic && "md:flex-row-reverse")}
@@ -406,7 +406,7 @@ export default function LandingPage() {
               {t("talkToUsForDemoDesc")}
             </p>
           </div>
-          <Button asChild size="lg" className="bg-white text-base text-slate-900 hover:bg-indigo-50 px-8 py-6 h-auto shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all">
+          <Button asChild size="lg" className="bg-primary text-base text-primary-foreground hover:bg-primary/90 px-8 py-6 h-auto shadow-[0_0_20px_rgba(23,55,99,0.22)] hover:shadow-[0_0_30px_rgba(23,55,99,0.32)] transition-all">
             <Link href={`/${locale}/contact`}>{isArabic ? landing.cta_section.buttonAr : landing.cta_section.button}</Link>
           </Button>
         </m.div>

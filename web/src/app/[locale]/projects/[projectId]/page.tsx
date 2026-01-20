@@ -33,7 +33,7 @@ import {
 
 export default function ProjectDetailPage() {
   const params = useParams<{ projectId: string }>();
-  const { t, locale, tr, isArabic } = useLocale();
+  const { t, locale, isArabic } = useLocale();
   const { user } = useAuth();
 
   const initiatives = pillars.flatMap((pillar) => pillar.initiatives);
@@ -67,7 +67,10 @@ export default function ProjectDetailPage() {
     return (
       <div className="rounded-2xl border border-border bg-card/50 p-8 text-foreground">
         <p className="text-sm text-muted-foreground">{t("projectNotFound")}</p>
-        <Link href={`/${locale}/projects`} className="mt-3 inline-flex text-sm font-semibold text-indigo-200 hover:text-indigo-100">
+        <Link
+          href={`/${locale}/projects`}
+          className="mt-3 inline-flex text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+        >
           {t("backToProjects")}
         </Link>
       </div>
@@ -114,7 +117,10 @@ export default function ProjectDetailPage() {
               <CardDescription className="text-muted-foreground">
                 {t("linkedToInitiative")}{" "}
                 {parentInitiative ? (
-                  <Link href={`/${locale}/strategy/initiatives/${parentInitiative.id}`} className="text-indigo-200 hover:text-indigo-100">
+                  <Link
+                    href={`/${locale}/strategy/initiatives/${parentInitiative.id}`}
+                    className="text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+                  >
                     {isArabic ? parentInitiative.titleAr ?? parentInitiative.title : parentInitiative.title}
                   </Link>
                 ) : (

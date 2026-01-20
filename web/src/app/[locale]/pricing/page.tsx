@@ -24,7 +24,7 @@ export default function PricingPage() {
           { title: t("strategyOffice"), desc: t("initiativesAndKpiGovernance"), highlight: false },
           { title: t("enterprise"), desc: t("ssoIntegrationsMultiOrg"), highlight: false },
         ].map((tier) => (
-          <Card key={tier.title} className={`border-border bg-card/50 shadow-sm ${tier.highlight ? "ring-1 ring-indigo-500/40" : ""}`}>
+          <Card key={tier.title} className={`border-border bg-card/50 shadow-sm ${tier.highlight ? "ring-1 ring-primary/40" : ""}`}>
             <CardHeader className="space-y-2">
               <CardTitle className="text-base">{tier.title}</CardTitle>
               <CardDescription className="text-muted-foreground">{tier.desc}</CardDescription>
@@ -57,7 +57,10 @@ export default function PricingPage() {
         ))}
       </div>
 
-      <Link href={`/${locale}`} className="text-sm font-semibold text-indigo-200 hover:text-indigo-100">
+      <Link
+        href={`/${locale}`}
+        className="text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+      >
         {t("backToHome")}
       </Link>
     </div>

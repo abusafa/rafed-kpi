@@ -152,7 +152,7 @@ export default function UserDetailPage() {
         <p className="text-sm text-muted-foreground">{t("userNotFound")}</p>
         <Link
           href={`/${locale}/super-admin/users`}
-          className="mt-3 inline-flex text-sm font-semibold text-primary hover:opacity-90"
+          className="mt-3 inline-flex text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
         >
           {t("backToUsers")}
         </Link>
@@ -193,7 +193,7 @@ export default function UserDetailPage() {
             </Button>
             <Link
               href={`/${locale}/super-admin/users`}
-              className="inline-flex text-sm font-semibold text-primary hover:opacity-90"
+              className="inline-flex text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
             >
               {t("back")}
             </Link>
@@ -246,7 +246,7 @@ export default function UserDetailPage() {
               {userDetails.org?.id ? (
                 <Link
                   href={`/${locale}/super-admin/organizations/${userDetails.org.id}`}
-                  className="mt-1 inline-flex font-medium text-primary hover:opacity-90"
+                  className="mt-1 inline-flex font-medium text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
                 >
                   {userDetails.org.name}
                 </Link>

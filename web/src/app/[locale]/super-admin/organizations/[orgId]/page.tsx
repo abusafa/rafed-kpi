@@ -354,7 +354,7 @@ export default function OrganizationDetailsPage() {
         <p className="text-sm text-muted-foreground">{loadError ? te(loadError) || loadError : t("organizationNotFound")}</p>
         <Link
           href={`/${locale}/super-admin/organizations`}
-          className="mt-3 inline-flex text-sm font-semibold text-primary hover:opacity-90"
+          className="mt-3 inline-flex text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
         >
           {t("backToOrganizations")}
         </Link>
@@ -391,7 +391,7 @@ export default function OrganizationDetailsPage() {
             </Button>
             <Link
               href={`/${locale}/super-admin/organizations`}
-              className="inline-flex text-sm font-semibold text-primary hover:opacity-90"
+              className="inline-flex text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
             >
               {t("back")}
             </Link>

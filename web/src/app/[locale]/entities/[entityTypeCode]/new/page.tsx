@@ -247,7 +247,10 @@ export default function NewEntityPage() {
     return (
       <div className="rounded-2xl border border-border bg-card p-8">
         <p className="text-sm text-muted-foreground">{t("noActiveSession")}</p>
-        <Link href={`/${locale}/auth/login`} className="mt-3 inline-flex text-sm font-semibold text-primary hover:opacity-90">
+        <Link
+          href={`/${locale}/auth/login`}
+          className="mt-3 inline-flex text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+        >
           {t("goToSignIn")}
         </Link>
       </div>
@@ -258,7 +261,10 @@ export default function NewEntityPage() {
     return (
       <div className="rounded-2xl border border-border bg-card p-8">
         <p className="text-sm text-muted-foreground">{t("unauthorized")}</p>
-        <Link href={`/${locale}/overview`} className="mt-3 inline-flex text-sm font-semibold text-primary hover:opacity-90">
+        <Link
+          href={`/${locale}/overview`}
+          className="mt-3 inline-flex text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+        >
           {t("back")}
         </Link>
       </div>

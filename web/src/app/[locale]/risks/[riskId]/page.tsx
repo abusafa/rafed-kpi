@@ -36,7 +36,10 @@ export default function RiskDetailPage() {
     return (
       <div className="rounded-2xl border border-border bg-card/50 p-8 text-foreground">
         <p className="text-sm text-muted-foreground">{t("riskNotFound")}</p>
-        <Link href={`/${locale}/risks`} className="mt-3 inline-flex text-sm font-semibold text-indigo-200 hover:text-indigo-100">
+        <Link
+          href={`/${locale}/risks`}
+          className="mt-3 inline-flex text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+        >
           {t("backToRisks")}
         </Link>
       </div>

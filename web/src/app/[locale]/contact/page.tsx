@@ -68,7 +68,10 @@ export default function ContactPage() {
         </Card>
       </div>
 
-      <Link href={`/${locale}`} className="text-sm font-semibold text-indigo-200 hover:text-indigo-100">
+      <Link
+        href={`/${locale}`}
+        className="text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+      >
         {t("backToHome")}
       </Link>
     </div>

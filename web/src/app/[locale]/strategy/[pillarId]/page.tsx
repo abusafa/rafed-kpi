@@ -11,18 +11,20 @@ import { pillars } from "@/lib/mock-data";
 import { useLocale } from "@/providers/locale-provider";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getEffectiveKpi, getEffectiveRisk } from "@/lib/prototype-store";
-import { Badge } from "@/components/ui/badge";
 
 export default function PillarDetailPage() {
   const params = useParams<{ pillarId: string }>();
-  const { locale, isArabic, t, nodeTypeLabel } = useLocale();
+  const { locale, isArabic, t } = useLocale();
   const pillar = pillars.find((p) => p.id === params.pillarId);
 
   if (!pillar) {
     return (
       <div className="rounded-2xl border border-border bg-card/50 p-8 text-foreground">
         <p className="text-sm text-muted-foreground">{t("pillarNotFound")}</p>
-        <Link href={`/${locale}/strategy`} className="mt-3 inline-flex text-sm font-semibold text-indigo-200 hover:text-indigo-100">
+        <Link
+          href={`/${locale}/strategy`}
+          className="mt-3 inline-flex text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+        >
           {t("backToStrategy")}
         </Link>
       </div>

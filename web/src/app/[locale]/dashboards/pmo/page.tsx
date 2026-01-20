@@ -58,12 +58,15 @@ export default function PMODashboardPage() {
               <CardTitle className="text-base">{t("approvalAgingSla")}</CardTitle>
               <CardDescription className="text-muted-foreground">{t("queueDistributionDesc")}</CardDescription>
             </div>
-            <Link href={`/${locale}/approvals`} className="text-sm font-medium text-indigo-200 hover:text-indigo-100">
+            <Link
+              href={`/${locale}/approvals`}
+              className="text-sm font-medium text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+            >
               {t("openApprovals")}
             </Link>
           </CardHeader>
           <CardContent>
-            <Bar categories={approvalsAging.categories} values={approvalsAging.values} color="#a78bfa" />
+            <Bar categories={approvalsAging.categories} values={approvalsAging.values} color="#173763" />
           </CardContent>
         </Card>
       </section>
@@ -75,7 +78,10 @@ export default function PMODashboardPage() {
               <CardTitle className="text-base">{t("governanceQueue")}</CardTitle>
               <CardDescription className="text-muted-foreground">{t("changeRequestsReviewDesc")}</CardDescription>
             </div>
-            <Link href={`/${locale}/approvals`} className="text-sm font-medium text-indigo-200 hover:text-indigo-100">
+            <Link
+              href={`/${locale}/approvals`}
+              className="text-sm font-medium text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+            >
               {t("viewAll")}
             </Link>
           </CardHeader>

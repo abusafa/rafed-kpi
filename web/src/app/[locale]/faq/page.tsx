@@ -36,11 +36,17 @@ export default function FAQPage() {
       </div>
 
       <div className="flex flex-wrap gap-3">
-        <Link href={`/${locale}`} className="text-sm font-semibold text-indigo-200 hover:text-indigo-100">
+        <Link
+          href={`/${locale}`}
+          className="text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+        >
           {t("backToHome")}
         </Link>
         <span className="text-muted-foreground">•</span>
-        <Link href={`/${locale}/auth/login?next=/${locale}/overview`} className="text-sm font-semibold text-indigo-200 hover:text-indigo-100">
+        <Link
+          href={`/${locale}/auth/login?next=/${locale}/overview`}
+          className="text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+        >
           {t("startTheDemo")}
         </Link>
       </div>

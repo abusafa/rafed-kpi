@@ -73,7 +73,7 @@ export default function ExecutiveDashboardPage() {
             <CardDescription className="text-muted-foreground">{t("approvalQueueAgingDesc")}</CardDescription>
           </CardHeader>
           <CardContent>
-            <Bar categories={approvalsAging.categories} values={approvalsAging.values} color="#a78bfa" />
+            <Bar categories={approvalsAging.categories} values={approvalsAging.values} color="#173763" />
           </CardContent>
         </Card>
       </section>
@@ -85,7 +85,10 @@ export default function ExecutiveDashboardPage() {
               <CardTitle className="text-base">{t("initiativesRequiringIntervention")}</CardTitle>
               <CardDescription className="text-muted-foreground">{t("investigateHealthDriversDesc")}</CardDescription>
             </div>
-            <Link href={`/${locale}/dashboards/initiative-health`} className="text-sm font-medium text-indigo-200 hover:text-indigo-100">
+            <Link
+              href={`/${locale}/dashboards/initiative-health`}
+              className="text-sm font-medium text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+            >
               {t("openInitiativeHealth")}
             </Link>
           </CardHeader>

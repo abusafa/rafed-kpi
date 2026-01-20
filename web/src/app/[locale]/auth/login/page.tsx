@@ -74,7 +74,7 @@ export default function LoginPage() {
                 <Label htmlFor="password">{t("password")}</Label>
                 <Link
                   href={`/${locale}/auth/forgot-password`}
-                  className="text-xs text-indigo-200 hover:text-indigo-100"
+                  className="text-xs font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
                 >
                   {t("forgotPassword")}
                 </Link>

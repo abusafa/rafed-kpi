@@ -118,7 +118,6 @@ export default function EntityDetailPage() {
   const [approvalError, setApprovalError] = useState<string | null>(null);
   
   const [referencedEntities, setReferencedEntities] = useState<ReferencedEntity[]>([]);
-  const [loadingRefs, setLoadingRefs] = useState(false);
   
   const [dependencyTree, setDependencyTree] = useState<DependencyTree>(null);
   const [loadingTree, setLoadingTree] = useState(false);
@@ -152,14 +151,11 @@ export default function EntityDetailPage() {
       if (result?.entity?.formula) {
         const keys = extractFormulaKeys(result.entity.formula);
         if (keys.length > 0) {
-          setLoadingRefs(true);
           try {
             const refs = await getOrgEntitiesByKeys({ keys });
             setReferencedEntities(refs);
           } catch (err) {
             console.error("Failed to load referenced entities:", err);
-          } finally {
-            setLoadingRefs(false);
           }
         }
       }
@@ -471,7 +467,10 @@ export default function EntityDetailPage() {
     return (
       <div className="rounded-2xl border border-border bg-card p-8">
         <p className="text-sm text-muted-foreground">{t("noActiveSession")}</p>
-        <Link href={`/${locale}/auth/login`} className="mt-3 inline-flex text-sm font-semibold text-primary hover:opacity-90">
+        <Link
+          href={`/${locale}/auth/login`}
+          className="mt-3 inline-flex text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+        >
           {t("goToSignIn")}
         </Link>
       </div>
@@ -482,7 +481,10 @@ export default function EntityDetailPage() {
     return (
       <div className="rounded-2xl border border-border bg-card p-8">
         <p className="text-sm text-muted-foreground">{t("unauthorized")}</p>
-        <Link href={`/${locale}/super-admin`} className="mt-3 inline-flex text-sm font-semibold text-primary hover:opacity-90">
+        <Link
+          href={`/${locale}/super-admin`}
+          className="mt-3 inline-flex text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+        >
           {t("back")}
         </Link>
       </div>
@@ -493,7 +495,10 @@ export default function EntityDetailPage() {
     return (
       <div className="rounded-2xl border border-border bg-card p-8">
         <p className="text-sm text-muted-foreground">{loadError ? te(loadError) || loadError : t("notFound")}</p>
-        <Link href={`/${locale}/entities/${entityTypeCode}`} className="mt-3 inline-flex text-sm font-semibold text-primary hover:opacity-90">
+        <Link
+          href={`/${locale}/entities/${entityTypeCode}`}
+          className="mt-3 inline-flex text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+        >
           {t("back")}
         </Link>
       </div>
@@ -894,10 +899,10 @@ export default function EntityDetailPage() {
                       <CardHeader className="pb-3">
                         <div className="flex items-start justify-between gap-2">
                           <div className="flex-1 min-w-0">
-                            <div className="text-xs font-medium text-primary/70 uppercase tracking-wide">
+                            <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
                               {df(ref.entityType.name, ref.entityType.nameAr)}
                             </div>
-                            <div className="mt-1 text-sm font-semibold text-foreground truncate group-hover:text-primary transition-colors">
+                            <div className="mt-1 text-sm font-semibold text-foreground truncate group-hover:underline underline-offset-4 decoration-primary/40 transition-colors">
                               {df(ref.title, ref.titleAr)}
                             </div>
                             <div className="mt-1 text-xs text-muted-foreground font-mono">
@@ -906,7 +911,7 @@ export default function EntityDetailPage() {
                           </div>
                           <div className="shrink-0">
                             <svg 
-                              className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" 
+                              className="h-5 w-5 text-muted-foreground group-hover:text-foreground transition-colors" 
                               fill="none" 
                               viewBox="0 0 24 24" 
                               stroke="currentColor"

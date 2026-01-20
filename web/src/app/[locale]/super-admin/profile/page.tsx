@@ -10,9 +10,7 @@ import { useLocale } from "@/providers/locale-provider";
 export default function SuperAdminProfilePage() {
   const { user, loading, signOut } = useAuth();
   const { locale, t } = useLocale();
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const userRole = (user as any)?.role as string | undefined;
+  const userRole = (user as unknown as { role?: string } | null | undefined)?.role;
 
   if (loading) {
     return (
@@ -26,7 +24,10 @@ export default function SuperAdminProfilePage() {
     return (
       <div className="rounded-2xl border border-border bg-card p-8">
         <p className="text-sm text-muted-foreground">{t("noActiveSession")}</p>
-        <Link href={`/${locale}/auth/login`} className="mt-3 inline-flex text-sm font-semibold text-primary hover:opacity-90">
+        <Link
+          href={`/${locale}/auth/login`}
+          className="mt-3 inline-flex text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+        >
           {t("goToSignIn")}
         </Link>
       </div>
@@ -37,7 +38,10 @@ export default function SuperAdminProfilePage() {
     return (
       <div className="rounded-2xl border border-border bg-card p-8">
         <p className="text-sm text-muted-foreground">{t("unauthorized")}</p>
-        <Link href={`/${locale}/overview`} className="mt-3 inline-flex text-sm font-semibold text-primary hover:opacity-90">
+        <Link
+          href={`/${locale}/overview`}
+          className="mt-3 inline-flex text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+        >
           {t("back")}
         </Link>
       </div>
@@ -50,7 +54,10 @@ export default function SuperAdminProfilePage() {
         title={t("superAdminProfile")}
         subtitle={t("accountActions")}
         actions={
-          <Link href={`/${locale}/super-admin`} className="inline-flex text-sm font-semibold text-primary hover:opacity-90">
+          <Link
+            href={`/${locale}/super-admin`}
+            className="inline-flex text-sm font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+          >
             {t("back")}
           </Link>
         }

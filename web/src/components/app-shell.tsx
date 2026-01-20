@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
@@ -13,6 +14,8 @@ import { Icon } from "@/components/icon";
 import { cn } from "@/lib/utils";
 
 const marketingRouteSet = new Set(["/", "/pricing", "/faq", "/about", "/contact", "/careers", "/privacy", "/terms"]);
+
+const brandLogoSrc = "/AlmosaLogoWhite.png";
 
 const entityTypeIconMap: Record<string, string> = {
   pillar: "tabler:columns-3",
@@ -76,10 +79,22 @@ function getAppHomeHref(userRole: unknown) {
   return userRole === "SUPER_ADMIN" ? "/super-admin" : "/overview";
 }
 
-function LogoMark({ text }: { text: string }) {
+function BrandLogo({ compact }: { compact?: boolean }) {
   return (
-    <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500 via-emerald-400 to-sky-500 shadow-sm">
-      <span className="text-lg font-semibold">{text}</span>
+    <div
+      className={cn(
+        "flex items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-sm",
+        compact ? "h-10 w-10" : "h-10 px-3",
+      )}
+    >
+      <Image
+        src={brandLogoSrc}
+        alt="Almosa"
+        width={160}
+        height={40}
+        className={cn("w-auto object-contain", compact ? "h-7 max-w-[2.25rem]" : "h-7")}
+        sizes={compact ? "40px" : "160px"}
+      />
     </div>
   );
 }
@@ -324,7 +339,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="relative min-h-screen bg-background text-foreground">
-      <div className="absolute inset-0 pointer-events-none dark:bg-[radial-gradient(circle_at_top,_rgba(99,102,241,0.14),transparent_35%),radial-gradient(circle_at_20%_40%,_rgba(16,185,129,0.12),transparent_25%)]" />
+      <div className="absolute inset-0 pointer-events-none dark:bg-[radial-gradient(circle_at_top,_rgba(23,55,99,0.18),transparent_40%),radial-gradient(circle_at_20%_40%,_rgba(23,55,99,0.10),transparent_30%)]" />
 
       <div className={cn("relative flex min-h-screen")}>
         {mounted && showAppNav ? (
@@ -349,7 +364,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                   href={withLocale(locale, getAppHomeHref(userRole))}
                   className="flex items-center gap-3"
                 >
-                  <LogoMark text="SE" />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-border bg-muted/30 text-foreground">
+                    <Icon name="tabler:layout-grid" className="h-5 w-5" />
+                  </div>
                   <div className="leading-tight">
                     <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">{t("appTitle")}</p>
                     <p className="text-sm font-semibold text-foreground">{t("appShortTitle")}</p>
@@ -434,7 +451,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 href={withLocale(locale, getAppHomeHref(userRole))}
                 className={cn("flex items-center gap-3", !sidebarExpanded && "justify-center")}
               >
-                <LogoMark text="SE" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-border bg-muted/30 text-foreground">
+                  <Icon name="tabler:layout-grid" className="h-5 w-5" />
+                </div>
                 <div
                   className={cn(
                     "leading-tight overflow-hidden transition-all duration-300 motion-reduce:transition-none",
@@ -525,7 +544,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               {isMarketingRoute ? (
                 <div className="flex items-center gap-6">
                   <Link href={`/${locale}`} className="flex items-center gap-3">
-                    <LogoMark text="M" />
+                    <BrandLogo />
                     <div className={cn("leading-tight")}>
                       <p className="text-sm font-semibold text-foreground">{t("murtakaz")}</p>
                       <p className="text-xs text-muted-foreground">{t("strategyExecutionPlatform")}</p>
@@ -553,7 +572,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 </div>
               ) : (
                 <Link href={`/${locale}`} className="flex items-center gap-3">
-                  <LogoMark text="SE" />
+                  <BrandLogo />
                   <div className="leading-tight">
                     <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">{t("appTitle")}</p>
                     <p className="text-sm font-semibold text-foreground">{t("appTagline")}</p>
