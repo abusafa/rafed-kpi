@@ -7,8 +7,7 @@
     "dev:turbo": "TURBOPACK=1 next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "prisma generate --schema=./prisma/schema.prisma"
+    "lint": "next lint"
   },
   "dependencies": {
     "@better-auth/cli": "^1.4.10",
