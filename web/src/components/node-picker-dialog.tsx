@@ -101,7 +101,7 @@ export function NodePickerTree(props: {
     for (const id of matches) all.add(id);
     for (const id of ancestors) all.add(id);
     return all;
-  }, [parentById, props.nodes, props.typeFallbackLabel, query]);
+  }, [df, parentById, props.nodes, props.typeFallbackLabel, query]);
 
   const hasVisibleSubtree = useMemo(() => {
     if (!visibleIds) return null;
