@@ -1,6 +1,7 @@
 [phases.setup]
 # Coolify sets `NIXPACKS_NODE_VERSION=22`, this pins the Node toolchain.
-nixPkgs = ["nodejs_22", "npm"]
+# Python is required for native module builds (better-sqlite3)
+nixPkgs = ["nodejs_22", "npm", "python3"]
 
 [phases.install]
 cmds = ["cd web && npm ci"]
