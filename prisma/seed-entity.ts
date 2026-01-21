@@ -1153,6 +1153,8 @@ function buildAvgGetFormula(keys: string[]) {
     deptKpiKeyByName.set(name, key);
     deptKpiKeys.push(key);
 
+    const titleEn = `Investment Dept KPI ${String(i + 1).padStart(2, "0")}`;
+
     const meta = deptKpiNameToMeta.get(name);
     const periodType = periodTypeFromFrequency(meta?.frequency);
     const variableDataType = dataTypeFromUnit(meta?.unit);
@@ -1161,7 +1163,7 @@ function buildAvgGetFormula(keys: string[]) {
       orgId: org.id,
       orgEntityTypeId: kpiTypeId,
       key,
-      title: name,
+      title: titleEn,
       titleAr: name,
       ownerUserId: headInvestment.id,
       status: Status.ACTIVE,
@@ -1236,11 +1238,13 @@ function buildAvgGetFormula(keys: string[]) {
           ? "0"
           : buildWeightedAvgGetFormula(links.map((l) => ({ key: l.deptKey as string, weight: l.weight })));
 
+      const strategicKpiTitleEn = `Strategic KPI ${String(okpi.id)}`;
+
       await ensureEntity({
         orgId: org.id,
         orgEntityTypeId: kpiTypeId,
         key: okpi.id,
-        title: okpi.title,
+        title: strategicKpiTitleEn,
         titleAr: okpi.title,
         ownerUserId: headStrategy.id,
         status: Status.ACTIVE,
@@ -1260,7 +1264,7 @@ function buildAvgGetFormula(keys: string[]) {
       orgId: org.id,
       orgEntityTypeId: objectiveTypeId,
       key: String(obj.goal_id),
-      title: obj.goal_title,
+      title: `Strategic Objective ${String(obj.goal_id)}`,
       titleAr: obj.goal_title,
       ownerUserId: headStrategy.id,
       status: Status.ACTIVE,
