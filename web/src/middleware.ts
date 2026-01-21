@@ -20,20 +20,37 @@ export function middleware(request: NextRequest) {
   }
 
   const canonicalPath = pathname.replace(new RegExp(`^/${locale}`), "") || "/";
-  if (canonicalPath.startsWith("/auth/")) return;
-  if (canonicalPath === "/") return;
-  if (
-    canonicalPath === "/pricing" ||
-    canonicalPath === "/faq" ||
-    canonicalPath === "/about" ||
-    canonicalPath === "/contact" ||
-    canonicalPath === "/careers" ||
-    canonicalPath === "/privacy" ||
-    canonicalPath === "/terms"
-  ) {
-    return;
+  
+  // Allow API routes
+  if (pathname.startsWith("/api/")) {
+    return NextResponse.next();
+  }
+  
+  // Allow auth routes
+  if (canonicalPath.startsWith("/auth/")) {
+    return NextResponse.next();
+  }
+  
+  // Allow public routes
+  if (canonicalPath === "/") {
+    return NextResponse.next();
+  }
+  
+  const publicPaths = [
+    "/pricing",
+    "/faq",
+    "/about",
+    "/contact",
+    "/careers",
+    "/privacy",
+    "/terms"
+  ];
+  
+  if (publicPaths.includes(canonicalPath)) {
+    return NextResponse.next();
   }
 
+  // Check for session token
   const sessionToken = request.cookies.get("better-auth.session_token")?.value;
 
   if (!sessionToken) {
@@ -43,7 +60,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  return;
+  return NextResponse.next();
 }
 
 export const config = {
