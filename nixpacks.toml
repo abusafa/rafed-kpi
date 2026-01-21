@@ -2,10 +2,13 @@
 NIXPACKS_NODE_VERSION = "22"
 
 [phases.setup]
-nixPkgs = ["nodejs_22", "pnpm", "python3", "gcc", "gnumake"]
+nixPkgs = ["nodejs_22", "pnpm"]
 
 [phases.install]
-cmds = ["cd web && pnpm install --frozen-lockfile"]
+cmds = [
+  "sudo apt-get update && sudo apt-get install -y python3 python3-pip build-essential",
+  "cd web && pnpm install --frozen-lockfile"
+]
 
 [phases.build]
 cmds = ["cd web && pnpm run build"]
