@@ -375,7 +375,7 @@ export default function CreateOrganizationPage() {
               </div>
 
               <div className="rounded-2xl border border-border bg-muted/30 p-4">
-                <div className={cn("flex items-start justify-between gap-4", isArabic && "flex-row-reverse")}> 
+                <div className={cn("flex items-start justify-between gap-4")}> 
                   <div className={cn("space-y-1", isArabic && "text-right")}>
                     <p className="text-sm font-semibold">{tr("Entities", "الكيانات")}</p>
                     <p className="text-sm text-muted-foreground">
@@ -450,7 +450,7 @@ export default function CreateOrganizationPage() {
                               />
                             </TableCell>
                             <TableCell className="text-right align-top">
-                              <div className={cn("flex justify-end gap-1", isArabic && "flex-row-reverse")}> 
+                              <div className={cn("flex justify-end gap-1")}> 
                                 <Button
                                   type="button"
                                   size="icon"
@@ -489,8 +489,8 @@ export default function CreateOrganizationPage() {
                     </Table>
                   </div>
 
-                  <div className={cn("mt-3 flex items-center justify-end", isArabic && "flex-row-reverse")}>
-                    <Button type="button" variant="outline" size="sm" onClick={addEntityType} className={cn(isArabic && "flex-row-reverse")}> 
+                  <div className={cn("mt-3 flex items-center justify-end")}>
+                    <Button type="button" variant="outline" size="sm" onClick={addEntityType} className={cn()}> 
                       <Plus className={cn("h-4 w-4", isArabic ? "ms-2" : "me-2")} />
                       {t("add")}
                     </Button>
@@ -522,14 +522,14 @@ export default function CreateOrganizationPage() {
 
         <Card className="bg-card/70 backdrop-blur shadow-sm">
           <CardHeader>
-            <div className={cn("flex items-start justify-between gap-4", isArabic && "flex-row-reverse")}>
+            <div className={cn("flex items-start justify-between gap-4")}>
               <div className={cn("space-y-1", isArabic && "text-right")}>
                 <CardTitle className="text-base">{t("users")}</CardTitle>
                 <CardDescription>
                   {t("createInitialUsersDesc")}
                 </CardDescription>
               </div>
-              <Button type="button" onClick={addUser} className={cn(isArabic && "flex-row-reverse")}> 
+              <Button type="button" onClick={addUser} className={cn()}> 
                 <Plus className={cn("h-4 w-4", isArabic ? "ms-2" : "me-2")} />
                 {t("addUser")}
               </Button>
@@ -644,7 +644,7 @@ export default function CreateOrganizationPage() {
           </CardContent>
         </Card>
 
-        <div className={cn("flex items-center justify-end gap-2", isArabic && "flex-row-reverse")}> 
+        <div className={cn("flex items-center justify-end gap-2")}> 
           <Button type="button" variant="ghost" asChild>
             <Link href={`/${locale}/super-admin/organizations`}>{t("cancel")}</Link>
           </Button>

@@ -4,7 +4,6 @@ import * as React from "react"
 import * as TabsPrimitive from "@radix-ui/react-tabs"
 
 import { cn } from "@/lib/utils"
-import { useLocale } from "@/providers/locale-provider";
 
 const Tabs = TabsPrimitive.Root
 
@@ -20,13 +19,11 @@ const TabsListInner = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.List>,
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>
 >(({ className, ...props }, ref) => {
-  const { dir } = useLocale();
   return (
     <TabsPrimitive.List
       ref={ref}
       className={cn(
         "inline-flex h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground",
-        dir === "rtl" && "flex-row-reverse",
         className
       )}
       {...props}

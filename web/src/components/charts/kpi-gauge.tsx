@@ -1,6 +1,6 @@
 "use client";
 
-import { graphic, type EChartsOption } from "echarts";
+import { type EChartsOption } from "echarts";
 import { useMemo } from "react";
 import { EChart } from "@/components/charts/echart";
 import { useLocale } from "@/providers/locale-provider";
@@ -48,9 +48,9 @@ export function KpiGauge({
     const track = isDark ? "rgba(148,163,184,0.14)" : "rgba(15,23,42,0.08)";
 
     // status colors
-    const cRed = "rgba(248,113,113,0.92)";
-    const cAmber = "rgba(251,191,36,0.95)";
-    const cGreen = "rgba(52,211,153,0.92)";
+    const cRed = "#ef4444";
+    const cAmber = "#f59e0b";
+    const cGreen = "#10b981";
 
     const status =
       !hasValue
@@ -64,13 +64,6 @@ export function KpiGauge({
               : "—";
 
     const statusColor = ratio >= amber ? cGreen : ratio >= red ? cAmber : cRed;
-
-    // progress gradient (subtle modern look)
-    const progressColor = new graphic.LinearGradient(0, 0, 1, 0, [
-      { offset: 0, color: "rgba(255,255,255,0.08)" },
-      { offset: 0.25, color: statusColor },
-      { offset: 1, color: "rgba(255,255,255,0.10)" },
-    ]);
 
     const fmt = (n: number) => {
       if (!Number.isFinite(n)) return "0";
@@ -143,9 +136,6 @@ export function KpiGauge({
             lineStyle: {
               width: 2,
               color: [[1, isDark ? "rgba(226,232,240,0.10)" : "rgba(15,23,42,0.10)"]],
-              shadowBlur: 14,
-              shadowColor: isDark ? "rgba(56,189,248,0.18)" : "rgba(2,132,199,0.12)",
-              shadowOffsetY: 2,
             },
           },
           axisTick: { show: false },
@@ -171,7 +161,7 @@ export function KpiGauge({
           // Track
           axisLine: {
             lineStyle: {
-              width: 16,
+              width: 14,
               color: [[1, track]],
               cap: "round",
             },
@@ -180,12 +170,10 @@ export function KpiGauge({
           // Progress
           progress: {
             show: true,
-            width: 16,
+            width: 14,
             roundCap: true,
             itemStyle: {
-              color: progressColor,
-              shadowBlur: 16,
-              shadowColor: statusColor,
+              color: statusColor,
             },
           },
 
@@ -196,8 +184,6 @@ export function KpiGauge({
             length: "55%",
             itemStyle: {
               color: isDark ? "rgba(226,232,240,0.85)" : "rgba(15,23,42,0.82)",
-              shadowBlur: 10,
-              shadowColor: "rgba(0,0,0,0.25)",
             },
           },
           anchor: {
@@ -206,10 +192,8 @@ export function KpiGauge({
             size: 12,
             itemStyle: {
               color: isDark ? "rgba(2,6,23,0.6)" : "rgba(255,255,255,0.8)",
-              borderWidth: 3,
+              borderWidth: 2,
               borderColor: statusColor,
-              shadowBlur: 12,
-              shadowColor: statusColor,
             },
           },
 
@@ -240,7 +224,7 @@ export function KpiGauge({
           // Center text (value + unit + label + status)
           detail: {
             valueAnimation: true,
-            offsetCenter: [0, "18%"],
+            offsetCenter: [0, "52%"],
             formatter: (val: number) => {
               const v = Number.isFinite(val) ? val : 0;
               const u = unit ?? "";
@@ -255,26 +239,26 @@ export function KpiGauge({
             rich: {
               value: {
                 color: textStrong,
-                fontSize: 26,
+                fontSize: 22,
                 fontWeight: 800,
-                lineHeight: 30,
+                lineHeight: 26,
               },
               label: {
                 color: textMuted,
-                fontSize: 12,
+                fontSize: 11,
                 fontWeight: 600,
-                lineHeight: 18,
+                lineHeight: 16,
               },
               muted: {
                 color: textMuted,
-                fontSize: 11,
-                lineHeight: 16,
+                fontSize: 10,
+                lineHeight: 14,
               },
               status: {
                 color: statusColor,
-                fontSize: 11,
+                fontSize: 10,
                 fontWeight: 700,
-                lineHeight: 16,
+                lineHeight: 14,
               },
             },
           },
@@ -292,9 +276,9 @@ export function KpiGauge({
   if (!withCard) return Chart;
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-border bg-card/30 p-3 shadow-lg dark:shadow-black/40">
+    <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-3">
       {/* soft glow */}
-      <div className="pointer-events-none absolute -top-10 left-1/2 h-40 w-40 -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
+      <div className="hidden" />
       {Chart}
     </div>
   );

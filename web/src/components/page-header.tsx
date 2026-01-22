@@ -24,12 +24,12 @@ export function PageHeader({
     <div
       className={cn(
         "flex flex-col gap-3 md:justify-between",
-        isRtl ? "items-end md:flex-row-reverse" : "items-start md:flex-row",
+        "items-start md:flex-row",
         className,
       )}
     >
       <div className={cn("space-y-1", isRtl ? "text-right" : "text-left")}>
-        <div className={cn("flex items-center gap-3", isRtl && "flex-row-reverse")}>
+        <div className={cn("flex items-center gap-3")}>
           {icon ? (
             <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-border bg-card text-foreground">
               {icon}

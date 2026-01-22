@@ -136,7 +136,7 @@ export default function LandingPage() {
             </div>
 
             <m.div
-              className={cn("flex flex-col gap-4 sm:flex-row sm:items-center", isArabic && "sm:flex-row-reverse")}
+              className={cn("flex flex-col gap-4 sm:flex-row sm:items-center")}
               variants={{
                 hidden: { opacity: 0, y: 10 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.2, ease: EASE_OUT } },
@@ -319,7 +319,7 @@ export default function LandingPage() {
                   <p className={cn("text-lg font-medium leading-relaxed text-muted-foreground", isArabic && "text-right")}>&ldquo;{isArabic ? item.quoteAr : item.quote}&rdquo;</p>
                 </div>
                 
-                <div className={cn("mt-6 flex items-center gap-4", isArabic && "flex-row-reverse")}>
+                <div className={cn("mt-6 flex items-center gap-4")}>
                     <div className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-border">
                       <Image
                         src={item.image}
@@ -364,7 +364,7 @@ export default function LandingPage() {
               whileHover={shouldReduceMotion ? undefined : { y: -2 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
             >
-              <summary className={cn("flex cursor-pointer list-none items-center justify-between gap-6", isArabic && "flex-row-reverse")}>
+              <summary className={cn("flex cursor-pointer list-none items-center justify-between gap-6")}>
                 <span className={cn("text-lg font-medium", isArabic && "text-right")}>{isArabic ? item.questionAr : item.question}</span>
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border bg-card/50 transition-colors group-hover:bg-muted/30">
                    <Icon
