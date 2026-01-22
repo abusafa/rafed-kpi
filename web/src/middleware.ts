@@ -51,7 +51,14 @@ export function middleware(request: NextRequest) {
   }
 
   // Check for session token
-  const sessionToken = request.cookies.get("better-auth.session_token")?.value;
+  const possibleCookieNames = [
+    "better-auth.session_token",
+    "__Secure-better-auth.session_token",
+    "__Host-better-auth.session_token",
+  ];
+  const sessionToken = possibleCookieNames
+    .map((name) => request.cookies.get(name)?.value)
+    .find(Boolean);
 
   if (!sessionToken) {
     const url = request.nextUrl.clone();

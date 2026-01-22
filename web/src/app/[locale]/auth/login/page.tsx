@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,7 +11,7 @@ import { useLocale } from "@/providers/locale-provider";
 import Link from "next/link";
 
 export default function LoginPage() {
-  const router = useRouter();
+  const searchParams = useSearchParams();
   const { locale, t } = useLocale();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,27 +23,43 @@ export default function LoginPage() {
     setLoading(true);
     setError(null);
 
-    await authClient.signIn.email({
-      email,
-      password,
-      fetchOptions: {
-        onError: (ctx) => {
-          setError(ctx.error.message);
-          setLoading(false);
+    try {
+      await authClient.signIn.email({
+        email,
+        password,
+        fetchOptions: {
+          onError: (ctx) => {
+            setError(ctx.error.message);
+            setLoading(false);
+          },
+          onSuccess: async () => {
+            try {
+              const next = searchParams.get("next");
+              const sessionPromise = authClient.getSession();
+              const timeoutPromise = new Promise<never>((_, reject) => {
+                window.setTimeout(() => reject(new Error("Session fetch timeout")), 10000);
+              });
+
+              const { data } = await Promise.race([sessionPromise, timeoutPromise]);
+              const user = data?.user as { role?: string } | undefined;
+
+              const fallbackTarget = user?.role === "SUPER_ADMIN" ? `/${locale}/super-admin` : `/${locale}/overview`;
+              const target = next && next.startsWith("/") ? next : fallbackTarget;
+
+              window.location.href = target;
+            } catch (err) {
+              console.error("Post-login session/redirect failed:", err);
+              setError(t("failedToLoad"));
+              setLoading(false);
+            }
+          },
         },
-        onSuccess: async () => {
-          // Fetch the session to check the role
-          const { data } = await authClient.getSession();
-          const user = data?.user as { role?: string } | undefined;
-          
-          if (user?.role === "SUPER_ADMIN") {
-            router.replace(`/${locale}/super-admin`);
-          } else {
-            router.replace(`/${locale}/overview`);
-          }
-        },
-      },
-    });
+      });
+    } catch (err) {
+      console.error("Sign-in failed:", err);
+      setError(t("failedToLoad"));
+      setLoading(false);
+    }
   }
 
   return (
