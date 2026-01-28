@@ -108,6 +108,30 @@ function weightToNumber(input: string | undefined | number): number {
   return typeof num === "number" && Number.isFinite(num) ? num / 100 : 0;
 }
 
+function convertFormulaToGetSyntax(formula: string): string {
+  if (!formula || typeof formula !== "string") return formula;
+  
+  // Pattern to match potential entity keys (alphanumeric + underscores)
+  // Should NOT match numbers, operators, or parentheses
+  const keyPattern = /\b([a-z_][a-z0-9_]*)\b/gi;
+  
+  // Reserved words that should NOT be wrapped in get()
+  const reserved = new Set(["return", "const", "let", "var", "function", "get", "vars"]);
+  
+  return formula.replace(keyPattern, (match) => {
+    const lower = match.toLowerCase();
+    // Don't wrap if it's a reserved word or already a number
+    if (reserved.has(lower) || /^\d+$/.test(match)) {
+      return match;
+    }
+    // If it looks like an entity key (contains underscore or ends with kpi), wrap it
+    if (match.includes("_") || lower.includes("kpi") || lower.includes("dept") || lower.includes("objective") || lower.includes("initiative") || lower.includes("pillar")) {
+      return `get("${match}")`;
+    }
+    return match;
+  });
+}
+
 async function wipeOrgEntities(orgId: string) {
   console.log("  🗑️  Wiping existing org entities...");
   await prisma.$executeRaw`DELETE FROM entity_variable_values WHERE entity_value_id IN (SELECT id FROM entity_values WHERE entity_id IN (SELECT id FROM entities WHERE org_id = ${orgId}))`;
@@ -351,12 +375,35 @@ async function seed() {
 
   const dataDir = path.join(process.cwd(), "data/mosa-raw-data");
 
-  // 1. Seed Pillars
+  // 1. Read objectives first to get goal weights for pillar formulas
+  const objectivesData = readJson<ObjectiveData>(path.join(dataDir, "objectives.json"));
+  const goalWeightMap = new Map<string, number>();
+  for (const goal of objectivesData.strategic_goals) {
+    goalWeightMap.set(goal.goal_id, weightToNumber(goal.goal_weight_overall));
+  }
+
+  // 2. Seed Pillars with formulas that aggregate their associated strategic goals
   console.log("  🏛️  Seeding pillars...");
   const pillarsData = readJson<PillarData>(path.join(dataDir, "pillars.json"));
   const pillarIdMap = new Map<number, string>();
 
   for (const pillar of pillarsData.pillar_objective_mapping) {
+    // Build weighted average formula for associated goals
+    const goalFormulaParts: string[] = [];
+    let totalWeight = 0;
+    
+    for (const goalId of pillar.associated_strategic_goals) {
+      const weight = goalWeightMap.get(goalId) ?? 0;
+      if (weight > 0) {
+        goalFormulaParts.push(`get("objective_${goalId}") * ${weight}`);
+        totalWeight += weight;
+      }
+    }
+
+    const formula = goalFormulaParts.length > 0 && totalWeight > 0
+      ? `(${goalFormulaParts.join(" + ")}) / ${totalWeight}`
+      : "0";
+
     const entity = await ensureEntity({
       orgId: org.id,
       orgEntityTypeId: pillarTypeId,
@@ -365,6 +412,7 @@ async function seed() {
       titleAr: pillar.pillar_name_ar,
       status: Status.ACTIVE,
       sourceType: KpiSourceType.DERIVED,
+      formula,
     });
     pillarIdMap.set(pillar.pillar_id, entity.id);
   }
@@ -400,7 +448,7 @@ async function seed() {
       description: deptData.formula_description,
       status: Status.ACTIVE,
       sourceType: KpiSourceType.DERIVED,
-      formula: deptData.formula,
+      formula: convertFormulaToGetSyntax(deptData.formula),
     });
     deptKeyMap.set(deptPrefix, deptEntity.id);
 
@@ -425,9 +473,8 @@ async function seed() {
   }
   console.log(`  ✅ Seeded ${deptKeyMap.size} departments and ${totalDeptKpis} department KPIs.`);
 
-  // 3. Seed Strategic Objectives and Objective KPIs
+  // 3. Seed Strategic Objectives and Objective KPIs (objectivesData already loaded above)
   console.log("  🎯 Seeding objectives...");
-  const objectivesData = readJson<ObjectiveData>(path.join(dataDir, "objectives.json"));
   let totalObjectiveKpis = 0;
 
   for (const goal of objectivesData.strategic_goals) {
@@ -444,7 +491,7 @@ async function seed() {
         sourceType: KpiSourceType.DERIVED,
         periodType: KpiPeriodType.YEARLY,
         weight: weightToNumber(indicator.weight),
-        formula: indicator.formula,
+        formula: convertFormulaToGetSyntax(indicator.formula),
       });
       totalObjectiveKpis++;
     }
@@ -460,7 +507,7 @@ async function seed() {
       status: Status.ACTIVE,
       sourceType: KpiSourceType.DERIVED,
       weight: weightToNumber(goal.goal_weight_overall),
-      formula: goal.formula,
+      formula: convertFormulaToGetSyntax(goal.formula),
     });
   }
   console.log(`  ✅ Seeded ${objectivesData.strategic_goals.length} objectives and ${totalObjectiveKpis} objective KPIs.`);
@@ -498,7 +545,7 @@ async function seed() {
       description: initiative.formula_description,
       status: Status.ACTIVE,
       sourceType: KpiSourceType.DERIVED,
-      formula: initiative.formula,
+      formula: convertFormulaToGetSyntax(initiative.formula),
     });
   }
   console.log(`  ✅ Seeded ${initiativesData.initiatives_mapping.length} initiatives and ${totalInitiativeKpis} initiative KPIs.`);
