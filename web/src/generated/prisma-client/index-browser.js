@@ -262,6 +262,19 @@ exports.Prisma.EntityScalarFieldEnum = {
   deletedAt: 'deletedAt'
 };
 
+exports.Prisma.EntityAttachmentScalarFieldEnum = {
+  id: 'id',
+  entityId: 'entityId',
+  type: 'type',
+  name: 'name',
+  url: 'url',
+  mimeType: 'mimeType',
+  sizeBytes: 'sizeBytes',
+  storagePath: 'storagePath',
+  uploadedBy: 'uploadedBy',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.EntityVariableScalarFieldEnum = {
   id: 'id',
   entityId: 'entityId',
@@ -392,6 +405,11 @@ exports.KpiAggregationMethod = exports.$Enums.KpiAggregationMethod = {
   MAX: 'MAX'
 };
 
+exports.EntityAttachmentType = exports.$Enums.EntityAttachmentType = {
+  FILE: 'FILE',
+  URL: 'URL'
+};
+
 exports.KpiVariableDataType = exports.$Enums.KpiVariableDataType = {
   NUMBER: 'NUMBER',
   PERCENTAGE: 'PERCENTAGE'
@@ -420,6 +438,7 @@ exports.Prisma.ModelName = {
   ChangeRequest: 'ChangeRequest',
   ChangeApproval: 'ChangeApproval',
   Entity: 'Entity',
+  EntityAttachment: 'EntityAttachment',
   EntityVariable: 'EntityVariable',
   EntityValue: 'EntityValue',
   EntityVariableValue: 'EntityVariableValue',

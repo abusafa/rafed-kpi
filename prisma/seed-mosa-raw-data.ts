@@ -413,6 +413,7 @@ async function seed() {
       status: Status.ACTIVE,
       sourceType: KpiSourceType.DERIVED,
       formula,
+      targetValue: 85,
     });
     pillarIdMap.set(pillar.pillar_id, entity.id);
   }
@@ -449,12 +450,17 @@ async function seed() {
       status: Status.ACTIVE,
       sourceType: KpiSourceType.DERIVED,
       formula: convertFormulaToGetSyntax(deptData.formula),
+      targetValue: 90,
     });
     deptKeyMap.set(deptPrefix, deptEntity.id);
 
     // Seed Department KPIs
     for (const kpi of deptData.indicators) {
       const periodType = periodTypeFromFrequency(kpi.frequency);
+      const unit = String(kpi.unit_en ?? "").toLowerCase();
+      const isPercentage = unit.includes("%") || unit.includes("percent");
+      const targetValue = isPercentage ? 85 : 100;
+      
       await ensureEntity({
         orgId: org.id,
         orgEntityTypeId: kpiTypeId,
@@ -467,6 +473,7 @@ async function seed() {
         unit: kpi.unit_en,
         unitAr: kpi.unit,
         weight: weightToNumber(kpi.weight),
+        targetValue,
       });
       totalDeptKpis++;
     }
@@ -492,6 +499,7 @@ async function seed() {
         periodType: KpiPeriodType.YEARLY,
         weight: weightToNumber(indicator.weight),
         formula: convertFormulaToGetSyntax(indicator.formula),
+        targetValue: 85,
       });
       totalObjectiveKpis++;
     }
@@ -508,6 +516,7 @@ async function seed() {
       sourceType: KpiSourceType.DERIVED,
       weight: weightToNumber(goal.goal_weight_overall),
       formula: convertFormulaToGetSyntax(goal.formula),
+      targetValue: 85,
     });
   }
   console.log(`  ✅ Seeded ${objectivesData.strategic_goals.length} objectives and ${totalObjectiveKpis} objective KPIs.`);
@@ -530,6 +539,7 @@ async function seed() {
           status: Status.ACTIVE,
           sourceType: KpiSourceType.MANUAL,
           periodType: KpiPeriodType.QUARTERLY,
+          targetValue: 80,
         });
         totalInitiativeKpis++;
       }
@@ -546,6 +556,7 @@ async function seed() {
       status: Status.ACTIVE,
       sourceType: KpiSourceType.DERIVED,
       formula: convertFormulaToGetSyntax(initiative.formula),
+      targetValue: 80,
     });
   }
   console.log(`  ✅ Seeded ${initiativesData.initiatives_mapping.length} initiatives and ${totalInitiativeKpis} initiative KPIs.`);

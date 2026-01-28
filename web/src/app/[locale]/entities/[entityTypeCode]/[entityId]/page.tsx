@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import type { EChartsOption } from "echarts";
 import { useEffect, useMemo, useState } from "react";
-import { ExternalLink, FileText, Link2, Loader2, Pencil, Trash2, Upload } from "lucide-react";
+import { ExternalLink, FileText, Link2, Loader2, Pencil, Trash2, Upload, File, X, Plus, Calendar } from "lucide-react";
 import { PageHeader } from "@/components/page-header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -136,7 +136,7 @@ export default function EntityDetailPage() {
   const [attachments, setAttachments] = useState<EntityAttachment[]>([]);
   const [attachmentsLoading, setAttachmentsLoading] = useState(false);
   const [attachmentsError, setAttachmentsError] = useState<string | null>(null);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [uploadingFile, setUploadingFile] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [urlName, setUrlName] = useState("");
@@ -242,30 +242,32 @@ export default function EntityDetailPage() {
     }
   }
 
-  async function handleUploadAttachment() {
+  async function handleUploadAttachments() {
     if (!entity) return;
-    if (!selectedFile) return;
+    if (selectedFiles.length === 0) return;
 
     setUploadingFile(true);
     setUploadError(null);
 
     try {
-      const fd = new FormData();
-      fd.set("entityId", entity.id);
-      fd.set("file", selectedFile);
+      for (const file of selectedFiles) {
+        const fd = new FormData();
+        fd.set("entityId", entity.id);
+        fd.set("file", file);
 
-      const res = await fetch("/api/entity-attachments/upload", {
-        method: "POST",
-        body: fd,
-      });
+        const res = await fetch("/api/entity-attachments/upload", {
+          method: "POST",
+          body: fd,
+        });
 
-      if (!res.ok) {
-        const json = (await res.json().catch(() => null)) as { error?: string } | null;
-        setUploadError(te(json?.error) || json?.error || tr("Failed to upload", "فشل رفع الملف"));
-        return;
+        if (!res.ok) {
+          const json = (await res.json().catch(() => null)) as { error?: string } | null;
+          setUploadError(te(json?.error) || json?.error || tr("Failed to upload", "فشل رفع الملف"));
+          return;
+        }
       }
 
-      setSelectedFile(null);
+      setSelectedFiles([]);
       await refreshAttachments(entity.id);
     } catch (err: unknown) {
       setUploadError(err instanceof Error ? err.message : tr("Failed to upload", "فشل رفع الملف"));
@@ -683,232 +685,62 @@ export default function EntityDetailPage() {
         </Card>
       ) : null}
 
-      <Card className="bg-card/70 backdrop-blur shadow-sm">
-        <CardHeader>
-          <CardTitle className="text-base">{tr("Attachments & Resources", "المرفقات والمصادر")}</CardTitle>
-          <CardDescription>
-            {tr("Upload files or add links related to this entity.", "ارفع ملفات أو أضف روابط متعلقة بهذا الكيان.")}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {attachmentsError ? (
-            <div className="rounded-xl border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm text-destructive whitespace-pre-line">
-              {attachmentsError}
-            </div>
-          ) : null}
-
-          <div className="grid gap-4 lg:grid-cols-2">
-            <div className="rounded-xl border border-border bg-muted/20 p-4 space-y-3">
-              <div className="text-sm font-semibold">{tr("Upload file", "رفع ملف")}</div>
-              {uploadError ? <div className="text-sm text-destructive whitespace-pre-line">{uploadError}</div> : null}
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                <Input
-                  type="file"
-                  className="bg-card"
-                  disabled={!canEditValues || uploadingFile}
-                  onChange={(e) => setSelectedFile(e.target.files?.[0] ?? null)}
-                />
-                <Button
-                  type="button"
-                  onClick={() => void handleUploadAttachment()}
-                  disabled={!canEditValues || uploadingFile || !selectedFile}
-                  className="shrink-0"
-                >
-                  {uploadingFile ? (
-                    <>
-                      <Loader2 className="me-2 h-4 w-4 animate-spin" />
-                      {tr("Uploading", "جارٍ الرفع")}
-                    </>
-                  ) : (
-                    <>
-                      <Upload className="me-2 h-4 w-4" />
-                      {tr("Upload", "رفع")}
-                    </>
-                  )}
-                </Button>
+      <div className="grid gap-6 lg:grid-cols-3">
+        <Card className="bg-card/70 backdrop-blur shadow-sm lg:col-span-1">
+          <CardHeader>
+            <CardTitle className="text-base">{isKpiEntity ? tr("KPI", "مؤشر الأداء") : tr("Value", "القيمة")}</CardTitle>
+            <CardDescription>{tr("Current value and target.", "القيمة الحالية والهدف.")}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <KpiGauge value={currentValue} target={entity.targetValue} unit={unitLabel || undefined} />
+            {isKpiEntity && (
+              <div className="mt-3 text-xs text-muted-foreground">
+                {tr("Status", "الحالة")}: {kpiValueStatusLabel(String(data?.currentPeriod?.status ?? data?.latest?.status ?? "DRAFT"))}
               </div>
-              {!canEditValues ? (
-                <div className="text-xs text-muted-foreground">{tr("You don't have permission to add attachments.", "ليس لديك صلاحية لإضافة مرفقات.")}</div>
-              ) : null}
-            </div>
-
-            <div className="rounded-xl border border-border bg-muted/20 p-4 space-y-3">
-              <div className="text-sm font-semibold">{tr("Add link", "إضافة رابط")}</div>
-              {urlError ? <div className="text-sm text-destructive whitespace-pre-line">{urlError}</div> : null}
-              <div className="grid gap-3 sm:grid-cols-2">
-                <div className="space-y-2">
-                  <Label htmlFor="resource-name">{tr("Name", "الاسم")}</Label>
-                  <Input
-                    id="resource-name"
-                    value={urlName}
-                    onChange={(e) => setUrlName(e.target.value)}
-                    className="bg-card"
-                    disabled={!canEditValues || addingUrl}
-                    placeholder={tr("Optional", "اختياري")}
-                  />
+            )}
+            {entity.formula && (
+              <div className="mt-4 space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="text-xs font-medium text-muted-foreground">{tr("Formula", "الصيغة")}</div>
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="outline"
+                    onClick={() => void handleCalculate()}
+                    disabled={calculating}
+                    className="h-6 text-xs"
+                  >
+                    {calculating ? (
+                      <>
+                        <Loader2 className="me-1 h-3 w-3 animate-spin" />
+                        {tr("Calculating", "جارٍ الحساب")}
+                      </>
+                    ) : (
+                      tr("Calculate", "احسب")
+                    )}
+                  </Button>
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="resource-url">{tr("URL", "الرابط")}</Label>
-                  <Input
-                    id="resource-url"
-                    value={urlValue}
-                    onChange={(e) => setUrlValue(e.target.value)}
-                    className="bg-card"
-                    disabled={!canEditValues || addingUrl}
-                    placeholder="https://"
-                  />
+                <div className="rounded-md bg-muted/50 p-2 font-mono text-[10px] overflow-x-auto">
+                  {entity.formula}
                 </div>
+                {calculateError && (
+                  <div className="text-xs text-destructive">{calculateError}</div>
+                )}
               </div>
-              <div className="flex justify-end">
-                <Button
-                  type="button"
-                  variant="secondary"
-                  onClick={() => void handleAddUrlAttachment()}
-                  disabled={!canEditValues || addingUrl || !urlValue.trim()}
-                >
-                  {addingUrl ? (
-                    <>
-                      <Loader2 className="me-2 h-4 w-4 animate-spin" />
-                      {tr("Adding", "جارٍ الإضافة")}
-                    </>
-                  ) : (
-                    <>
-                      <Link2 className="me-2 h-4 w-4" />
-                      {tr("Add", "إضافة")}
-                    </>
-                  )}
-                </Button>
-              </div>
-            </div>
-          </div>
+            )}
+          </CardContent>
+        </Card>
 
-          <div className="rounded-xl border border-border bg-muted/10 p-4">
-            <div className="flex items-center justify-between gap-2">
-              <div className="text-sm font-semibold">{tr("Items", "العناصر")}</div>
-              <div className="text-xs text-muted-foreground">
-                {attachmentsLoading ? tr("Loading", "جارٍ التحميل") : tr("Count", "العدد") + `: ${attachments.length}`}
-              </div>
-            </div>
-            <div className="mt-3 space-y-2">
-              {attachments.length === 0 && !attachmentsLoading ? (
-                <div className="text-sm text-muted-foreground">{tr("No attachments yet.", "لا توجد مرفقات بعد.")}</div>
-              ) : null}
-
-              {attachments.map((att) => (
-                <div key={att.id} className="flex items-center justify-between gap-3 rounded-lg border border-border bg-card/40 px-3 py-2">
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2 min-w-0">
-                      {att.type === "URL" ? (
-                        <Link2 className="h-4 w-4 text-muted-foreground shrink-0" />
-                      ) : (
-                        <FileText className="h-4 w-4 text-muted-foreground shrink-0" />
-                      )}
-                      <div className="text-sm font-medium truncate">{att.name}</div>
-                    </div>
-                    <div className="mt-1 text-xs text-muted-foreground">
-                      {(() => {
-                        const d = new Date(att.createdAt);
-                        return df(enDateFormatter.format(d), arDateFormatter.format(d));
-                      })()}
-                      {typeof att.sizeBytes === "number" && Number.isFinite(att.sizeBytes)
-                        ? ` · ${formatNumber(att.sizeBytes)} bytes`
-                        : ""}
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2 shrink-0">
-                    <Button type="button" variant="outline" size="sm" asChild>
-                      <a href={`/api/entity-attachments/${att.id}`} target="_blank" rel="noreferrer">
-                        <ExternalLink className="me-2 h-4 w-4" />
-                        {tr("Open", "فتح")}
-                      </a>
-                    </Button>
-                    {canEditValues ? (
-                      <Button
-                        type="button"
-                        variant="destructive"
-                        size="sm"
-                        onClick={() => void handleDeleteAttachment(att.id)}
-                        disabled={deletingAttachmentId === att.id}
-                      >
-                        {deletingAttachmentId === att.id ? (
-                          <>
-                            <Loader2 className="me-2 h-4 w-4 animate-spin" />
-                            {tr("Deleting", "جارٍ الحذف")}
-                          </>
-                        ) : (
-                          <>
-                            <Trash2 className="me-2 h-4 w-4" />
-                            {t("delete")}
-                          </>
-                        )}
-                      </Button>
-                    ) : null}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {entity.formula || entity.targetValue ? (
-        <div className="grid gap-6 lg:grid-cols-3">
-          <Card className="bg-card/70 backdrop-blur shadow-sm lg:col-span-1">
-            <CardHeader>
-              <CardTitle className="text-base">{isKpiEntity ? tr("KPI", "مؤشر الأداء") : tr("Value", "القيمة")}</CardTitle>
-              <CardDescription>{tr("Current value and target.", "القيمة الحالية والهدف.")}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <KpiGauge value={currentValue} target={entity.targetValue} unit={unitLabel || undefined} />
-              {isKpiEntity && (
-                <div className="mt-3 text-xs text-muted-foreground">
-                  {tr("Status", "الحالة")}: {kpiValueStatusLabel(String(data?.currentPeriod?.status ?? data?.latest?.status ?? "DRAFT"))}
-                </div>
-              )}
-              {entity.formula && (
-                <div className="mt-4 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <div className="text-xs font-medium text-muted-foreground">{tr("Formula", "الصيغة")}</div>
-                    <Button
-                      type="button"
-                      size="sm"
-                      variant="outline"
-                      onClick={() => void handleCalculate()}
-                      disabled={calculating}
-                      className="h-6 text-xs"
-                    >
-                      {calculating ? (
-                        <>
-                          <Loader2 className="me-1 h-3 w-3 animate-spin" />
-                          {tr("Calculating", "جارٍ الحساب")}
-                        </>
-                      ) : (
-                        tr("Calculate", "احسب")
-                      )}
-                    </Button>
-                  </div>
-                  <div className="rounded-md bg-muted/50 p-2 font-mono text-[10px] overflow-x-auto">
-                    {entity.formula}
-                  </div>
-                  {calculateError && (
-                    <div className="text-xs text-destructive">{calculateError}</div>
-                  )}
-                </div>
-              )}
-            </CardContent>
-          </Card>
-
-          <Card className="bg-card/70 backdrop-blur shadow-sm lg:col-span-2">
-            <CardHeader>
-              <CardTitle className="text-base">{tr("Trend", "الاتجاه")}</CardTitle>
-              <CardDescription>{tr("Recent periods.", "آخر الفترات.")}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <EChart option={trendOption} height={280} />
-            </CardContent>
-          </Card>
-        </div>
-      ) : null}
+        <Card className="bg-card/70 backdrop-blur shadow-sm lg:col-span-2">
+          <CardHeader>
+            <CardTitle className="text-base">{tr("Trend", "الاتجاه")}</CardTitle>
+            <CardDescription>{tr("Recent periods.", "آخر الفترات.")}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <EChart option={trendOption} height={280} />
+          </CardContent>
+        </Card>
+      </div>
 
       {showInputsSection ? (
         <Card className="bg-card/70 backdrop-blur shadow-sm">
@@ -1149,7 +981,216 @@ export default function EntityDetailPage() {
         </Card>
       ) : null}
 
-      {/* Dependency Tree Diagram */}
+      {/* Attachments Section */}
+      {entity ? (
+        <Card className="bg-card/70 backdrop-blur shadow-sm">
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle className="text-base">{tr("Attachments", "المرفقات")}</CardTitle>
+                <CardDescription>{tr("Upload files or add links related to this entity.", "رفع الملفات أو إضافة الروابط المتعلقة بهذا الكيان.")}</CardDescription>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            {attachmentsError ? (
+              <div className="rounded-xl border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm text-destructive whitespace-pre-line">
+                {attachmentsError}
+              </div>
+            ) : null}
+
+            {/* Upload Files Section */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <Upload className="h-4 w-4 text-muted-foreground" />
+                <h3 className="text-sm font-semibold">{tr("Upload Files", "رفع الملفات")}</h3>
+              </div>
+              
+              {uploadError ? (
+                <div className="rounded-xl border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm text-destructive whitespace-pre-line">
+                  {uploadError}
+                </div>
+              ) : null}
+
+              <div className="flex gap-2">
+                <Input
+                  type="file"
+                  multiple
+                  className="bg-card text-sm flex-1"
+                  disabled={uploadingFile}
+                  onChange={(e) => setSelectedFiles(Array.from(e.target.files ?? []))}
+                />
+                <Button
+                  type="button"
+                  size="default"
+                  onClick={() => void handleUploadAttachments()}
+                  disabled={uploadingFile || selectedFiles.length === 0}
+                  className="shrink-0"
+                >
+                  {uploadingFile ? (
+                    <>
+                      <Loader2 className="me-2 h-4 w-4 animate-spin" />
+                      {tr("Uploading", "جارٍ الرفع")}
+                    </>
+                  ) : (
+                    <>
+                      <Upload className="me-2 h-4 w-4" />
+                      {tr("Upload", "رفع")}
+                    </>
+                  )}
+                </Button>
+              </div>
+              {selectedFiles.length > 0 && (
+                <div className="text-xs text-muted-foreground">
+                  {selectedFiles.length} {tr("file(s) selected", "ملف محدد")}: {selectedFiles.map(f => f.name).join(", ")}
+                </div>
+              )}
+            </div>
+
+            {/* Add URL Section */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <Link2 className="h-4 w-4 text-muted-foreground" />
+                <h3 className="text-sm font-semibold">{tr("Add Link", "إضافة رابط")}</h3>
+              </div>
+              
+              {urlError ? (
+                <div className="rounded-xl border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm text-destructive whitespace-pre-line">
+                  {urlError}
+                </div>
+              ) : null}
+
+              <div className="grid gap-2 md:grid-cols-2">
+                <Input
+                  placeholder={tr("Link name (optional)", "اسم الرابط (اختياري)")}
+                  value={urlName}
+                  onChange={(e) => setUrlName(e.target.value)}
+                  className="bg-card text-sm"
+                  disabled={addingUrl}
+                />
+                <Input
+                  placeholder={tr("URL", "رابط")}
+                  value={urlValue}
+                  onChange={(e) => setUrlValue(e.target.value)}
+                  className="bg-card text-sm"
+                  disabled={addingUrl}
+                />
+              </div>
+              <Button
+                type="button"
+                size="default"
+                onClick={() => void handleAddUrlAttachment()}
+                disabled={addingUrl || !urlValue.trim()}
+                variant="outline"
+              >
+                {addingUrl ? (
+                  <>
+                    <Loader2 className="me-2 h-4 w-4 animate-spin" />
+                    {tr("Adding", "جارٍ الإضافة")}
+                  </>
+                ) : (
+                  <>
+                    <Plus className="me-2 h-4 w-4" />
+                    {tr("Add Link", "إضافة رابط")}
+                  </>
+                )}
+              </Button>
+            </div>
+
+            {/* Display Attachments */}
+            {attachmentsLoading ? (
+              <div className="flex items-center justify-center py-8">
+                <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+              </div>
+            ) : attachments.length > 0 ? (
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 pt-3 border-t">
+                  <FileText className="h-4 w-4 text-muted-foreground" />
+                  <h3 className="text-sm font-semibold">
+                    {tr("Uploaded Files", "الملفات المرفوعة")} ({attachments.length})
+                  </h3>
+                </div>
+                <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+                  {attachments.map((attachment) => {
+                    const isUrl = attachment.type === "URL";
+                    const displayName = attachment.name;
+                    const fileExtension = attachment.name?.split(".").pop()?.toUpperCase() || "FILE";
+                    const attachmentUrl = isUrl ? (attachment.url || "#") : `/api/entity-attachments/${attachment.id}`;
+                    
+                    return (
+                      <a
+                        key={attachment.id}
+                        href={attachmentUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative block rounded-xl border border-border bg-card p-4 hover:shadow-lg hover:border-primary/50 transition-all cursor-pointer"
+                      >
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="flex items-center gap-2 flex-1 min-w-0">
+                            <div className={`shrink-0 rounded-lg p-2 ${isUrl ? 'bg-blue-500/10' : 'bg-primary/10'}`}>
+                              {isUrl ? (
+                                <Link2 className="h-4 w-4 text-blue-500" />
+                              ) : (
+                                <File className="h-4 w-4 text-primary" />
+                              )}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="text-sm font-medium truncate group-hover:text-primary transition-colors">
+                                {displayName}
+                              </div>
+                              <div className="text-xs text-muted-foreground truncate">
+                                {isUrl ? attachment.url : fileExtension}
+                              </div>
+                            </div>
+                          </div>
+                          <ExternalLink className="h-3.5 w-3.5 text-muted-foreground shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </div>
+                        
+                        {attachment.createdAt && (
+                          <div className="flex items-center gap-1 mt-2 pt-2 border-t text-xs text-muted-foreground">
+                            <Calendar className="h-3 w-3" />
+                            {df(
+                              enDateFormatter.format(new Date(attachment.createdAt)),
+                              arDateFormatter.format(new Date(attachment.createdAt))
+                            )}
+                          </div>
+                        )}
+
+                        <Button
+                          type="button"
+                          size="icon"
+                          variant="ghost"
+                          className="absolute top-2 right-2 h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-destructive/10 hover:text-destructive z-10"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            void handleDeleteAttachment(attachment.id);
+                          }}
+                          disabled={deletingAttachmentId === attachment.id}
+                        >
+                          {deletingAttachmentId === attachment.id ? (
+                            <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                          ) : (
+                            <X className="h-3.5 w-3.5" />
+                          )}
+                        </Button>
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            ) : (
+              <div className="rounded-xl border border-dashed border-border bg-muted/10 px-4 py-8 text-center">
+                <FileText className="mx-auto h-8 w-8 text-muted-foreground/50 mb-2" />
+                <p className="text-sm text-muted-foreground">
+                  {tr("No attachments yet. Upload files or add links above.", "لا توجد مرفقات بعد. قم برفع الملفات أو إضافة الروابط أعلاه.")}
+                </p>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      ) : null}
+
       {entity ? (
         <Card className="bg-card/70 backdrop-blur shadow-sm">
           <CardHeader>

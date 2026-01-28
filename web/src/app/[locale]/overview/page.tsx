@@ -121,36 +121,51 @@ export default function OverviewPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {firstEntityTypeCode && (
-                <Button asChild variant="outline" className="h-auto justify-start gap-3 p-4">
-                  <Link href={`/${locale}/entities/${firstEntityTypeCode}`}>
-                    <Icon name="tabler:target" className="h-5 w-5 text-blue-500" />
-                    <div className="text-left">
-                      <div className="font-semibold">{t("kpiManagement")}</div>
-                      <div className="text-xs text-muted-foreground">{t("viewAndManageKpis")}</div>
+                <Link 
+                  href={`/${locale}/entities/${firstEntityTypeCode}`}
+                  className="group relative overflow-hidden rounded-lg border border-border bg-gradient-to-br from-blue-500/5 to-transparent p-5 transition-all hover:shadow-md hover:border-blue-500/30 hover:from-blue-500/10"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="rounded-lg bg-blue-500/10 p-2.5 group-hover:bg-blue-500/20 transition-colors">
+                      <Icon name="tabler:target" className="h-5 w-5 text-blue-500" />
                     </div>
-                  </Link>
-                </Button>
+                    <div className="flex-1 space-y-1">
+                      <div className="font-semibold text-sm">{t("kpiManagement")}</div>
+                      <div className="text-xs text-muted-foreground leading-relaxed line-clamp-2">{t("viewAndManageKpis")}</div>
+                    </div>
+                  </div>
+                </Link>
               )}
-              <Button asChild variant="outline" className="h-auto justify-start gap-3 p-4">
-                <Link href={`/${locale}/approvals`}>
-                  <Icon name="tabler:gavel" className="h-5 w-5 text-amber-500" />
-                  <div className="text-left">
-                    <div className="font-semibold">{t("approvals")}</div>
-                    <div className="text-xs text-muted-foreground">{t("approvalsSubtitle")}</div>
+              <Link 
+                href={`/${locale}/approvals`}
+                className="group relative overflow-hidden rounded-lg border border-border bg-gradient-to-br from-amber-500/5 to-transparent p-5 transition-all hover:shadow-md hover:border-amber-500/30 hover:from-amber-500/10"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="rounded-lg bg-amber-500/10 p-2.5 group-hover:bg-amber-500/20 transition-colors">
+                    <Icon name="tabler:gavel" className="h-5 w-5 text-amber-500" />
                   </div>
-                </Link>
-              </Button>
-              <Button asChild variant="outline" className="h-auto justify-start gap-3 p-4">
-                <Link href={`/${locale}/responsibilities`}>
-                  <Icon name="tabler:user-check" className="h-5 w-5 text-violet-500" />
-                  <div className="text-left">
-                    <div className="font-semibold">{t("responsibilities")}</div>
-                    <div className="text-xs text-muted-foreground">{t("manageAssignments")}</div>
+                  <div className="flex-1 space-y-1">
+                    <div className="font-semibold text-sm">{t("approvals")}</div>
+                    <div className="text-xs text-muted-foreground leading-relaxed line-clamp-2">{t("approvalsSubtitle")}</div>
                   </div>
-                </Link>
-              </Button>
+                </div>
+              </Link>
+              <Link 
+                href={`/${locale}/responsibilities`}
+                className="group relative overflow-hidden rounded-lg border border-border bg-gradient-to-br from-violet-500/5 to-transparent p-5 transition-all hover:shadow-md hover:border-violet-500/30 hover:from-violet-500/10"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="rounded-lg bg-violet-500/10 p-2.5 group-hover:bg-violet-500/20 transition-colors">
+                    <Icon name="tabler:user-check" className="h-5 w-5 text-violet-500" />
+                  </div>
+                  <div className="flex-1 space-y-1">
+                    <div className="font-semibold text-sm">{t("responsibilities")}</div>
+                    <div className="text-xs text-muted-foreground leading-relaxed line-clamp-2">{t("manageAssignments")}</div>
+                  </div>
+                </div>
+              </Link>
             </div>
           </CardContent>
         </Card>

@@ -64,6 +64,11 @@ export type ChangeApproval = $Result.DefaultSelection<Prisma.$ChangeApprovalPayl
  */
 export type Entity = $Result.DefaultSelection<Prisma.$EntityPayload>
 /**
+ * Model EntityAttachment
+ * 
+ */
+export type EntityAttachment = $Result.DefaultSelection<Prisma.$EntityAttachmentPayload>
+/**
  * Model EntityVariable
  * 
  */
@@ -189,6 +194,14 @@ export const KpiApprovalType: {
 
 export type KpiApprovalType = (typeof KpiApprovalType)[keyof typeof KpiApprovalType]
 
+
+export const EntityAttachmentType: {
+  FILE: 'FILE',
+  URL: 'URL'
+};
+
+export type EntityAttachmentType = (typeof EntityAttachmentType)[keyof typeof EntityAttachmentType]
+
 }
 
 export type Role = $Enums.Role
@@ -234,6 +247,10 @@ export const KpiSourceType: typeof $Enums.KpiSourceType
 export type KpiApprovalType = $Enums.KpiApprovalType
 
 export const KpiApprovalType: typeof $Enums.KpiApprovalType
+
+export type EntityAttachmentType = $Enums.EntityAttachmentType
+
+export const EntityAttachmentType: typeof $Enums.EntityAttachmentType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -452,6 +469,16 @@ export class PrismaClient<
     * ```
     */
   get entity(): Prisma.EntityDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.entityAttachment`: Exposes CRUD operations for the **EntityAttachment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EntityAttachments
+    * const entityAttachments = await prisma.entityAttachment.findMany()
+    * ```
+    */
+  get entityAttachment(): Prisma.EntityAttachmentDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.entityVariable`: Exposes CRUD operations for the **EntityVariable** model.
@@ -943,6 +970,7 @@ export namespace Prisma {
     ChangeRequest: 'ChangeRequest',
     ChangeApproval: 'ChangeApproval',
     Entity: 'Entity',
+    EntityAttachment: 'EntityAttachment',
     EntityVariable: 'EntityVariable',
     EntityValue: 'EntityValue',
     EntityVariableValue: 'EntityVariableValue',
@@ -965,7 +993,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "organization" | "orgEntityType" | "user" | "account" | "session" | "verification" | "userPreference" | "changeRequest" | "changeApproval" | "entity" | "entityVariable" | "entityValue" | "entityVariableValue" | "userEntityAssignment"
+      modelProps: "organization" | "orgEntityType" | "user" | "account" | "session" | "verification" | "userPreference" | "changeRequest" | "changeApproval" | "entity" | "entityAttachment" | "entityVariable" | "entityValue" | "entityVariableValue" | "userEntityAssignment"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1709,6 +1737,80 @@ export namespace Prisma {
           }
         }
       }
+      EntityAttachment: {
+        payload: Prisma.$EntityAttachmentPayload<ExtArgs>
+        fields: Prisma.EntityAttachmentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EntityAttachmentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EntityAttachmentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EntityAttachmentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EntityAttachmentPayload>
+          }
+          findFirst: {
+            args: Prisma.EntityAttachmentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EntityAttachmentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EntityAttachmentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EntityAttachmentPayload>
+          }
+          findMany: {
+            args: Prisma.EntityAttachmentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EntityAttachmentPayload>[]
+          }
+          create: {
+            args: Prisma.EntityAttachmentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EntityAttachmentPayload>
+          }
+          createMany: {
+            args: Prisma.EntityAttachmentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EntityAttachmentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EntityAttachmentPayload>[]
+          }
+          delete: {
+            args: Prisma.EntityAttachmentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EntityAttachmentPayload>
+          }
+          update: {
+            args: Prisma.EntityAttachmentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EntityAttachmentPayload>
+          }
+          deleteMany: {
+            args: Prisma.EntityAttachmentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EntityAttachmentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EntityAttachmentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EntityAttachmentPayload>[]
+          }
+          upsert: {
+            args: Prisma.EntityAttachmentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EntityAttachmentPayload>
+          }
+          aggregate: {
+            args: Prisma.EntityAttachmentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEntityAttachment>
+          }
+          groupBy: {
+            args: Prisma.EntityAttachmentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EntityAttachmentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EntityAttachmentCountArgs<ExtArgs>
+            result: $Utils.Optional<EntityAttachmentCountAggregateOutputType> | number
+          }
+        }
+      }
       EntityVariable: {
         payload: Prisma.$EntityVariablePayload<ExtArgs>
         fields: Prisma.EntityVariableFieldRefs
@@ -2111,6 +2213,7 @@ export namespace Prisma {
     changeRequest?: ChangeRequestOmit
     changeApproval?: ChangeApprovalOmit
     entity?: EntityOmit
+    entityAttachment?: EntityAttachmentOmit
     entityVariable?: EntityVariableOmit
     entityValue?: EntityValueOmit
     entityVariableValue?: EntityVariableValueOmit
@@ -2294,6 +2397,7 @@ export namespace Prisma {
     valuesSubmitted: number
     valuesApproved: number
     entityAssignments: number
+    uploadedEntityAttachments: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2307,6 +2411,7 @@ export namespace Prisma {
     valuesSubmitted?: boolean | UserCountOutputTypeCountValuesSubmittedArgs
     valuesApproved?: boolean | UserCountOutputTypeCountValuesApprovedArgs
     entityAssignments?: boolean | UserCountOutputTypeCountEntityAssignmentsArgs
+    uploadedEntityAttachments?: boolean | UserCountOutputTypeCountUploadedEntityAttachmentsArgs
   }
 
   // Custom InputTypes
@@ -2390,6 +2495,13 @@ export namespace Prisma {
     where?: UserEntityAssignmentWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountUploadedEntityAttachmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EntityAttachmentWhereInput
+  }
+
 
   /**
    * Count Type ChangeRequestCountOutputType
@@ -2430,12 +2542,14 @@ export namespace Prisma {
     variables: number
     values: number
     assignments: number
+    attachments: number
   }
 
   export type EntityCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     variables?: boolean | EntityCountOutputTypeCountVariablesArgs
     values?: boolean | EntityCountOutputTypeCountValuesArgs
     assignments?: boolean | EntityCountOutputTypeCountAssignmentsArgs
+    attachments?: boolean | EntityCountOutputTypeCountAttachmentsArgs
   }
 
   // Custom InputTypes
@@ -2468,6 +2582,13 @@ export namespace Prisma {
    */
   export type EntityCountOutputTypeCountAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: UserEntityAssignmentWhereInput
+  }
+
+  /**
+   * EntityCountOutputType without action
+   */
+  export type EntityCountOutputTypeCountAttachmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EntityAttachmentWhereInput
   }
 
 
@@ -5232,6 +5353,7 @@ export namespace Prisma {
     valuesSubmitted?: boolean | User$valuesSubmittedArgs<ExtArgs>
     valuesApproved?: boolean | User$valuesApprovedArgs<ExtArgs>
     entityAssignments?: boolean | User$entityAssignmentsArgs<ExtArgs>
+    uploadedEntityAttachments?: boolean | User$uploadedEntityAttachmentsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -5302,6 +5424,7 @@ export namespace Prisma {
     valuesSubmitted?: boolean | User$valuesSubmittedArgs<ExtArgs>
     valuesApproved?: boolean | User$valuesApprovedArgs<ExtArgs>
     entityAssignments?: boolean | User$entityAssignmentsArgs<ExtArgs>
+    uploadedEntityAttachments?: boolean | User$uploadedEntityAttachmentsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5329,6 +5452,7 @@ export namespace Prisma {
       valuesSubmitted: Prisma.$EntityValuePayload<ExtArgs>[]
       valuesApproved: Prisma.$EntityValuePayload<ExtArgs>[]
       entityAssignments: Prisma.$UserEntityAssignmentPayload<ExtArgs>[]
+      uploadedEntityAttachments: Prisma.$EntityAttachmentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5751,6 +5875,7 @@ export namespace Prisma {
     valuesSubmitted<T extends User$valuesSubmittedArgs<ExtArgs> = {}>(args?: Subset<T, User$valuesSubmittedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EntityValuePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     valuesApproved<T extends User$valuesApprovedArgs<ExtArgs> = {}>(args?: Subset<T, User$valuesApprovedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EntityValuePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     entityAssignments<T extends User$entityAssignmentsArgs<ExtArgs> = {}>(args?: Subset<T, User$entityAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserEntityAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    uploadedEntityAttachments<T extends User$uploadedEntityAttachmentsArgs<ExtArgs> = {}>(args?: Subset<T, User$uploadedEntityAttachmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EntityAttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6464,6 +6589,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: UserEntityAssignmentScalarFieldEnum | UserEntityAssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * User.uploadedEntityAttachments
+   */
+  export type User$uploadedEntityAttachmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EntityAttachment
+     */
+    select?: EntityAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EntityAttachment
+     */
+    omit?: EntityAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EntityAttachmentInclude<ExtArgs> | null
+    where?: EntityAttachmentWhereInput
+    orderBy?: EntityAttachmentOrderByWithRelationInput | EntityAttachmentOrderByWithRelationInput[]
+    cursor?: EntityAttachmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EntityAttachmentScalarFieldEnum | EntityAttachmentScalarFieldEnum[]
   }
 
   /**
@@ -13437,6 +13586,7 @@ export namespace Prisma {
     variables?: boolean | Entity$variablesArgs<ExtArgs>
     values?: boolean | Entity$valuesArgs<ExtArgs>
     assignments?: boolean | Entity$assignmentsArgs<ExtArgs>
+    attachments?: boolean | Entity$attachmentsArgs<ExtArgs>
     _count?: boolean | EntityCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["entity"]>
 
@@ -13532,6 +13682,7 @@ export namespace Prisma {
     variables?: boolean | Entity$variablesArgs<ExtArgs>
     values?: boolean | Entity$valuesArgs<ExtArgs>
     assignments?: boolean | Entity$assignmentsArgs<ExtArgs>
+    attachments?: boolean | Entity$attachmentsArgs<ExtArgs>
     _count?: boolean | EntityCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EntityIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -13554,6 +13705,7 @@ export namespace Prisma {
       variables: Prisma.$EntityVariablePayload<ExtArgs>[]
       values: Prisma.$EntityValuePayload<ExtArgs>[]
       assignments: Prisma.$UserEntityAssignmentPayload<ExtArgs>[]
+      attachments: Prisma.$EntityAttachmentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -13979,6 +14131,7 @@ export namespace Prisma {
     variables<T extends Entity$variablesArgs<ExtArgs> = {}>(args?: Subset<T, Entity$variablesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EntityVariablePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     values<T extends Entity$valuesArgs<ExtArgs> = {}>(args?: Subset<T, Entity$valuesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EntityValuePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     assignments<T extends Entity$assignmentsArgs<ExtArgs> = {}>(args?: Subset<T, Entity$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserEntityAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    attachments<T extends Entity$attachmentsArgs<ExtArgs> = {}>(args?: Subset<T, Entity$attachmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EntityAttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -14518,6 +14671,30 @@ export namespace Prisma {
   }
 
   /**
+   * Entity.attachments
+   */
+  export type Entity$attachmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EntityAttachment
+     */
+    select?: EntityAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EntityAttachment
+     */
+    omit?: EntityAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EntityAttachmentInclude<ExtArgs> | null
+    where?: EntityAttachmentWhereInput
+    orderBy?: EntityAttachmentOrderByWithRelationInput | EntityAttachmentOrderByWithRelationInput[]
+    cursor?: EntityAttachmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EntityAttachmentScalarFieldEnum | EntityAttachmentScalarFieldEnum[]
+  }
+
+  /**
    * Entity without action
    */
   export type EntityDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -14533,6 +14710,1190 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: EntityInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model EntityAttachment
+   */
+
+  export type AggregateEntityAttachment = {
+    _count: EntityAttachmentCountAggregateOutputType | null
+    _avg: EntityAttachmentAvgAggregateOutputType | null
+    _sum: EntityAttachmentSumAggregateOutputType | null
+    _min: EntityAttachmentMinAggregateOutputType | null
+    _max: EntityAttachmentMaxAggregateOutputType | null
+  }
+
+  export type EntityAttachmentAvgAggregateOutputType = {
+    sizeBytes: number | null
+  }
+
+  export type EntityAttachmentSumAggregateOutputType = {
+    sizeBytes: number | null
+  }
+
+  export type EntityAttachmentMinAggregateOutputType = {
+    id: string | null
+    entityId: string | null
+    type: $Enums.EntityAttachmentType | null
+    name: string | null
+    url: string | null
+    mimeType: string | null
+    sizeBytes: number | null
+    storagePath: string | null
+    uploadedBy: string | null
+    createdAt: Date | null
+  }
+
+  export type EntityAttachmentMaxAggregateOutputType = {
+    id: string | null
+    entityId: string | null
+    type: $Enums.EntityAttachmentType | null
+    name: string | null
+    url: string | null
+    mimeType: string | null
+    sizeBytes: number | null
+    storagePath: string | null
+    uploadedBy: string | null
+    createdAt: Date | null
+  }
+
+  export type EntityAttachmentCountAggregateOutputType = {
+    id: number
+    entityId: number
+    type: number
+    name: number
+    url: number
+    mimeType: number
+    sizeBytes: number
+    storagePath: number
+    uploadedBy: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type EntityAttachmentAvgAggregateInputType = {
+    sizeBytes?: true
+  }
+
+  export type EntityAttachmentSumAggregateInputType = {
+    sizeBytes?: true
+  }
+
+  export type EntityAttachmentMinAggregateInputType = {
+    id?: true
+    entityId?: true
+    type?: true
+    name?: true
+    url?: true
+    mimeType?: true
+    sizeBytes?: true
+    storagePath?: true
+    uploadedBy?: true
+    createdAt?: true
+  }
+
+  export type EntityAttachmentMaxAggregateInputType = {
+    id?: true
+    entityId?: true
+    type?: true
+    name?: true
+    url?: true
+    mimeType?: true
+    sizeBytes?: true
+    storagePath?: true
+    uploadedBy?: true
+    createdAt?: true
+  }
+
+  export type EntityAttachmentCountAggregateInputType = {
+    id?: true
+    entityId?: true
+    type?: true
+    name?: true
+    url?: true
+    mimeType?: true
+    sizeBytes?: true
+    storagePath?: true
+    uploadedBy?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type EntityAttachmentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EntityAttachment to aggregate.
+     */
+    where?: EntityAttachmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EntityAttachments to fetch.
+     */
+    orderBy?: EntityAttachmentOrderByWithRelationInput | EntityAttachmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EntityAttachmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EntityAttachments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EntityAttachments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EntityAttachments
+    **/
+    _count?: true | EntityAttachmentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: EntityAttachmentAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: EntityAttachmentSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EntityAttachmentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EntityAttachmentMaxAggregateInputType
+  }
+
+  export type GetEntityAttachmentAggregateType<T extends EntityAttachmentAggregateArgs> = {
+        [P in keyof T & keyof AggregateEntityAttachment]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEntityAttachment[P]>
+      : GetScalarType<T[P], AggregateEntityAttachment[P]>
+  }
+
+
+
+
+  export type EntityAttachmentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EntityAttachmentWhereInput
+    orderBy?: EntityAttachmentOrderByWithAggregationInput | EntityAttachmentOrderByWithAggregationInput[]
+    by: EntityAttachmentScalarFieldEnum[] | EntityAttachmentScalarFieldEnum
+    having?: EntityAttachmentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EntityAttachmentCountAggregateInputType | true
+    _avg?: EntityAttachmentAvgAggregateInputType
+    _sum?: EntityAttachmentSumAggregateInputType
+    _min?: EntityAttachmentMinAggregateInputType
+    _max?: EntityAttachmentMaxAggregateInputType
+  }
+
+  export type EntityAttachmentGroupByOutputType = {
+    id: string
+    entityId: string
+    type: $Enums.EntityAttachmentType
+    name: string
+    url: string | null
+    mimeType: string | null
+    sizeBytes: number | null
+    storagePath: string | null
+    uploadedBy: string | null
+    createdAt: Date
+    _count: EntityAttachmentCountAggregateOutputType | null
+    _avg: EntityAttachmentAvgAggregateOutputType | null
+    _sum: EntityAttachmentSumAggregateOutputType | null
+    _min: EntityAttachmentMinAggregateOutputType | null
+    _max: EntityAttachmentMaxAggregateOutputType | null
+  }
+
+  type GetEntityAttachmentGroupByPayload<T extends EntityAttachmentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EntityAttachmentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EntityAttachmentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EntityAttachmentGroupByOutputType[P]>
+            : GetScalarType<T[P], EntityAttachmentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EntityAttachmentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    entityId?: boolean
+    type?: boolean
+    name?: boolean
+    url?: boolean
+    mimeType?: boolean
+    sizeBytes?: boolean
+    storagePath?: boolean
+    uploadedBy?: boolean
+    createdAt?: boolean
+    entity?: boolean | EntityDefaultArgs<ExtArgs>
+    uploadedByUser?: boolean | EntityAttachment$uploadedByUserArgs<ExtArgs>
+  }, ExtArgs["result"]["entityAttachment"]>
+
+  export type EntityAttachmentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    entityId?: boolean
+    type?: boolean
+    name?: boolean
+    url?: boolean
+    mimeType?: boolean
+    sizeBytes?: boolean
+    storagePath?: boolean
+    uploadedBy?: boolean
+    createdAt?: boolean
+    entity?: boolean | EntityDefaultArgs<ExtArgs>
+    uploadedByUser?: boolean | EntityAttachment$uploadedByUserArgs<ExtArgs>
+  }, ExtArgs["result"]["entityAttachment"]>
+
+  export type EntityAttachmentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    entityId?: boolean
+    type?: boolean
+    name?: boolean
+    url?: boolean
+    mimeType?: boolean
+    sizeBytes?: boolean
+    storagePath?: boolean
+    uploadedBy?: boolean
+    createdAt?: boolean
+    entity?: boolean | EntityDefaultArgs<ExtArgs>
+    uploadedByUser?: boolean | EntityAttachment$uploadedByUserArgs<ExtArgs>
+  }, ExtArgs["result"]["entityAttachment"]>
+
+  export type EntityAttachmentSelectScalar = {
+    id?: boolean
+    entityId?: boolean
+    type?: boolean
+    name?: boolean
+    url?: boolean
+    mimeType?: boolean
+    sizeBytes?: boolean
+    storagePath?: boolean
+    uploadedBy?: boolean
+    createdAt?: boolean
+  }
+
+  export type EntityAttachmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "entityId" | "type" | "name" | "url" | "mimeType" | "sizeBytes" | "storagePath" | "uploadedBy" | "createdAt", ExtArgs["result"]["entityAttachment"]>
+  export type EntityAttachmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    entity?: boolean | EntityDefaultArgs<ExtArgs>
+    uploadedByUser?: boolean | EntityAttachment$uploadedByUserArgs<ExtArgs>
+  }
+  export type EntityAttachmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    entity?: boolean | EntityDefaultArgs<ExtArgs>
+    uploadedByUser?: boolean | EntityAttachment$uploadedByUserArgs<ExtArgs>
+  }
+  export type EntityAttachmentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    entity?: boolean | EntityDefaultArgs<ExtArgs>
+    uploadedByUser?: boolean | EntityAttachment$uploadedByUserArgs<ExtArgs>
+  }
+
+  export type $EntityAttachmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EntityAttachment"
+    objects: {
+      entity: Prisma.$EntityPayload<ExtArgs>
+      uploadedByUser: Prisma.$UserPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      entityId: string
+      type: $Enums.EntityAttachmentType
+      name: string
+      url: string | null
+      mimeType: string | null
+      sizeBytes: number | null
+      storagePath: string | null
+      uploadedBy: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["entityAttachment"]>
+    composites: {}
+  }
+
+  type EntityAttachmentGetPayload<S extends boolean | null | undefined | EntityAttachmentDefaultArgs> = $Result.GetResult<Prisma.$EntityAttachmentPayload, S>
+
+  type EntityAttachmentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EntityAttachmentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EntityAttachmentCountAggregateInputType | true
+    }
+
+  export interface EntityAttachmentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EntityAttachment'], meta: { name: 'EntityAttachment' } }
+    /**
+     * Find zero or one EntityAttachment that matches the filter.
+     * @param {EntityAttachmentFindUniqueArgs} args - Arguments to find a EntityAttachment
+     * @example
+     * // Get one EntityAttachment
+     * const entityAttachment = await prisma.entityAttachment.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EntityAttachmentFindUniqueArgs>(args: SelectSubset<T, EntityAttachmentFindUniqueArgs<ExtArgs>>): Prisma__EntityAttachmentClient<$Result.GetResult<Prisma.$EntityAttachmentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EntityAttachment that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EntityAttachmentFindUniqueOrThrowArgs} args - Arguments to find a EntityAttachment
+     * @example
+     * // Get one EntityAttachment
+     * const entityAttachment = await prisma.entityAttachment.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EntityAttachmentFindUniqueOrThrowArgs>(args: SelectSubset<T, EntityAttachmentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EntityAttachmentClient<$Result.GetResult<Prisma.$EntityAttachmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EntityAttachment that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EntityAttachmentFindFirstArgs} args - Arguments to find a EntityAttachment
+     * @example
+     * // Get one EntityAttachment
+     * const entityAttachment = await prisma.entityAttachment.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EntityAttachmentFindFirstArgs>(args?: SelectSubset<T, EntityAttachmentFindFirstArgs<ExtArgs>>): Prisma__EntityAttachmentClient<$Result.GetResult<Prisma.$EntityAttachmentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EntityAttachment that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EntityAttachmentFindFirstOrThrowArgs} args - Arguments to find a EntityAttachment
+     * @example
+     * // Get one EntityAttachment
+     * const entityAttachment = await prisma.entityAttachment.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EntityAttachmentFindFirstOrThrowArgs>(args?: SelectSubset<T, EntityAttachmentFindFirstOrThrowArgs<ExtArgs>>): Prisma__EntityAttachmentClient<$Result.GetResult<Prisma.$EntityAttachmentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EntityAttachments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EntityAttachmentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EntityAttachments
+     * const entityAttachments = await prisma.entityAttachment.findMany()
+     * 
+     * // Get first 10 EntityAttachments
+     * const entityAttachments = await prisma.entityAttachment.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const entityAttachmentWithIdOnly = await prisma.entityAttachment.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EntityAttachmentFindManyArgs>(args?: SelectSubset<T, EntityAttachmentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EntityAttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EntityAttachment.
+     * @param {EntityAttachmentCreateArgs} args - Arguments to create a EntityAttachment.
+     * @example
+     * // Create one EntityAttachment
+     * const EntityAttachment = await prisma.entityAttachment.create({
+     *   data: {
+     *     // ... data to create a EntityAttachment
+     *   }
+     * })
+     * 
+     */
+    create<T extends EntityAttachmentCreateArgs>(args: SelectSubset<T, EntityAttachmentCreateArgs<ExtArgs>>): Prisma__EntityAttachmentClient<$Result.GetResult<Prisma.$EntityAttachmentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EntityAttachments.
+     * @param {EntityAttachmentCreateManyArgs} args - Arguments to create many EntityAttachments.
+     * @example
+     * // Create many EntityAttachments
+     * const entityAttachment = await prisma.entityAttachment.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EntityAttachmentCreateManyArgs>(args?: SelectSubset<T, EntityAttachmentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EntityAttachments and returns the data saved in the database.
+     * @param {EntityAttachmentCreateManyAndReturnArgs} args - Arguments to create many EntityAttachments.
+     * @example
+     * // Create many EntityAttachments
+     * const entityAttachment = await prisma.entityAttachment.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EntityAttachments and only return the `id`
+     * const entityAttachmentWithIdOnly = await prisma.entityAttachment.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EntityAttachmentCreateManyAndReturnArgs>(args?: SelectSubset<T, EntityAttachmentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EntityAttachmentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EntityAttachment.
+     * @param {EntityAttachmentDeleteArgs} args - Arguments to delete one EntityAttachment.
+     * @example
+     * // Delete one EntityAttachment
+     * const EntityAttachment = await prisma.entityAttachment.delete({
+     *   where: {
+     *     // ... filter to delete one EntityAttachment
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EntityAttachmentDeleteArgs>(args: SelectSubset<T, EntityAttachmentDeleteArgs<ExtArgs>>): Prisma__EntityAttachmentClient<$Result.GetResult<Prisma.$EntityAttachmentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EntityAttachment.
+     * @param {EntityAttachmentUpdateArgs} args - Arguments to update one EntityAttachment.
+     * @example
+     * // Update one EntityAttachment
+     * const entityAttachment = await prisma.entityAttachment.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EntityAttachmentUpdateArgs>(args: SelectSubset<T, EntityAttachmentUpdateArgs<ExtArgs>>): Prisma__EntityAttachmentClient<$Result.GetResult<Prisma.$EntityAttachmentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EntityAttachments.
+     * @param {EntityAttachmentDeleteManyArgs} args - Arguments to filter EntityAttachments to delete.
+     * @example
+     * // Delete a few EntityAttachments
+     * const { count } = await prisma.entityAttachment.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EntityAttachmentDeleteManyArgs>(args?: SelectSubset<T, EntityAttachmentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EntityAttachments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EntityAttachmentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EntityAttachments
+     * const entityAttachment = await prisma.entityAttachment.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EntityAttachmentUpdateManyArgs>(args: SelectSubset<T, EntityAttachmentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EntityAttachments and returns the data updated in the database.
+     * @param {EntityAttachmentUpdateManyAndReturnArgs} args - Arguments to update many EntityAttachments.
+     * @example
+     * // Update many EntityAttachments
+     * const entityAttachment = await prisma.entityAttachment.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EntityAttachments and only return the `id`
+     * const entityAttachmentWithIdOnly = await prisma.entityAttachment.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EntityAttachmentUpdateManyAndReturnArgs>(args: SelectSubset<T, EntityAttachmentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EntityAttachmentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EntityAttachment.
+     * @param {EntityAttachmentUpsertArgs} args - Arguments to update or create a EntityAttachment.
+     * @example
+     * // Update or create a EntityAttachment
+     * const entityAttachment = await prisma.entityAttachment.upsert({
+     *   create: {
+     *     // ... data to create a EntityAttachment
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EntityAttachment we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EntityAttachmentUpsertArgs>(args: SelectSubset<T, EntityAttachmentUpsertArgs<ExtArgs>>): Prisma__EntityAttachmentClient<$Result.GetResult<Prisma.$EntityAttachmentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EntityAttachments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EntityAttachmentCountArgs} args - Arguments to filter EntityAttachments to count.
+     * @example
+     * // Count the number of EntityAttachments
+     * const count = await prisma.entityAttachment.count({
+     *   where: {
+     *     // ... the filter for the EntityAttachments we want to count
+     *   }
+     * })
+    **/
+    count<T extends EntityAttachmentCountArgs>(
+      args?: Subset<T, EntityAttachmentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EntityAttachmentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EntityAttachment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EntityAttachmentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EntityAttachmentAggregateArgs>(args: Subset<T, EntityAttachmentAggregateArgs>): Prisma.PrismaPromise<GetEntityAttachmentAggregateType<T>>
+
+    /**
+     * Group by EntityAttachment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EntityAttachmentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EntityAttachmentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EntityAttachmentGroupByArgs['orderBy'] }
+        : { orderBy?: EntityAttachmentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EntityAttachmentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEntityAttachmentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EntityAttachment model
+   */
+  readonly fields: EntityAttachmentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EntityAttachment.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EntityAttachmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    entity<T extends EntityDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EntityDefaultArgs<ExtArgs>>): Prisma__EntityClient<$Result.GetResult<Prisma.$EntityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    uploadedByUser<T extends EntityAttachment$uploadedByUserArgs<ExtArgs> = {}>(args?: Subset<T, EntityAttachment$uploadedByUserArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EntityAttachment model
+   */
+  interface EntityAttachmentFieldRefs {
+    readonly id: FieldRef<"EntityAttachment", 'String'>
+    readonly entityId: FieldRef<"EntityAttachment", 'String'>
+    readonly type: FieldRef<"EntityAttachment", 'EntityAttachmentType'>
+    readonly name: FieldRef<"EntityAttachment", 'String'>
+    readonly url: FieldRef<"EntityAttachment", 'String'>
+    readonly mimeType: FieldRef<"EntityAttachment", 'String'>
+    readonly sizeBytes: FieldRef<"EntityAttachment", 'Int'>
+    readonly storagePath: FieldRef<"EntityAttachment", 'String'>
+    readonly uploadedBy: FieldRef<"EntityAttachment", 'String'>
+    readonly createdAt: FieldRef<"EntityAttachment", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EntityAttachment findUnique
+   */
+  export type EntityAttachmentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EntityAttachment
+     */
+    select?: EntityAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EntityAttachment
+     */
+    omit?: EntityAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EntityAttachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which EntityAttachment to fetch.
+     */
+    where: EntityAttachmentWhereUniqueInput
+  }
+
+  /**
+   * EntityAttachment findUniqueOrThrow
+   */
+  export type EntityAttachmentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EntityAttachment
+     */
+    select?: EntityAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EntityAttachment
+     */
+    omit?: EntityAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EntityAttachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which EntityAttachment to fetch.
+     */
+    where: EntityAttachmentWhereUniqueInput
+  }
+
+  /**
+   * EntityAttachment findFirst
+   */
+  export type EntityAttachmentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EntityAttachment
+     */
+    select?: EntityAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EntityAttachment
+     */
+    omit?: EntityAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EntityAttachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which EntityAttachment to fetch.
+     */
+    where?: EntityAttachmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EntityAttachments to fetch.
+     */
+    orderBy?: EntityAttachmentOrderByWithRelationInput | EntityAttachmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EntityAttachments.
+     */
+    cursor?: EntityAttachmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EntityAttachments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EntityAttachments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EntityAttachments.
+     */
+    distinct?: EntityAttachmentScalarFieldEnum | EntityAttachmentScalarFieldEnum[]
+  }
+
+  /**
+   * EntityAttachment findFirstOrThrow
+   */
+  export type EntityAttachmentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EntityAttachment
+     */
+    select?: EntityAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EntityAttachment
+     */
+    omit?: EntityAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EntityAttachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which EntityAttachment to fetch.
+     */
+    where?: EntityAttachmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EntityAttachments to fetch.
+     */
+    orderBy?: EntityAttachmentOrderByWithRelationInput | EntityAttachmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EntityAttachments.
+     */
+    cursor?: EntityAttachmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EntityAttachments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EntityAttachments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EntityAttachments.
+     */
+    distinct?: EntityAttachmentScalarFieldEnum | EntityAttachmentScalarFieldEnum[]
+  }
+
+  /**
+   * EntityAttachment findMany
+   */
+  export type EntityAttachmentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EntityAttachment
+     */
+    select?: EntityAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EntityAttachment
+     */
+    omit?: EntityAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EntityAttachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which EntityAttachments to fetch.
+     */
+    where?: EntityAttachmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EntityAttachments to fetch.
+     */
+    orderBy?: EntityAttachmentOrderByWithRelationInput | EntityAttachmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EntityAttachments.
+     */
+    cursor?: EntityAttachmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EntityAttachments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EntityAttachments.
+     */
+    skip?: number
+    distinct?: EntityAttachmentScalarFieldEnum | EntityAttachmentScalarFieldEnum[]
+  }
+
+  /**
+   * EntityAttachment create
+   */
+  export type EntityAttachmentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EntityAttachment
+     */
+    select?: EntityAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EntityAttachment
+     */
+    omit?: EntityAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EntityAttachmentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EntityAttachment.
+     */
+    data: XOR<EntityAttachmentCreateInput, EntityAttachmentUncheckedCreateInput>
+  }
+
+  /**
+   * EntityAttachment createMany
+   */
+  export type EntityAttachmentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EntityAttachments.
+     */
+    data: EntityAttachmentCreateManyInput | EntityAttachmentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EntityAttachment createManyAndReturn
+   */
+  export type EntityAttachmentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EntityAttachment
+     */
+    select?: EntityAttachmentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EntityAttachment
+     */
+    omit?: EntityAttachmentOmit<ExtArgs> | null
+    /**
+     * The data used to create many EntityAttachments.
+     */
+    data: EntityAttachmentCreateManyInput | EntityAttachmentCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EntityAttachmentIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EntityAttachment update
+   */
+  export type EntityAttachmentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EntityAttachment
+     */
+    select?: EntityAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EntityAttachment
+     */
+    omit?: EntityAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EntityAttachmentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EntityAttachment.
+     */
+    data: XOR<EntityAttachmentUpdateInput, EntityAttachmentUncheckedUpdateInput>
+    /**
+     * Choose, which EntityAttachment to update.
+     */
+    where: EntityAttachmentWhereUniqueInput
+  }
+
+  /**
+   * EntityAttachment updateMany
+   */
+  export type EntityAttachmentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EntityAttachments.
+     */
+    data: XOR<EntityAttachmentUpdateManyMutationInput, EntityAttachmentUncheckedUpdateManyInput>
+    /**
+     * Filter which EntityAttachments to update
+     */
+    where?: EntityAttachmentWhereInput
+    /**
+     * Limit how many EntityAttachments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EntityAttachment updateManyAndReturn
+   */
+  export type EntityAttachmentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EntityAttachment
+     */
+    select?: EntityAttachmentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EntityAttachment
+     */
+    omit?: EntityAttachmentOmit<ExtArgs> | null
+    /**
+     * The data used to update EntityAttachments.
+     */
+    data: XOR<EntityAttachmentUpdateManyMutationInput, EntityAttachmentUncheckedUpdateManyInput>
+    /**
+     * Filter which EntityAttachments to update
+     */
+    where?: EntityAttachmentWhereInput
+    /**
+     * Limit how many EntityAttachments to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EntityAttachmentIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EntityAttachment upsert
+   */
+  export type EntityAttachmentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EntityAttachment
+     */
+    select?: EntityAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EntityAttachment
+     */
+    omit?: EntityAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EntityAttachmentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EntityAttachment to update in case it exists.
+     */
+    where: EntityAttachmentWhereUniqueInput
+    /**
+     * In case the EntityAttachment found by the `where` argument doesn't exist, create a new EntityAttachment with this data.
+     */
+    create: XOR<EntityAttachmentCreateInput, EntityAttachmentUncheckedCreateInput>
+    /**
+     * In case the EntityAttachment was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EntityAttachmentUpdateInput, EntityAttachmentUncheckedUpdateInput>
+  }
+
+  /**
+   * EntityAttachment delete
+   */
+  export type EntityAttachmentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EntityAttachment
+     */
+    select?: EntityAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EntityAttachment
+     */
+    omit?: EntityAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EntityAttachmentInclude<ExtArgs> | null
+    /**
+     * Filter which EntityAttachment to delete.
+     */
+    where: EntityAttachmentWhereUniqueInput
+  }
+
+  /**
+   * EntityAttachment deleteMany
+   */
+  export type EntityAttachmentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EntityAttachments to delete
+     */
+    where?: EntityAttachmentWhereInput
+    /**
+     * Limit how many EntityAttachments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EntityAttachment.uploadedByUser
+   */
+  export type EntityAttachment$uploadedByUserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * EntityAttachment without action
+   */
+  export type EntityAttachmentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EntityAttachment
+     */
+    select?: EntityAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EntityAttachment
+     */
+    omit?: EntityAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EntityAttachmentInclude<ExtArgs> | null
   }
 
 
@@ -19445,6 +20806,22 @@ export namespace Prisma {
   export type EntityScalarFieldEnum = (typeof EntityScalarFieldEnum)[keyof typeof EntityScalarFieldEnum]
 
 
+  export const EntityAttachmentScalarFieldEnum: {
+    id: 'id',
+    entityId: 'entityId',
+    type: 'type',
+    name: 'name',
+    url: 'url',
+    mimeType: 'mimeType',
+    sizeBytes: 'sizeBytes',
+    storagePath: 'storagePath',
+    uploadedBy: 'uploadedBy',
+    createdAt: 'createdAt'
+  };
+
+  export type EntityAttachmentScalarFieldEnum = (typeof EntityAttachmentScalarFieldEnum)[keyof typeof EntityAttachmentScalarFieldEnum]
+
+
   export const EntityVariableScalarFieldEnum: {
     id: 'id',
     entityId: 'entityId',
@@ -19749,6 +21126,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'EntityAttachmentType'
+   */
+  export type EnumEntityAttachmentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EntityAttachmentType'>
+    
+
+
+  /**
+   * Reference to a field of type 'EntityAttachmentType[]'
+   */
+  export type ListEnumEntityAttachmentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EntityAttachmentType[]'>
+    
+
+
+  /**
    * Reference to a field of type 'KpiVariableDataType'
    */
   export type EnumKpiVariableDataTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'KpiVariableDataType'>
@@ -20018,6 +21409,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueListRelationFilter
     valuesApproved?: EntityValueListRelationFilter
     entityAssignments?: UserEntityAssignmentListRelationFilter
+    uploadedEntityAttachments?: EntityAttachmentListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -20047,6 +21439,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueOrderByRelationAggregateInput
     valuesApproved?: EntityValueOrderByRelationAggregateInput
     entityAssignments?: UserEntityAssignmentOrderByRelationAggregateInput
+    uploadedEntityAttachments?: EntityAttachmentOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -20080,6 +21473,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueListRelationFilter
     valuesApproved?: EntityValueListRelationFilter
     entityAssignments?: UserEntityAssignmentListRelationFilter
+    uploadedEntityAttachments?: EntityAttachmentListRelationFilter
   }, "id" | "user_email_org_unique">
 
   export type UserOrderByWithAggregationInput = {
@@ -20595,6 +21989,7 @@ export namespace Prisma {
     variables?: EntityVariableListRelationFilter
     values?: EntityValueListRelationFilter
     assignments?: UserEntityAssignmentListRelationFilter
+    attachments?: EntityAttachmentListRelationFilter
   }
 
   export type EntityOrderByWithRelationInput = {
@@ -20627,6 +22022,7 @@ export namespace Prisma {
     variables?: EntityVariableOrderByRelationAggregateInput
     values?: EntityValueOrderByRelationAggregateInput
     assignments?: UserEntityAssignmentOrderByRelationAggregateInput
+    attachments?: EntityAttachmentOrderByRelationAggregateInput
   }
 
   export type EntityWhereUniqueInput = Prisma.AtLeast<{
@@ -20663,6 +22059,7 @@ export namespace Prisma {
     variables?: EntityVariableListRelationFilter
     values?: EntityValueListRelationFilter
     assignments?: UserEntityAssignmentListRelationFilter
+    attachments?: EntityAttachmentListRelationFilter
   }, "id" | "entity_key_org_soft_unique">
 
   export type EntityOrderByWithAggregationInput = {
@@ -20723,6 +22120,91 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Entity"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Entity"> | Date | string
     deletedAt?: DateTimeNullableWithAggregatesFilter<"Entity"> | Date | string | null
+  }
+
+  export type EntityAttachmentWhereInput = {
+    AND?: EntityAttachmentWhereInput | EntityAttachmentWhereInput[]
+    OR?: EntityAttachmentWhereInput[]
+    NOT?: EntityAttachmentWhereInput | EntityAttachmentWhereInput[]
+    id?: StringFilter<"EntityAttachment"> | string
+    entityId?: StringFilter<"EntityAttachment"> | string
+    type?: EnumEntityAttachmentTypeFilter<"EntityAttachment"> | $Enums.EntityAttachmentType
+    name?: StringFilter<"EntityAttachment"> | string
+    url?: StringNullableFilter<"EntityAttachment"> | string | null
+    mimeType?: StringNullableFilter<"EntityAttachment"> | string | null
+    sizeBytes?: IntNullableFilter<"EntityAttachment"> | number | null
+    storagePath?: StringNullableFilter<"EntityAttachment"> | string | null
+    uploadedBy?: StringNullableFilter<"EntityAttachment"> | string | null
+    createdAt?: DateTimeFilter<"EntityAttachment"> | Date | string
+    entity?: XOR<EntityScalarRelationFilter, EntityWhereInput>
+    uploadedByUser?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }
+
+  export type EntityAttachmentOrderByWithRelationInput = {
+    id?: SortOrder
+    entityId?: SortOrder
+    type?: SortOrder
+    name?: SortOrder
+    url?: SortOrderInput | SortOrder
+    mimeType?: SortOrderInput | SortOrder
+    sizeBytes?: SortOrderInput | SortOrder
+    storagePath?: SortOrderInput | SortOrder
+    uploadedBy?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    entity?: EntityOrderByWithRelationInput
+    uploadedByUser?: UserOrderByWithRelationInput
+  }
+
+  export type EntityAttachmentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: EntityAttachmentWhereInput | EntityAttachmentWhereInput[]
+    OR?: EntityAttachmentWhereInput[]
+    NOT?: EntityAttachmentWhereInput | EntityAttachmentWhereInput[]
+    entityId?: StringFilter<"EntityAttachment"> | string
+    type?: EnumEntityAttachmentTypeFilter<"EntityAttachment"> | $Enums.EntityAttachmentType
+    name?: StringFilter<"EntityAttachment"> | string
+    url?: StringNullableFilter<"EntityAttachment"> | string | null
+    mimeType?: StringNullableFilter<"EntityAttachment"> | string | null
+    sizeBytes?: IntNullableFilter<"EntityAttachment"> | number | null
+    storagePath?: StringNullableFilter<"EntityAttachment"> | string | null
+    uploadedBy?: StringNullableFilter<"EntityAttachment"> | string | null
+    createdAt?: DateTimeFilter<"EntityAttachment"> | Date | string
+    entity?: XOR<EntityScalarRelationFilter, EntityWhereInput>
+    uploadedByUser?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }, "id">
+
+  export type EntityAttachmentOrderByWithAggregationInput = {
+    id?: SortOrder
+    entityId?: SortOrder
+    type?: SortOrder
+    name?: SortOrder
+    url?: SortOrderInput | SortOrder
+    mimeType?: SortOrderInput | SortOrder
+    sizeBytes?: SortOrderInput | SortOrder
+    storagePath?: SortOrderInput | SortOrder
+    uploadedBy?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: EntityAttachmentCountOrderByAggregateInput
+    _avg?: EntityAttachmentAvgOrderByAggregateInput
+    _max?: EntityAttachmentMaxOrderByAggregateInput
+    _min?: EntityAttachmentMinOrderByAggregateInput
+    _sum?: EntityAttachmentSumOrderByAggregateInput
+  }
+
+  export type EntityAttachmentScalarWhereWithAggregatesInput = {
+    AND?: EntityAttachmentScalarWhereWithAggregatesInput | EntityAttachmentScalarWhereWithAggregatesInput[]
+    OR?: EntityAttachmentScalarWhereWithAggregatesInput[]
+    NOT?: EntityAttachmentScalarWhereWithAggregatesInput | EntityAttachmentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EntityAttachment"> | string
+    entityId?: StringWithAggregatesFilter<"EntityAttachment"> | string
+    type?: EnumEntityAttachmentTypeWithAggregatesFilter<"EntityAttachment"> | $Enums.EntityAttachmentType
+    name?: StringWithAggregatesFilter<"EntityAttachment"> | string
+    url?: StringNullableWithAggregatesFilter<"EntityAttachment"> | string | null
+    mimeType?: StringNullableWithAggregatesFilter<"EntityAttachment"> | string | null
+    sizeBytes?: IntNullableWithAggregatesFilter<"EntityAttachment"> | number | null
+    storagePath?: StringNullableWithAggregatesFilter<"EntityAttachment"> | string | null
+    uploadedBy?: StringNullableWithAggregatesFilter<"EntityAttachment"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"EntityAttachment"> | Date | string
   }
 
   export type EntityVariableWhereInput = {
@@ -21314,6 +22796,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueCreateNestedManyWithoutSubmittedByUserInput
     valuesApproved?: EntityValueCreateNestedManyWithoutApprovedByUserInput
     entityAssignments?: UserEntityAssignmentCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -21341,6 +22824,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUncheckedCreateNestedManyWithoutSubmittedByUserInput
     valuesApproved?: EntityValueUncheckedCreateNestedManyWithoutApprovedByUserInput
     entityAssignments?: UserEntityAssignmentUncheckedCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserUpdateInput = {
@@ -21368,6 +22852,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUpdateManyWithoutSubmittedByUserNestedInput
     valuesApproved?: EntityValueUpdateManyWithoutApprovedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -21395,6 +22880,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUncheckedUpdateManyWithoutSubmittedByUserNestedInput
     valuesApproved?: EntityValueUncheckedUpdateManyWithoutApprovedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUncheckedUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -21950,6 +23436,7 @@ export namespace Prisma {
     variables?: EntityVariableCreateNestedManyWithoutEntityInput
     values?: EntityValueCreateNestedManyWithoutEntityInput
     assignments?: UserEntityAssignmentCreateNestedManyWithoutEntityInput
+    attachments?: EntityAttachmentCreateNestedManyWithoutEntityInput
   }
 
   export type EntityUncheckedCreateInput = {
@@ -21979,6 +23466,7 @@ export namespace Prisma {
     variables?: EntityVariableUncheckedCreateNestedManyWithoutEntityInput
     values?: EntityValueUncheckedCreateNestedManyWithoutEntityInput
     assignments?: UserEntityAssignmentUncheckedCreateNestedManyWithoutEntityInput
+    attachments?: EntityAttachmentUncheckedCreateNestedManyWithoutEntityInput
   }
 
   export type EntityUpdateInput = {
@@ -22008,6 +23496,7 @@ export namespace Prisma {
     variables?: EntityVariableUpdateManyWithoutEntityNestedInput
     values?: EntityValueUpdateManyWithoutEntityNestedInput
     assignments?: UserEntityAssignmentUpdateManyWithoutEntityNestedInput
+    attachments?: EntityAttachmentUpdateManyWithoutEntityNestedInput
   }
 
   export type EntityUncheckedUpdateInput = {
@@ -22037,6 +23526,7 @@ export namespace Prisma {
     variables?: EntityVariableUncheckedUpdateManyWithoutEntityNestedInput
     values?: EntityValueUncheckedUpdateManyWithoutEntityNestedInput
     assignments?: UserEntityAssignmentUncheckedUpdateManyWithoutEntityNestedInput
+    attachments?: EntityAttachmentUncheckedUpdateManyWithoutEntityNestedInput
   }
 
   export type EntityCreateManyInput = {
@@ -22112,6 +23602,95 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type EntityAttachmentCreateInput = {
+    id?: string
+    type: $Enums.EntityAttachmentType
+    name: string
+    url?: string | null
+    mimeType?: string | null
+    sizeBytes?: number | null
+    storagePath?: string | null
+    createdAt?: Date | string
+    entity: EntityCreateNestedOneWithoutAttachmentsInput
+    uploadedByUser?: UserCreateNestedOneWithoutUploadedEntityAttachmentsInput
+  }
+
+  export type EntityAttachmentUncheckedCreateInput = {
+    id?: string
+    entityId: string
+    type: $Enums.EntityAttachmentType
+    name: string
+    url?: string | null
+    mimeType?: string | null
+    sizeBytes?: number | null
+    storagePath?: string | null
+    uploadedBy?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EntityAttachmentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumEntityAttachmentTypeFieldUpdateOperationsInput | $Enums.EntityAttachmentType
+    name?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    mimeType?: NullableStringFieldUpdateOperationsInput | string | null
+    sizeBytes?: NullableIntFieldUpdateOperationsInput | number | null
+    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    entity?: EntityUpdateOneRequiredWithoutAttachmentsNestedInput
+    uploadedByUser?: UserUpdateOneWithoutUploadedEntityAttachmentsNestedInput
+  }
+
+  export type EntityAttachmentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    entityId?: StringFieldUpdateOperationsInput | string
+    type?: EnumEntityAttachmentTypeFieldUpdateOperationsInput | $Enums.EntityAttachmentType
+    name?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    mimeType?: NullableStringFieldUpdateOperationsInput | string | null
+    sizeBytes?: NullableIntFieldUpdateOperationsInput | number | null
+    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    uploadedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EntityAttachmentCreateManyInput = {
+    id?: string
+    entityId: string
+    type: $Enums.EntityAttachmentType
+    name: string
+    url?: string | null
+    mimeType?: string | null
+    sizeBytes?: number | null
+    storagePath?: string | null
+    uploadedBy?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EntityAttachmentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumEntityAttachmentTypeFieldUpdateOperationsInput | $Enums.EntityAttachmentType
+    name?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    mimeType?: NullableStringFieldUpdateOperationsInput | string | null
+    sizeBytes?: NullableIntFieldUpdateOperationsInput | number | null
+    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EntityAttachmentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    entityId?: StringFieldUpdateOperationsInput | string
+    type?: EnumEntityAttachmentTypeFieldUpdateOperationsInput | $Enums.EntityAttachmentType
+    name?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    mimeType?: NullableStringFieldUpdateOperationsInput | string | null
+    sizeBytes?: NullableIntFieldUpdateOperationsInput | number | null
+    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    uploadedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EntityVariableCreateInput = {
@@ -22868,6 +24447,12 @@ export namespace Prisma {
     none?: UserEntityAssignmentWhereInput
   }
 
+  export type EntityAttachmentListRelationFilter = {
+    every?: EntityAttachmentWhereInput
+    some?: EntityAttachmentWhereInput
+    none?: EntityAttachmentWhereInput
+  }
+
   export type SessionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -22885,6 +24470,10 @@ export namespace Prisma {
   }
 
   export type UserEntityAssignmentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EntityAttachmentOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -23466,16 +25055,107 @@ export namespace Prisma {
     _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
-  export type EnumKpiVariableDataTypeFilter<$PrismaModel = never> = {
-    equals?: $Enums.KpiVariableDataType | EnumKpiVariableDataTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.KpiVariableDataType[] | ListEnumKpiVariableDataTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.KpiVariableDataType[] | ListEnumKpiVariableDataTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumKpiVariableDataTypeFilter<$PrismaModel> | $Enums.KpiVariableDataType
+  export type EnumEntityAttachmentTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.EntityAttachmentType | EnumEntityAttachmentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.EntityAttachmentType[] | ListEnumEntityAttachmentTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EntityAttachmentType[] | ListEnumEntityAttachmentTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumEntityAttachmentTypeFilter<$PrismaModel> | $Enums.EntityAttachmentType
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type EntityScalarRelationFilter = {
     is?: EntityWhereInput
     isNot?: EntityWhereInput
+  }
+
+  export type EntityAttachmentCountOrderByAggregateInput = {
+    id?: SortOrder
+    entityId?: SortOrder
+    type?: SortOrder
+    name?: SortOrder
+    url?: SortOrder
+    mimeType?: SortOrder
+    sizeBytes?: SortOrder
+    storagePath?: SortOrder
+    uploadedBy?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EntityAttachmentAvgOrderByAggregateInput = {
+    sizeBytes?: SortOrder
+  }
+
+  export type EntityAttachmentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    entityId?: SortOrder
+    type?: SortOrder
+    name?: SortOrder
+    url?: SortOrder
+    mimeType?: SortOrder
+    sizeBytes?: SortOrder
+    storagePath?: SortOrder
+    uploadedBy?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EntityAttachmentMinOrderByAggregateInput = {
+    id?: SortOrder
+    entityId?: SortOrder
+    type?: SortOrder
+    name?: SortOrder
+    url?: SortOrder
+    mimeType?: SortOrder
+    sizeBytes?: SortOrder
+    storagePath?: SortOrder
+    uploadedBy?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EntityAttachmentSumOrderByAggregateInput = {
+    sizeBytes?: SortOrder
+  }
+
+  export type EnumEntityAttachmentTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.EntityAttachmentType | EnumEntityAttachmentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.EntityAttachmentType[] | ListEnumEntityAttachmentTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EntityAttachmentType[] | ListEnumEntityAttachmentTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumEntityAttachmentTypeWithAggregatesFilter<$PrismaModel> | $Enums.EntityAttachmentType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumEntityAttachmentTypeFilter<$PrismaModel>
+    _max?: NestedEnumEntityAttachmentTypeFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type EnumKpiVariableDataTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.KpiVariableDataType | EnumKpiVariableDataTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.KpiVariableDataType[] | ListEnumKpiVariableDataTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.KpiVariableDataType[] | ListEnumKpiVariableDataTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumKpiVariableDataTypeFilter<$PrismaModel> | $Enums.KpiVariableDataType
   }
 
   export type EntityVariableValueListRelationFilter = {
@@ -24101,6 +25781,13 @@ export namespace Prisma {
     connect?: UserEntityAssignmentWhereUniqueInput | UserEntityAssignmentWhereUniqueInput[]
   }
 
+  export type EntityAttachmentCreateNestedManyWithoutUploadedByUserInput = {
+    create?: XOR<EntityAttachmentCreateWithoutUploadedByUserInput, EntityAttachmentUncheckedCreateWithoutUploadedByUserInput> | EntityAttachmentCreateWithoutUploadedByUserInput[] | EntityAttachmentUncheckedCreateWithoutUploadedByUserInput[]
+    connectOrCreate?: EntityAttachmentCreateOrConnectWithoutUploadedByUserInput | EntityAttachmentCreateOrConnectWithoutUploadedByUserInput[]
+    createMany?: EntityAttachmentCreateManyUploadedByUserInputEnvelope
+    connect?: EntityAttachmentWhereUniqueInput | EntityAttachmentWhereUniqueInput[]
+  }
+
   export type UserUncheckedCreateNestedManyWithoutManagerInput = {
     create?: XOR<UserCreateWithoutManagerInput, UserUncheckedCreateWithoutManagerInput> | UserCreateWithoutManagerInput[] | UserUncheckedCreateWithoutManagerInput[]
     connectOrCreate?: UserCreateOrConnectWithoutManagerInput | UserCreateOrConnectWithoutManagerInput[]
@@ -24175,6 +25862,13 @@ export namespace Prisma {
     connectOrCreate?: UserEntityAssignmentCreateOrConnectWithoutUserInput | UserEntityAssignmentCreateOrConnectWithoutUserInput[]
     createMany?: UserEntityAssignmentCreateManyUserInputEnvelope
     connect?: UserEntityAssignmentWhereUniqueInput | UserEntityAssignmentWhereUniqueInput[]
+  }
+
+  export type EntityAttachmentUncheckedCreateNestedManyWithoutUploadedByUserInput = {
+    create?: XOR<EntityAttachmentCreateWithoutUploadedByUserInput, EntityAttachmentUncheckedCreateWithoutUploadedByUserInput> | EntityAttachmentCreateWithoutUploadedByUserInput[] | EntityAttachmentUncheckedCreateWithoutUploadedByUserInput[]
+    connectOrCreate?: EntityAttachmentCreateOrConnectWithoutUploadedByUserInput | EntityAttachmentCreateOrConnectWithoutUploadedByUserInput[]
+    createMany?: EntityAttachmentCreateManyUploadedByUserInputEnvelope
+    connect?: EntityAttachmentWhereUniqueInput | EntityAttachmentWhereUniqueInput[]
   }
 
   export type BoolFieldUpdateOperationsInput = {
@@ -24353,6 +26047,20 @@ export namespace Prisma {
     deleteMany?: UserEntityAssignmentScalarWhereInput | UserEntityAssignmentScalarWhereInput[]
   }
 
+  export type EntityAttachmentUpdateManyWithoutUploadedByUserNestedInput = {
+    create?: XOR<EntityAttachmentCreateWithoutUploadedByUserInput, EntityAttachmentUncheckedCreateWithoutUploadedByUserInput> | EntityAttachmentCreateWithoutUploadedByUserInput[] | EntityAttachmentUncheckedCreateWithoutUploadedByUserInput[]
+    connectOrCreate?: EntityAttachmentCreateOrConnectWithoutUploadedByUserInput | EntityAttachmentCreateOrConnectWithoutUploadedByUserInput[]
+    upsert?: EntityAttachmentUpsertWithWhereUniqueWithoutUploadedByUserInput | EntityAttachmentUpsertWithWhereUniqueWithoutUploadedByUserInput[]
+    createMany?: EntityAttachmentCreateManyUploadedByUserInputEnvelope
+    set?: EntityAttachmentWhereUniqueInput | EntityAttachmentWhereUniqueInput[]
+    disconnect?: EntityAttachmentWhereUniqueInput | EntityAttachmentWhereUniqueInput[]
+    delete?: EntityAttachmentWhereUniqueInput | EntityAttachmentWhereUniqueInput[]
+    connect?: EntityAttachmentWhereUniqueInput | EntityAttachmentWhereUniqueInput[]
+    update?: EntityAttachmentUpdateWithWhereUniqueWithoutUploadedByUserInput | EntityAttachmentUpdateWithWhereUniqueWithoutUploadedByUserInput[]
+    updateMany?: EntityAttachmentUpdateManyWithWhereWithoutUploadedByUserInput | EntityAttachmentUpdateManyWithWhereWithoutUploadedByUserInput[]
+    deleteMany?: EntityAttachmentScalarWhereInput | EntityAttachmentScalarWhereInput[]
+  }
+
   export type UserUncheckedUpdateManyWithoutManagerNestedInput = {
     create?: XOR<UserCreateWithoutManagerInput, UserUncheckedCreateWithoutManagerInput> | UserCreateWithoutManagerInput[] | UserUncheckedCreateWithoutManagerInput[]
     connectOrCreate?: UserCreateOrConnectWithoutManagerInput | UserCreateOrConnectWithoutManagerInput[]
@@ -24501,6 +26209,20 @@ export namespace Prisma {
     update?: UserEntityAssignmentUpdateWithWhereUniqueWithoutUserInput | UserEntityAssignmentUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: UserEntityAssignmentUpdateManyWithWhereWithoutUserInput | UserEntityAssignmentUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: UserEntityAssignmentScalarWhereInput | UserEntityAssignmentScalarWhereInput[]
+  }
+
+  export type EntityAttachmentUncheckedUpdateManyWithoutUploadedByUserNestedInput = {
+    create?: XOR<EntityAttachmentCreateWithoutUploadedByUserInput, EntityAttachmentUncheckedCreateWithoutUploadedByUserInput> | EntityAttachmentCreateWithoutUploadedByUserInput[] | EntityAttachmentUncheckedCreateWithoutUploadedByUserInput[]
+    connectOrCreate?: EntityAttachmentCreateOrConnectWithoutUploadedByUserInput | EntityAttachmentCreateOrConnectWithoutUploadedByUserInput[]
+    upsert?: EntityAttachmentUpsertWithWhereUniqueWithoutUploadedByUserInput | EntityAttachmentUpsertWithWhereUniqueWithoutUploadedByUserInput[]
+    createMany?: EntityAttachmentCreateManyUploadedByUserInputEnvelope
+    set?: EntityAttachmentWhereUniqueInput | EntityAttachmentWhereUniqueInput[]
+    disconnect?: EntityAttachmentWhereUniqueInput | EntityAttachmentWhereUniqueInput[]
+    delete?: EntityAttachmentWhereUniqueInput | EntityAttachmentWhereUniqueInput[]
+    connect?: EntityAttachmentWhereUniqueInput | EntityAttachmentWhereUniqueInput[]
+    update?: EntityAttachmentUpdateWithWhereUniqueWithoutUploadedByUserInput | EntityAttachmentUpdateWithWhereUniqueWithoutUploadedByUserInput[]
+    updateMany?: EntityAttachmentUpdateManyWithWhereWithoutUploadedByUserInput | EntityAttachmentUpdateManyWithWhereWithoutUploadedByUserInput[]
+    deleteMany?: EntityAttachmentScalarWhereInput | EntityAttachmentScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutAccountsInput = {
@@ -24686,6 +26408,13 @@ export namespace Prisma {
     connect?: UserEntityAssignmentWhereUniqueInput | UserEntityAssignmentWhereUniqueInput[]
   }
 
+  export type EntityAttachmentCreateNestedManyWithoutEntityInput = {
+    create?: XOR<EntityAttachmentCreateWithoutEntityInput, EntityAttachmentUncheckedCreateWithoutEntityInput> | EntityAttachmentCreateWithoutEntityInput[] | EntityAttachmentUncheckedCreateWithoutEntityInput[]
+    connectOrCreate?: EntityAttachmentCreateOrConnectWithoutEntityInput | EntityAttachmentCreateOrConnectWithoutEntityInput[]
+    createMany?: EntityAttachmentCreateManyEntityInputEnvelope
+    connect?: EntityAttachmentWhereUniqueInput | EntityAttachmentWhereUniqueInput[]
+  }
+
   export type EntityVariableUncheckedCreateNestedManyWithoutEntityInput = {
     create?: XOR<EntityVariableCreateWithoutEntityInput, EntityVariableUncheckedCreateWithoutEntityInput> | EntityVariableCreateWithoutEntityInput[] | EntityVariableUncheckedCreateWithoutEntityInput[]
     connectOrCreate?: EntityVariableCreateOrConnectWithoutEntityInput | EntityVariableCreateOrConnectWithoutEntityInput[]
@@ -24705,6 +26434,13 @@ export namespace Prisma {
     connectOrCreate?: UserEntityAssignmentCreateOrConnectWithoutEntityInput | UserEntityAssignmentCreateOrConnectWithoutEntityInput[]
     createMany?: UserEntityAssignmentCreateManyEntityInputEnvelope
     connect?: UserEntityAssignmentWhereUniqueInput | UserEntityAssignmentWhereUniqueInput[]
+  }
+
+  export type EntityAttachmentUncheckedCreateNestedManyWithoutEntityInput = {
+    create?: XOR<EntityAttachmentCreateWithoutEntityInput, EntityAttachmentUncheckedCreateWithoutEntityInput> | EntityAttachmentCreateWithoutEntityInput[] | EntityAttachmentUncheckedCreateWithoutEntityInput[]
+    connectOrCreate?: EntityAttachmentCreateOrConnectWithoutEntityInput | EntityAttachmentCreateOrConnectWithoutEntityInput[]
+    createMany?: EntityAttachmentCreateManyEntityInputEnvelope
+    connect?: EntityAttachmentWhereUniqueInput | EntityAttachmentWhereUniqueInput[]
   }
 
   export type EnumStatusFieldUpdateOperationsInput = {
@@ -24803,6 +26539,20 @@ export namespace Prisma {
     deleteMany?: UserEntityAssignmentScalarWhereInput | UserEntityAssignmentScalarWhereInput[]
   }
 
+  export type EntityAttachmentUpdateManyWithoutEntityNestedInput = {
+    create?: XOR<EntityAttachmentCreateWithoutEntityInput, EntityAttachmentUncheckedCreateWithoutEntityInput> | EntityAttachmentCreateWithoutEntityInput[] | EntityAttachmentUncheckedCreateWithoutEntityInput[]
+    connectOrCreate?: EntityAttachmentCreateOrConnectWithoutEntityInput | EntityAttachmentCreateOrConnectWithoutEntityInput[]
+    upsert?: EntityAttachmentUpsertWithWhereUniqueWithoutEntityInput | EntityAttachmentUpsertWithWhereUniqueWithoutEntityInput[]
+    createMany?: EntityAttachmentCreateManyEntityInputEnvelope
+    set?: EntityAttachmentWhereUniqueInput | EntityAttachmentWhereUniqueInput[]
+    disconnect?: EntityAttachmentWhereUniqueInput | EntityAttachmentWhereUniqueInput[]
+    delete?: EntityAttachmentWhereUniqueInput | EntityAttachmentWhereUniqueInput[]
+    connect?: EntityAttachmentWhereUniqueInput | EntityAttachmentWhereUniqueInput[]
+    update?: EntityAttachmentUpdateWithWhereUniqueWithoutEntityInput | EntityAttachmentUpdateWithWhereUniqueWithoutEntityInput[]
+    updateMany?: EntityAttachmentUpdateManyWithWhereWithoutEntityInput | EntityAttachmentUpdateManyWithWhereWithoutEntityInput[]
+    deleteMany?: EntityAttachmentScalarWhereInput | EntityAttachmentScalarWhereInput[]
+  }
+
   export type EntityVariableUncheckedUpdateManyWithoutEntityNestedInput = {
     create?: XOR<EntityVariableCreateWithoutEntityInput, EntityVariableUncheckedCreateWithoutEntityInput> | EntityVariableCreateWithoutEntityInput[] | EntityVariableUncheckedCreateWithoutEntityInput[]
     connectOrCreate?: EntityVariableCreateOrConnectWithoutEntityInput | EntityVariableCreateOrConnectWithoutEntityInput[]
@@ -24843,6 +26593,62 @@ export namespace Prisma {
     update?: UserEntityAssignmentUpdateWithWhereUniqueWithoutEntityInput | UserEntityAssignmentUpdateWithWhereUniqueWithoutEntityInput[]
     updateMany?: UserEntityAssignmentUpdateManyWithWhereWithoutEntityInput | UserEntityAssignmentUpdateManyWithWhereWithoutEntityInput[]
     deleteMany?: UserEntityAssignmentScalarWhereInput | UserEntityAssignmentScalarWhereInput[]
+  }
+
+  export type EntityAttachmentUncheckedUpdateManyWithoutEntityNestedInput = {
+    create?: XOR<EntityAttachmentCreateWithoutEntityInput, EntityAttachmentUncheckedCreateWithoutEntityInput> | EntityAttachmentCreateWithoutEntityInput[] | EntityAttachmentUncheckedCreateWithoutEntityInput[]
+    connectOrCreate?: EntityAttachmentCreateOrConnectWithoutEntityInput | EntityAttachmentCreateOrConnectWithoutEntityInput[]
+    upsert?: EntityAttachmentUpsertWithWhereUniqueWithoutEntityInput | EntityAttachmentUpsertWithWhereUniqueWithoutEntityInput[]
+    createMany?: EntityAttachmentCreateManyEntityInputEnvelope
+    set?: EntityAttachmentWhereUniqueInput | EntityAttachmentWhereUniqueInput[]
+    disconnect?: EntityAttachmentWhereUniqueInput | EntityAttachmentWhereUniqueInput[]
+    delete?: EntityAttachmentWhereUniqueInput | EntityAttachmentWhereUniqueInput[]
+    connect?: EntityAttachmentWhereUniqueInput | EntityAttachmentWhereUniqueInput[]
+    update?: EntityAttachmentUpdateWithWhereUniqueWithoutEntityInput | EntityAttachmentUpdateWithWhereUniqueWithoutEntityInput[]
+    updateMany?: EntityAttachmentUpdateManyWithWhereWithoutEntityInput | EntityAttachmentUpdateManyWithWhereWithoutEntityInput[]
+    deleteMany?: EntityAttachmentScalarWhereInput | EntityAttachmentScalarWhereInput[]
+  }
+
+  export type EntityCreateNestedOneWithoutAttachmentsInput = {
+    create?: XOR<EntityCreateWithoutAttachmentsInput, EntityUncheckedCreateWithoutAttachmentsInput>
+    connectOrCreate?: EntityCreateOrConnectWithoutAttachmentsInput
+    connect?: EntityWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutUploadedEntityAttachmentsInput = {
+    create?: XOR<UserCreateWithoutUploadedEntityAttachmentsInput, UserUncheckedCreateWithoutUploadedEntityAttachmentsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUploadedEntityAttachmentsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type EnumEntityAttachmentTypeFieldUpdateOperationsInput = {
+    set?: $Enums.EntityAttachmentType
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type EntityUpdateOneRequiredWithoutAttachmentsNestedInput = {
+    create?: XOR<EntityCreateWithoutAttachmentsInput, EntityUncheckedCreateWithoutAttachmentsInput>
+    connectOrCreate?: EntityCreateOrConnectWithoutAttachmentsInput
+    upsert?: EntityUpsertWithoutAttachmentsInput
+    connect?: EntityWhereUniqueInput
+    update?: XOR<XOR<EntityUpdateToOneWithWhereWithoutAttachmentsInput, EntityUpdateWithoutAttachmentsInput>, EntityUncheckedUpdateWithoutAttachmentsInput>
+  }
+
+  export type UserUpdateOneWithoutUploadedEntityAttachmentsNestedInput = {
+    create?: XOR<UserCreateWithoutUploadedEntityAttachmentsInput, UserUncheckedCreateWithoutUploadedEntityAttachmentsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUploadedEntityAttachmentsInput
+    upsert?: UserUpsertWithoutUploadedEntityAttachmentsInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUploadedEntityAttachmentsInput, UserUpdateWithoutUploadedEntityAttachmentsInput>, UserUncheckedUpdateWithoutUploadedEntityAttachmentsInput>
   }
 
   export type EntityCreateNestedOneWithoutVariablesInput = {
@@ -25464,6 +27270,39 @@ export namespace Prisma {
     _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
+  export type NestedEnumEntityAttachmentTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.EntityAttachmentType | EnumEntityAttachmentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.EntityAttachmentType[] | ListEnumEntityAttachmentTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EntityAttachmentType[] | ListEnumEntityAttachmentTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumEntityAttachmentTypeFilter<$PrismaModel> | $Enums.EntityAttachmentType
+  }
+
+  export type NestedEnumEntityAttachmentTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.EntityAttachmentType | EnumEntityAttachmentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.EntityAttachmentType[] | ListEnumEntityAttachmentTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EntityAttachmentType[] | ListEnumEntityAttachmentTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumEntityAttachmentTypeWithAggregatesFilter<$PrismaModel> | $Enums.EntityAttachmentType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumEntityAttachmentTypeFilter<$PrismaModel>
+    _max?: NestedEnumEntityAttachmentTypeFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
   export type NestedEnumKpiVariableDataTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.KpiVariableDataType | EnumKpiVariableDataTypeFieldRefInput<$PrismaModel>
     in?: $Enums.KpiVariableDataType[] | ListEnumKpiVariableDataTypeFieldRefInput<$PrismaModel>
@@ -25555,6 +27394,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueCreateNestedManyWithoutSubmittedByUserInput
     valuesApproved?: EntityValueCreateNestedManyWithoutApprovedByUserInput
     entityAssignments?: UserEntityAssignmentCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserUncheckedCreateWithoutOrgInput = {
@@ -25581,6 +27421,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUncheckedCreateNestedManyWithoutSubmittedByUserInput
     valuesApproved?: EntityValueUncheckedCreateNestedManyWithoutApprovedByUserInput
     entityAssignments?: UserEntityAssignmentUncheckedCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserCreateOrConnectWithoutOrgInput = {
@@ -25619,6 +27460,7 @@ export namespace Prisma {
     variables?: EntityVariableCreateNestedManyWithoutEntityInput
     values?: EntityValueCreateNestedManyWithoutEntityInput
     assignments?: UserEntityAssignmentCreateNestedManyWithoutEntityInput
+    attachments?: EntityAttachmentCreateNestedManyWithoutEntityInput
   }
 
   export type EntityUncheckedCreateWithoutOrgInput = {
@@ -25647,6 +27489,7 @@ export namespace Prisma {
     variables?: EntityVariableUncheckedCreateNestedManyWithoutEntityInput
     values?: EntityValueUncheckedCreateNestedManyWithoutEntityInput
     assignments?: UserEntityAssignmentUncheckedCreateNestedManyWithoutEntityInput
+    attachments?: EntityAttachmentUncheckedCreateNestedManyWithoutEntityInput
   }
 
   export type EntityCreateOrConnectWithoutOrgInput = {
@@ -25947,6 +27790,7 @@ export namespace Prisma {
     variables?: EntityVariableCreateNestedManyWithoutEntityInput
     values?: EntityValueCreateNestedManyWithoutEntityInput
     assignments?: UserEntityAssignmentCreateNestedManyWithoutEntityInput
+    attachments?: EntityAttachmentCreateNestedManyWithoutEntityInput
   }
 
   export type EntityUncheckedCreateWithoutOrgEntityTypeInput = {
@@ -25975,6 +27819,7 @@ export namespace Prisma {
     variables?: EntityVariableUncheckedCreateNestedManyWithoutEntityInput
     values?: EntityValueUncheckedCreateNestedManyWithoutEntityInput
     assignments?: UserEntityAssignmentUncheckedCreateNestedManyWithoutEntityInput
+    attachments?: EntityAttachmentUncheckedCreateNestedManyWithoutEntityInput
   }
 
   export type EntityCreateOrConnectWithoutOrgEntityTypeInput = {
@@ -26131,6 +27976,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueCreateNestedManyWithoutSubmittedByUserInput
     valuesApproved?: EntityValueCreateNestedManyWithoutApprovedByUserInput
     entityAssignments?: UserEntityAssignmentCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserUncheckedCreateWithoutDirectReportsInput = {
@@ -26157,6 +28003,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUncheckedCreateNestedManyWithoutSubmittedByUserInput
     valuesApproved?: EntityValueUncheckedCreateNestedManyWithoutApprovedByUserInput
     entityAssignments?: UserEntityAssignmentUncheckedCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserCreateOrConnectWithoutDirectReportsInput = {
@@ -26188,6 +28035,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueCreateNestedManyWithoutSubmittedByUserInput
     valuesApproved?: EntityValueCreateNestedManyWithoutApprovedByUserInput
     entityAssignments?: UserEntityAssignmentCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserUncheckedCreateWithoutManagerInput = {
@@ -26214,6 +28062,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUncheckedCreateNestedManyWithoutSubmittedByUserInput
     valuesApproved?: EntityValueUncheckedCreateNestedManyWithoutApprovedByUserInput
     entityAssignments?: UserEntityAssignmentUncheckedCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserCreateOrConnectWithoutManagerInput = {
@@ -26409,6 +28258,7 @@ export namespace Prisma {
     variables?: EntityVariableCreateNestedManyWithoutEntityInput
     values?: EntityValueCreateNestedManyWithoutEntityInput
     assignments?: UserEntityAssignmentCreateNestedManyWithoutEntityInput
+    attachments?: EntityAttachmentCreateNestedManyWithoutEntityInput
   }
 
   export type EntityUncheckedCreateWithoutOwnerUserInput = {
@@ -26437,6 +28287,7 @@ export namespace Prisma {
     variables?: EntityVariableUncheckedCreateNestedManyWithoutEntityInput
     values?: EntityValueUncheckedCreateNestedManyWithoutEntityInput
     assignments?: UserEntityAssignmentUncheckedCreateNestedManyWithoutEntityInput
+    attachments?: EntityAttachmentUncheckedCreateNestedManyWithoutEntityInput
   }
 
   export type EntityCreateOrConnectWithoutOwnerUserInput = {
@@ -26627,6 +28478,40 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type EntityAttachmentCreateWithoutUploadedByUserInput = {
+    id?: string
+    type: $Enums.EntityAttachmentType
+    name: string
+    url?: string | null
+    mimeType?: string | null
+    sizeBytes?: number | null
+    storagePath?: string | null
+    createdAt?: Date | string
+    entity: EntityCreateNestedOneWithoutAttachmentsInput
+  }
+
+  export type EntityAttachmentUncheckedCreateWithoutUploadedByUserInput = {
+    id?: string
+    entityId: string
+    type: $Enums.EntityAttachmentType
+    name: string
+    url?: string | null
+    mimeType?: string | null
+    sizeBytes?: number | null
+    storagePath?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EntityAttachmentCreateOrConnectWithoutUploadedByUserInput = {
+    where: EntityAttachmentWhereUniqueInput
+    create: XOR<EntityAttachmentCreateWithoutUploadedByUserInput, EntityAttachmentUncheckedCreateWithoutUploadedByUserInput>
+  }
+
+  export type EntityAttachmentCreateManyUploadedByUserInputEnvelope = {
+    data: EntityAttachmentCreateManyUploadedByUserInput | EntityAttachmentCreateManyUploadedByUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type OrganizationUpsertWithoutUsersInput = {
     update: XOR<OrganizationUpdateWithoutUsersInput, OrganizationUncheckedUpdateWithoutUsersInput>
     create: XOR<OrganizationCreateWithoutUsersInput, OrganizationUncheckedCreateWithoutUsersInput>
@@ -26717,6 +28602,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUpdateManyWithoutSubmittedByUserNestedInput
     valuesApproved?: EntityValueUpdateManyWithoutApprovedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDirectReportsInput = {
@@ -26743,6 +28629,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUncheckedUpdateManyWithoutSubmittedByUserNestedInput
     valuesApproved?: EntityValueUncheckedUpdateManyWithoutApprovedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUncheckedUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type UserUpsertWithWhereUniqueWithoutManagerInput = {
@@ -27015,6 +28902,38 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"UserEntityAssignment"> | Date | string
   }
 
+  export type EntityAttachmentUpsertWithWhereUniqueWithoutUploadedByUserInput = {
+    where: EntityAttachmentWhereUniqueInput
+    update: XOR<EntityAttachmentUpdateWithoutUploadedByUserInput, EntityAttachmentUncheckedUpdateWithoutUploadedByUserInput>
+    create: XOR<EntityAttachmentCreateWithoutUploadedByUserInput, EntityAttachmentUncheckedCreateWithoutUploadedByUserInput>
+  }
+
+  export type EntityAttachmentUpdateWithWhereUniqueWithoutUploadedByUserInput = {
+    where: EntityAttachmentWhereUniqueInput
+    data: XOR<EntityAttachmentUpdateWithoutUploadedByUserInput, EntityAttachmentUncheckedUpdateWithoutUploadedByUserInput>
+  }
+
+  export type EntityAttachmentUpdateManyWithWhereWithoutUploadedByUserInput = {
+    where: EntityAttachmentScalarWhereInput
+    data: XOR<EntityAttachmentUpdateManyMutationInput, EntityAttachmentUncheckedUpdateManyWithoutUploadedByUserInput>
+  }
+
+  export type EntityAttachmentScalarWhereInput = {
+    AND?: EntityAttachmentScalarWhereInput | EntityAttachmentScalarWhereInput[]
+    OR?: EntityAttachmentScalarWhereInput[]
+    NOT?: EntityAttachmentScalarWhereInput | EntityAttachmentScalarWhereInput[]
+    id?: StringFilter<"EntityAttachment"> | string
+    entityId?: StringFilter<"EntityAttachment"> | string
+    type?: EnumEntityAttachmentTypeFilter<"EntityAttachment"> | $Enums.EntityAttachmentType
+    name?: StringFilter<"EntityAttachment"> | string
+    url?: StringNullableFilter<"EntityAttachment"> | string | null
+    mimeType?: StringNullableFilter<"EntityAttachment"> | string | null
+    sizeBytes?: IntNullableFilter<"EntityAttachment"> | number | null
+    storagePath?: StringNullableFilter<"EntityAttachment"> | string | null
+    uploadedBy?: StringNullableFilter<"EntityAttachment"> | string | null
+    createdAt?: DateTimeFilter<"EntityAttachment"> | Date | string
+  }
+
   export type UserCreateWithoutAccountsInput = {
     id?: string
     email: string
@@ -27039,6 +28958,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueCreateNestedManyWithoutSubmittedByUserInput
     valuesApproved?: EntityValueCreateNestedManyWithoutApprovedByUserInput
     entityAssignments?: UserEntityAssignmentCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -27065,6 +28985,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUncheckedCreateNestedManyWithoutSubmittedByUserInput
     valuesApproved?: EntityValueUncheckedCreateNestedManyWithoutApprovedByUserInput
     entityAssignments?: UserEntityAssignmentUncheckedCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -27107,6 +29028,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUpdateManyWithoutSubmittedByUserNestedInput
     valuesApproved?: EntityValueUpdateManyWithoutApprovedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -27133,6 +29055,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUncheckedUpdateManyWithoutSubmittedByUserNestedInput
     valuesApproved?: EntityValueUncheckedUpdateManyWithoutApprovedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUncheckedUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -27159,6 +29082,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueCreateNestedManyWithoutSubmittedByUserInput
     valuesApproved?: EntityValueCreateNestedManyWithoutApprovedByUserInput
     entityAssignments?: UserEntityAssignmentCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -27185,6 +29109,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUncheckedCreateNestedManyWithoutSubmittedByUserInput
     valuesApproved?: EntityValueUncheckedCreateNestedManyWithoutApprovedByUserInput
     entityAssignments?: UserEntityAssignmentUncheckedCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -27227,6 +29152,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUpdateManyWithoutSubmittedByUserNestedInput
     valuesApproved?: EntityValueUpdateManyWithoutApprovedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -27253,6 +29179,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUncheckedUpdateManyWithoutSubmittedByUserNestedInput
     valuesApproved?: EntityValueUncheckedUpdateManyWithoutApprovedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUncheckedUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type UserCreateWithoutPreferencesInput = {
@@ -27279,6 +29206,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueCreateNestedManyWithoutSubmittedByUserInput
     valuesApproved?: EntityValueCreateNestedManyWithoutApprovedByUserInput
     entityAssignments?: UserEntityAssignmentCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserUncheckedCreateWithoutPreferencesInput = {
@@ -27305,6 +29233,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUncheckedCreateNestedManyWithoutSubmittedByUserInput
     valuesApproved?: EntityValueUncheckedCreateNestedManyWithoutApprovedByUserInput
     entityAssignments?: UserEntityAssignmentUncheckedCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserCreateOrConnectWithoutPreferencesInput = {
@@ -27347,6 +29276,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUpdateManyWithoutSubmittedByUserNestedInput
     valuesApproved?: EntityValueUpdateManyWithoutApprovedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPreferencesInput = {
@@ -27373,6 +29303,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUncheckedUpdateManyWithoutSubmittedByUserNestedInput
     valuesApproved?: EntityValueUncheckedUpdateManyWithoutApprovedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUncheckedUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type OrganizationCreateWithoutChangeRequestsInput = {
@@ -27448,6 +29379,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueCreateNestedManyWithoutSubmittedByUserInput
     valuesApproved?: EntityValueCreateNestedManyWithoutApprovedByUserInput
     entityAssignments?: UserEntityAssignmentCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserUncheckedCreateWithoutChangeRequestsInput = {
@@ -27474,6 +29406,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUncheckedCreateNestedManyWithoutSubmittedByUserInput
     valuesApproved?: EntityValueUncheckedCreateNestedManyWithoutApprovedByUserInput
     entityAssignments?: UserEntityAssignmentUncheckedCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserCreateOrConnectWithoutChangeRequestsInput = {
@@ -27599,6 +29532,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUpdateManyWithoutSubmittedByUserNestedInput
     valuesApproved?: EntityValueUpdateManyWithoutApprovedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutChangeRequestsInput = {
@@ -27625,6 +29559,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUncheckedUpdateManyWithoutSubmittedByUserNestedInput
     valuesApproved?: EntityValueUncheckedUpdateManyWithoutApprovedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUncheckedUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type ChangeApprovalUpsertWithWhereUniqueWithoutChangeRequestInput = {
@@ -27700,6 +29635,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueCreateNestedManyWithoutSubmittedByUserInput
     valuesApproved?: EntityValueCreateNestedManyWithoutApprovedByUserInput
     entityAssignments?: UserEntityAssignmentCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserUncheckedCreateWithoutApprovalsInput = {
@@ -27726,6 +29662,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUncheckedCreateNestedManyWithoutSubmittedByUserInput
     valuesApproved?: EntityValueUncheckedCreateNestedManyWithoutApprovedByUserInput
     entityAssignments?: UserEntityAssignmentUncheckedCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserCreateOrConnectWithoutApprovalsInput = {
@@ -27807,6 +29744,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUpdateManyWithoutSubmittedByUserNestedInput
     valuesApproved?: EntityValueUpdateManyWithoutApprovedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutApprovalsInput = {
@@ -27833,6 +29771,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUncheckedUpdateManyWithoutSubmittedByUserNestedInput
     valuesApproved?: EntityValueUncheckedUpdateManyWithoutApprovedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUncheckedUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type OrganizationCreateWithoutEntitiesInput = {
@@ -27935,6 +29874,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueCreateNestedManyWithoutSubmittedByUserInput
     valuesApproved?: EntityValueCreateNestedManyWithoutApprovedByUserInput
     entityAssignments?: UserEntityAssignmentCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserUncheckedCreateWithoutOwnedEntitiesInput = {
@@ -27961,6 +29901,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUncheckedCreateNestedManyWithoutSubmittedByUserInput
     valuesApproved?: EntityValueUncheckedCreateNestedManyWithoutApprovedByUserInput
     entityAssignments?: UserEntityAssignmentUncheckedCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserCreateOrConnectWithoutOwnedEntitiesInput = {
@@ -28077,6 +30018,40 @@ export namespace Prisma {
 
   export type UserEntityAssignmentCreateManyEntityInputEnvelope = {
     data: UserEntityAssignmentCreateManyEntityInput | UserEntityAssignmentCreateManyEntityInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EntityAttachmentCreateWithoutEntityInput = {
+    id?: string
+    type: $Enums.EntityAttachmentType
+    name: string
+    url?: string | null
+    mimeType?: string | null
+    sizeBytes?: number | null
+    storagePath?: string | null
+    createdAt?: Date | string
+    uploadedByUser?: UserCreateNestedOneWithoutUploadedEntityAttachmentsInput
+  }
+
+  export type EntityAttachmentUncheckedCreateWithoutEntityInput = {
+    id?: string
+    type: $Enums.EntityAttachmentType
+    name: string
+    url?: string | null
+    mimeType?: string | null
+    sizeBytes?: number | null
+    storagePath?: string | null
+    uploadedBy?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EntityAttachmentCreateOrConnectWithoutEntityInput = {
+    where: EntityAttachmentWhereUniqueInput
+    create: XOR<EntityAttachmentCreateWithoutEntityInput, EntityAttachmentUncheckedCreateWithoutEntityInput>
+  }
+
+  export type EntityAttachmentCreateManyEntityInputEnvelope = {
+    data: EntityAttachmentCreateManyEntityInput | EntityAttachmentCreateManyEntityInput[]
     skipDuplicates?: boolean
   }
 
@@ -28203,6 +30178,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUpdateManyWithoutSubmittedByUserNestedInput
     valuesApproved?: EntityValueUpdateManyWithoutApprovedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOwnedEntitiesInput = {
@@ -28229,6 +30205,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUncheckedUpdateManyWithoutSubmittedByUserNestedInput
     valuesApproved?: EntityValueUncheckedUpdateManyWithoutApprovedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUncheckedUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type EntityVariableUpsertWithWhereUniqueWithoutEntityInput = {
@@ -28294,6 +30271,278 @@ export namespace Prisma {
     data: XOR<UserEntityAssignmentUpdateManyMutationInput, UserEntityAssignmentUncheckedUpdateManyWithoutEntityInput>
   }
 
+  export type EntityAttachmentUpsertWithWhereUniqueWithoutEntityInput = {
+    where: EntityAttachmentWhereUniqueInput
+    update: XOR<EntityAttachmentUpdateWithoutEntityInput, EntityAttachmentUncheckedUpdateWithoutEntityInput>
+    create: XOR<EntityAttachmentCreateWithoutEntityInput, EntityAttachmentUncheckedCreateWithoutEntityInput>
+  }
+
+  export type EntityAttachmentUpdateWithWhereUniqueWithoutEntityInput = {
+    where: EntityAttachmentWhereUniqueInput
+    data: XOR<EntityAttachmentUpdateWithoutEntityInput, EntityAttachmentUncheckedUpdateWithoutEntityInput>
+  }
+
+  export type EntityAttachmentUpdateManyWithWhereWithoutEntityInput = {
+    where: EntityAttachmentScalarWhereInput
+    data: XOR<EntityAttachmentUpdateManyMutationInput, EntityAttachmentUncheckedUpdateManyWithoutEntityInput>
+  }
+
+  export type EntityCreateWithoutAttachmentsInput = {
+    id?: string
+    key?: string | null
+    title: string
+    titleAr?: string | null
+    description?: string | null
+    descriptionAr?: string | null
+    status?: $Enums.Status
+    sourceType?: $Enums.KpiSourceType
+    periodType?: $Enums.KpiPeriodType | null
+    unit?: string | null
+    unitAr?: string | null
+    direction?: $Enums.KpiDirection
+    aggregation?: $Enums.KpiAggregationMethod
+    baselineValue?: number | null
+    targetValue?: number | null
+    weight?: number | null
+    formula?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    org: OrganizationCreateNestedOneWithoutEntitiesInput
+    orgEntityType: OrgEntityTypeCreateNestedOneWithoutEntitiesInput
+    ownerUser?: UserCreateNestedOneWithoutOwnedEntitiesInput
+    variables?: EntityVariableCreateNestedManyWithoutEntityInput
+    values?: EntityValueCreateNestedManyWithoutEntityInput
+    assignments?: UserEntityAssignmentCreateNestedManyWithoutEntityInput
+  }
+
+  export type EntityUncheckedCreateWithoutAttachmentsInput = {
+    id?: string
+    orgId: string
+    key?: string | null
+    orgEntityTypeId: string
+    title: string
+    titleAr?: string | null
+    description?: string | null
+    descriptionAr?: string | null
+    ownerUserId?: string | null
+    status?: $Enums.Status
+    sourceType?: $Enums.KpiSourceType
+    periodType?: $Enums.KpiPeriodType | null
+    unit?: string | null
+    unitAr?: string | null
+    direction?: $Enums.KpiDirection
+    aggregation?: $Enums.KpiAggregationMethod
+    baselineValue?: number | null
+    targetValue?: number | null
+    weight?: number | null
+    formula?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    variables?: EntityVariableUncheckedCreateNestedManyWithoutEntityInput
+    values?: EntityValueUncheckedCreateNestedManyWithoutEntityInput
+    assignments?: UserEntityAssignmentUncheckedCreateNestedManyWithoutEntityInput
+  }
+
+  export type EntityCreateOrConnectWithoutAttachmentsInput = {
+    where: EntityWhereUniqueInput
+    create: XOR<EntityCreateWithoutAttachmentsInput, EntityUncheckedCreateWithoutAttachmentsInput>
+  }
+
+  export type UserCreateWithoutUploadedEntityAttachmentsInput = {
+    id?: string
+    email: string
+    emailVerified?: boolean
+    name: string
+    role: $Enums.Role
+    title?: string | null
+    image?: string | null
+    hashedPassword?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    org: OrganizationCreateNestedOneWithoutUsersInput
+    manager?: UserCreateNestedOneWithoutDirectReportsInput
+    directReports?: UserCreateNestedManyWithoutManagerInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    preferences?: UserPreferenceCreateNestedOneWithoutUserInput
+    approvals?: ChangeApprovalCreateNestedManyWithoutApproverInput
+    changeRequests?: ChangeRequestCreateNestedManyWithoutRequesterInput
+    ownedEntities?: EntityCreateNestedManyWithoutOwnerUserInput
+    valuesEntered?: EntityValueCreateNestedManyWithoutEnteredByUserInput
+    valuesSubmitted?: EntityValueCreateNestedManyWithoutSubmittedByUserInput
+    valuesApproved?: EntityValueCreateNestedManyWithoutApprovedByUserInput
+    entityAssignments?: UserEntityAssignmentCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutUploadedEntityAttachmentsInput = {
+    id?: string
+    orgId: string
+    email: string
+    emailVerified?: boolean
+    name: string
+    role: $Enums.Role
+    managerId?: string | null
+    title?: string | null
+    image?: string | null
+    hashedPassword?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    directReports?: UserUncheckedCreateNestedManyWithoutManagerInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    preferences?: UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+    approvals?: ChangeApprovalUncheckedCreateNestedManyWithoutApproverInput
+    changeRequests?: ChangeRequestUncheckedCreateNestedManyWithoutRequesterInput
+    ownedEntities?: EntityUncheckedCreateNestedManyWithoutOwnerUserInput
+    valuesEntered?: EntityValueUncheckedCreateNestedManyWithoutEnteredByUserInput
+    valuesSubmitted?: EntityValueUncheckedCreateNestedManyWithoutSubmittedByUserInput
+    valuesApproved?: EntityValueUncheckedCreateNestedManyWithoutApprovedByUserInput
+    entityAssignments?: UserEntityAssignmentUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutUploadedEntityAttachmentsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutUploadedEntityAttachmentsInput, UserUncheckedCreateWithoutUploadedEntityAttachmentsInput>
+  }
+
+  export type EntityUpsertWithoutAttachmentsInput = {
+    update: XOR<EntityUpdateWithoutAttachmentsInput, EntityUncheckedUpdateWithoutAttachmentsInput>
+    create: XOR<EntityCreateWithoutAttachmentsInput, EntityUncheckedCreateWithoutAttachmentsInput>
+    where?: EntityWhereInput
+  }
+
+  export type EntityUpdateToOneWithWhereWithoutAttachmentsInput = {
+    where?: EntityWhereInput
+    data: XOR<EntityUpdateWithoutAttachmentsInput, EntityUncheckedUpdateWithoutAttachmentsInput>
+  }
+
+  export type EntityUpdateWithoutAttachmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    titleAr?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    descriptionAr?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    sourceType?: EnumKpiSourceTypeFieldUpdateOperationsInput | $Enums.KpiSourceType
+    periodType?: NullableEnumKpiPeriodTypeFieldUpdateOperationsInput | $Enums.KpiPeriodType | null
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
+    unitAr?: NullableStringFieldUpdateOperationsInput | string | null
+    direction?: EnumKpiDirectionFieldUpdateOperationsInput | $Enums.KpiDirection
+    aggregation?: EnumKpiAggregationMethodFieldUpdateOperationsInput | $Enums.KpiAggregationMethod
+    baselineValue?: NullableFloatFieldUpdateOperationsInput | number | null
+    targetValue?: NullableFloatFieldUpdateOperationsInput | number | null
+    weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    formula?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    org?: OrganizationUpdateOneRequiredWithoutEntitiesNestedInput
+    orgEntityType?: OrgEntityTypeUpdateOneRequiredWithoutEntitiesNestedInput
+    ownerUser?: UserUpdateOneWithoutOwnedEntitiesNestedInput
+    variables?: EntityVariableUpdateManyWithoutEntityNestedInput
+    values?: EntityValueUpdateManyWithoutEntityNestedInput
+    assignments?: UserEntityAssignmentUpdateManyWithoutEntityNestedInput
+  }
+
+  export type EntityUncheckedUpdateWithoutAttachmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
+    key?: NullableStringFieldUpdateOperationsInput | string | null
+    orgEntityTypeId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    titleAr?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    descriptionAr?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    sourceType?: EnumKpiSourceTypeFieldUpdateOperationsInput | $Enums.KpiSourceType
+    periodType?: NullableEnumKpiPeriodTypeFieldUpdateOperationsInput | $Enums.KpiPeriodType | null
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
+    unitAr?: NullableStringFieldUpdateOperationsInput | string | null
+    direction?: EnumKpiDirectionFieldUpdateOperationsInput | $Enums.KpiDirection
+    aggregation?: EnumKpiAggregationMethodFieldUpdateOperationsInput | $Enums.KpiAggregationMethod
+    baselineValue?: NullableFloatFieldUpdateOperationsInput | number | null
+    targetValue?: NullableFloatFieldUpdateOperationsInput | number | null
+    weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    formula?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    variables?: EntityVariableUncheckedUpdateManyWithoutEntityNestedInput
+    values?: EntityValueUncheckedUpdateManyWithoutEntityNestedInput
+    assignments?: UserEntityAssignmentUncheckedUpdateManyWithoutEntityNestedInput
+  }
+
+  export type UserUpsertWithoutUploadedEntityAttachmentsInput = {
+    update: XOR<UserUpdateWithoutUploadedEntityAttachmentsInput, UserUncheckedUpdateWithoutUploadedEntityAttachmentsInput>
+    create: XOR<UserCreateWithoutUploadedEntityAttachmentsInput, UserUncheckedCreateWithoutUploadedEntityAttachmentsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutUploadedEntityAttachmentsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutUploadedEntityAttachmentsInput, UserUncheckedUpdateWithoutUploadedEntityAttachmentsInput>
+  }
+
+  export type UserUpdateWithoutUploadedEntityAttachmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    org?: OrganizationUpdateOneRequiredWithoutUsersNestedInput
+    manager?: UserUpdateOneWithoutDirectReportsNestedInput
+    directReports?: UserUpdateManyWithoutManagerNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    preferences?: UserPreferenceUpdateOneWithoutUserNestedInput
+    approvals?: ChangeApprovalUpdateManyWithoutApproverNestedInput
+    changeRequests?: ChangeRequestUpdateManyWithoutRequesterNestedInput
+    ownedEntities?: EntityUpdateManyWithoutOwnerUserNestedInput
+    valuesEntered?: EntityValueUpdateManyWithoutEnteredByUserNestedInput
+    valuesSubmitted?: EntityValueUpdateManyWithoutSubmittedByUserNestedInput
+    valuesApproved?: EntityValueUpdateManyWithoutApprovedByUserNestedInput
+    entityAssignments?: UserEntityAssignmentUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutUploadedEntityAttachmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    managerId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    directReports?: UserUncheckedUpdateManyWithoutManagerNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    preferences?: UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+    approvals?: ChangeApprovalUncheckedUpdateManyWithoutApproverNestedInput
+    changeRequests?: ChangeRequestUncheckedUpdateManyWithoutRequesterNestedInput
+    ownedEntities?: EntityUncheckedUpdateManyWithoutOwnerUserNestedInput
+    valuesEntered?: EntityValueUncheckedUpdateManyWithoutEnteredByUserNestedInput
+    valuesSubmitted?: EntityValueUncheckedUpdateManyWithoutSubmittedByUserNestedInput
+    valuesApproved?: EntityValueUncheckedUpdateManyWithoutApprovedByUserNestedInput
+    entityAssignments?: UserEntityAssignmentUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type EntityCreateWithoutVariablesInput = {
     id?: string
     key?: string | null
@@ -28320,6 +30569,7 @@ export namespace Prisma {
     ownerUser?: UserCreateNestedOneWithoutOwnedEntitiesInput
     values?: EntityValueCreateNestedManyWithoutEntityInput
     assignments?: UserEntityAssignmentCreateNestedManyWithoutEntityInput
+    attachments?: EntityAttachmentCreateNestedManyWithoutEntityInput
   }
 
   export type EntityUncheckedCreateWithoutVariablesInput = {
@@ -28348,6 +30598,7 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     values?: EntityValueUncheckedCreateNestedManyWithoutEntityInput
     assignments?: UserEntityAssignmentUncheckedCreateNestedManyWithoutEntityInput
+    attachments?: EntityAttachmentUncheckedCreateNestedManyWithoutEntityInput
   }
 
   export type EntityCreateOrConnectWithoutVariablesInput = {
@@ -28414,6 +30665,7 @@ export namespace Prisma {
     ownerUser?: UserUpdateOneWithoutOwnedEntitiesNestedInput
     values?: EntityValueUpdateManyWithoutEntityNestedInput
     assignments?: UserEntityAssignmentUpdateManyWithoutEntityNestedInput
+    attachments?: EntityAttachmentUpdateManyWithoutEntityNestedInput
   }
 
   export type EntityUncheckedUpdateWithoutVariablesInput = {
@@ -28442,6 +30694,7 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     values?: EntityValueUncheckedUpdateManyWithoutEntityNestedInput
     assignments?: UserEntityAssignmentUncheckedUpdateManyWithoutEntityNestedInput
+    attachments?: EntityAttachmentUncheckedUpdateManyWithoutEntityNestedInput
   }
 
   export type EntityVariableValueUpsertWithWhereUniqueWithoutEntityVariableInput = {
@@ -28496,6 +30749,7 @@ export namespace Prisma {
     ownerUser?: UserCreateNestedOneWithoutOwnedEntitiesInput
     variables?: EntityVariableCreateNestedManyWithoutEntityInput
     assignments?: UserEntityAssignmentCreateNestedManyWithoutEntityInput
+    attachments?: EntityAttachmentCreateNestedManyWithoutEntityInput
   }
 
   export type EntityUncheckedCreateWithoutValuesInput = {
@@ -28524,6 +30778,7 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     variables?: EntityVariableUncheckedCreateNestedManyWithoutEntityInput
     assignments?: UserEntityAssignmentUncheckedCreateNestedManyWithoutEntityInput
+    attachments?: EntityAttachmentUncheckedCreateNestedManyWithoutEntityInput
   }
 
   export type EntityCreateOrConnectWithoutValuesInput = {
@@ -28555,6 +30810,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueCreateNestedManyWithoutSubmittedByUserInput
     valuesApproved?: EntityValueCreateNestedManyWithoutApprovedByUserInput
     entityAssignments?: UserEntityAssignmentCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserUncheckedCreateWithoutValuesEnteredInput = {
@@ -28581,6 +30837,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUncheckedCreateNestedManyWithoutSubmittedByUserInput
     valuesApproved?: EntityValueUncheckedCreateNestedManyWithoutApprovedByUserInput
     entityAssignments?: UserEntityAssignmentUncheckedCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserCreateOrConnectWithoutValuesEnteredInput = {
@@ -28612,6 +30869,7 @@ export namespace Prisma {
     valuesEntered?: EntityValueCreateNestedManyWithoutEnteredByUserInput
     valuesApproved?: EntityValueCreateNestedManyWithoutApprovedByUserInput
     entityAssignments?: UserEntityAssignmentCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserUncheckedCreateWithoutValuesSubmittedInput = {
@@ -28638,6 +30896,7 @@ export namespace Prisma {
     valuesEntered?: EntityValueUncheckedCreateNestedManyWithoutEnteredByUserInput
     valuesApproved?: EntityValueUncheckedCreateNestedManyWithoutApprovedByUserInput
     entityAssignments?: UserEntityAssignmentUncheckedCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserCreateOrConnectWithoutValuesSubmittedInput = {
@@ -28669,6 +30928,7 @@ export namespace Prisma {
     valuesEntered?: EntityValueCreateNestedManyWithoutEnteredByUserInput
     valuesSubmitted?: EntityValueCreateNestedManyWithoutSubmittedByUserInput
     entityAssignments?: UserEntityAssignmentCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserUncheckedCreateWithoutValuesApprovedInput = {
@@ -28695,6 +30955,7 @@ export namespace Prisma {
     valuesEntered?: EntityValueUncheckedCreateNestedManyWithoutEnteredByUserInput
     valuesSubmitted?: EntityValueUncheckedCreateNestedManyWithoutSubmittedByUserInput
     entityAssignments?: UserEntityAssignmentUncheckedCreateNestedManyWithoutUserInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserCreateOrConnectWithoutValuesApprovedInput = {
@@ -28761,6 +31022,7 @@ export namespace Prisma {
     ownerUser?: UserUpdateOneWithoutOwnedEntitiesNestedInput
     variables?: EntityVariableUpdateManyWithoutEntityNestedInput
     assignments?: UserEntityAssignmentUpdateManyWithoutEntityNestedInput
+    attachments?: EntityAttachmentUpdateManyWithoutEntityNestedInput
   }
 
   export type EntityUncheckedUpdateWithoutValuesInput = {
@@ -28789,6 +31051,7 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     variables?: EntityVariableUncheckedUpdateManyWithoutEntityNestedInput
     assignments?: UserEntityAssignmentUncheckedUpdateManyWithoutEntityNestedInput
+    attachments?: EntityAttachmentUncheckedUpdateManyWithoutEntityNestedInput
   }
 
   export type UserUpsertWithoutValuesEnteredInput = {
@@ -28826,6 +31089,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUpdateManyWithoutSubmittedByUserNestedInput
     valuesApproved?: EntityValueUpdateManyWithoutApprovedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutValuesEnteredInput = {
@@ -28852,6 +31116,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUncheckedUpdateManyWithoutSubmittedByUserNestedInput
     valuesApproved?: EntityValueUncheckedUpdateManyWithoutApprovedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUncheckedUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type UserUpsertWithoutValuesSubmittedInput = {
@@ -28889,6 +31154,7 @@ export namespace Prisma {
     valuesEntered?: EntityValueUpdateManyWithoutEnteredByUserNestedInput
     valuesApproved?: EntityValueUpdateManyWithoutApprovedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutValuesSubmittedInput = {
@@ -28915,6 +31181,7 @@ export namespace Prisma {
     valuesEntered?: EntityValueUncheckedUpdateManyWithoutEnteredByUserNestedInput
     valuesApproved?: EntityValueUncheckedUpdateManyWithoutApprovedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUncheckedUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type UserUpsertWithoutValuesApprovedInput = {
@@ -28952,6 +31219,7 @@ export namespace Prisma {
     valuesEntered?: EntityValueUpdateManyWithoutEnteredByUserNestedInput
     valuesSubmitted?: EntityValueUpdateManyWithoutSubmittedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutValuesApprovedInput = {
@@ -28978,6 +31246,7 @@ export namespace Prisma {
     valuesEntered?: EntityValueUncheckedUpdateManyWithoutEnteredByUserNestedInput
     valuesSubmitted?: EntityValueUncheckedUpdateManyWithoutSubmittedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUncheckedUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type EntityVariableValueUpsertWithWhereUniqueWithoutEntityValueInput = {
@@ -29180,6 +31449,7 @@ export namespace Prisma {
     valuesEntered?: EntityValueCreateNestedManyWithoutEnteredByUserInput
     valuesSubmitted?: EntityValueCreateNestedManyWithoutSubmittedByUserInput
     valuesApproved?: EntityValueCreateNestedManyWithoutApprovedByUserInput
+    uploadedEntityAttachments?: EntityAttachmentCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserUncheckedCreateWithoutEntityAssignmentsInput = {
@@ -29206,6 +31476,7 @@ export namespace Prisma {
     valuesEntered?: EntityValueUncheckedCreateNestedManyWithoutEnteredByUserInput
     valuesSubmitted?: EntityValueUncheckedCreateNestedManyWithoutSubmittedByUserInput
     valuesApproved?: EntityValueUncheckedCreateNestedManyWithoutApprovedByUserInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedCreateNestedManyWithoutUploadedByUserInput
   }
 
   export type UserCreateOrConnectWithoutEntityAssignmentsInput = {
@@ -29239,6 +31510,7 @@ export namespace Prisma {
     ownerUser?: UserCreateNestedOneWithoutOwnedEntitiesInput
     variables?: EntityVariableCreateNestedManyWithoutEntityInput
     values?: EntityValueCreateNestedManyWithoutEntityInput
+    attachments?: EntityAttachmentCreateNestedManyWithoutEntityInput
   }
 
   export type EntityUncheckedCreateWithoutAssignmentsInput = {
@@ -29267,6 +31539,7 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     variables?: EntityVariableUncheckedCreateNestedManyWithoutEntityInput
     values?: EntityValueUncheckedCreateNestedManyWithoutEntityInput
+    attachments?: EntityAttachmentUncheckedCreateNestedManyWithoutEntityInput
   }
 
   export type EntityCreateOrConnectWithoutAssignmentsInput = {
@@ -29309,6 +31582,7 @@ export namespace Prisma {
     valuesEntered?: EntityValueUpdateManyWithoutEnteredByUserNestedInput
     valuesSubmitted?: EntityValueUpdateManyWithoutSubmittedByUserNestedInput
     valuesApproved?: EntityValueUpdateManyWithoutApprovedByUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEntityAssignmentsInput = {
@@ -29335,6 +31609,7 @@ export namespace Prisma {
     valuesEntered?: EntityValueUncheckedUpdateManyWithoutEnteredByUserNestedInput
     valuesSubmitted?: EntityValueUncheckedUpdateManyWithoutSubmittedByUserNestedInput
     valuesApproved?: EntityValueUncheckedUpdateManyWithoutApprovedByUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type EntityUpsertWithoutAssignmentsInput = {
@@ -29374,6 +31649,7 @@ export namespace Prisma {
     ownerUser?: UserUpdateOneWithoutOwnedEntitiesNestedInput
     variables?: EntityVariableUpdateManyWithoutEntityNestedInput
     values?: EntityValueUpdateManyWithoutEntityNestedInput
+    attachments?: EntityAttachmentUpdateManyWithoutEntityNestedInput
   }
 
   export type EntityUncheckedUpdateWithoutAssignmentsInput = {
@@ -29402,6 +31678,7 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     variables?: EntityVariableUncheckedUpdateManyWithoutEntityNestedInput
     values?: EntityValueUncheckedUpdateManyWithoutEntityNestedInput
+    attachments?: EntityAttachmentUncheckedUpdateManyWithoutEntityNestedInput
   }
 
   export type UserCreateManyOrgInput = {
@@ -29491,6 +31768,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUpdateManyWithoutSubmittedByUserNestedInput
     valuesApproved?: EntityValueUpdateManyWithoutApprovedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOrgInput = {
@@ -29517,6 +31795,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUncheckedUpdateManyWithoutSubmittedByUserNestedInput
     valuesApproved?: EntityValueUncheckedUpdateManyWithoutApprovedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUncheckedUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutOrgInput = {
@@ -29560,6 +31839,7 @@ export namespace Prisma {
     variables?: EntityVariableUpdateManyWithoutEntityNestedInput
     values?: EntityValueUpdateManyWithoutEntityNestedInput
     assignments?: UserEntityAssignmentUpdateManyWithoutEntityNestedInput
+    attachments?: EntityAttachmentUpdateManyWithoutEntityNestedInput
   }
 
   export type EntityUncheckedUpdateWithoutOrgInput = {
@@ -29588,6 +31868,7 @@ export namespace Prisma {
     variables?: EntityVariableUncheckedUpdateManyWithoutEntityNestedInput
     values?: EntityValueUncheckedUpdateManyWithoutEntityNestedInput
     assignments?: UserEntityAssignmentUncheckedUpdateManyWithoutEntityNestedInput
+    attachments?: EntityAttachmentUncheckedUpdateManyWithoutEntityNestedInput
   }
 
   export type EntityUncheckedUpdateManyWithoutOrgInput = {
@@ -29739,6 +32020,7 @@ export namespace Prisma {
     variables?: EntityVariableUpdateManyWithoutEntityNestedInput
     values?: EntityValueUpdateManyWithoutEntityNestedInput
     assignments?: UserEntityAssignmentUpdateManyWithoutEntityNestedInput
+    attachments?: EntityAttachmentUpdateManyWithoutEntityNestedInput
   }
 
   export type EntityUncheckedUpdateWithoutOrgEntityTypeInput = {
@@ -29767,6 +32049,7 @@ export namespace Prisma {
     variables?: EntityVariableUncheckedUpdateManyWithoutEntityNestedInput
     values?: EntityValueUncheckedUpdateManyWithoutEntityNestedInput
     assignments?: UserEntityAssignmentUncheckedUpdateManyWithoutEntityNestedInput
+    attachments?: EntityAttachmentUncheckedUpdateManyWithoutEntityNestedInput
   }
 
   export type EntityUncheckedUpdateManyWithoutOrgEntityTypeInput = {
@@ -29946,6 +32229,18 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type EntityAttachmentCreateManyUploadedByUserInput = {
+    id?: string
+    entityId: string
+    type: $Enums.EntityAttachmentType
+    name: string
+    url?: string | null
+    mimeType?: string | null
+    sizeBytes?: number | null
+    storagePath?: string | null
+    createdAt?: Date | string
+  }
+
   export type UserUpdateWithoutManagerInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -29970,6 +32265,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUpdateManyWithoutSubmittedByUserNestedInput
     valuesApproved?: EntityValueUpdateManyWithoutApprovedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutManagerInput = {
@@ -29996,6 +32292,7 @@ export namespace Prisma {
     valuesSubmitted?: EntityValueUncheckedUpdateManyWithoutSubmittedByUserNestedInput
     valuesApproved?: EntityValueUncheckedUpdateManyWithoutApprovedByUserNestedInput
     entityAssignments?: UserEntityAssignmentUncheckedUpdateManyWithoutUserNestedInput
+    uploadedEntityAttachments?: EntityAttachmentUncheckedUpdateManyWithoutUploadedByUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutManagerInput = {
@@ -30179,6 +32476,7 @@ export namespace Prisma {
     variables?: EntityVariableUpdateManyWithoutEntityNestedInput
     values?: EntityValueUpdateManyWithoutEntityNestedInput
     assignments?: UserEntityAssignmentUpdateManyWithoutEntityNestedInput
+    attachments?: EntityAttachmentUpdateManyWithoutEntityNestedInput
   }
 
   export type EntityUncheckedUpdateWithoutOwnerUserInput = {
@@ -30207,6 +32505,7 @@ export namespace Prisma {
     variables?: EntityVariableUncheckedUpdateManyWithoutEntityNestedInput
     values?: EntityValueUncheckedUpdateManyWithoutEntityNestedInput
     assignments?: UserEntityAssignmentUncheckedUpdateManyWithoutEntityNestedInput
+    attachments?: EntityAttachmentUncheckedUpdateManyWithoutEntityNestedInput
   }
 
   export type EntityUncheckedUpdateManyWithoutOwnerUserInput = {
@@ -30438,6 +32737,42 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type EntityAttachmentUpdateWithoutUploadedByUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumEntityAttachmentTypeFieldUpdateOperationsInput | $Enums.EntityAttachmentType
+    name?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    mimeType?: NullableStringFieldUpdateOperationsInput | string | null
+    sizeBytes?: NullableIntFieldUpdateOperationsInput | number | null
+    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    entity?: EntityUpdateOneRequiredWithoutAttachmentsNestedInput
+  }
+
+  export type EntityAttachmentUncheckedUpdateWithoutUploadedByUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    entityId?: StringFieldUpdateOperationsInput | string
+    type?: EnumEntityAttachmentTypeFieldUpdateOperationsInput | $Enums.EntityAttachmentType
+    name?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    mimeType?: NullableStringFieldUpdateOperationsInput | string | null
+    sizeBytes?: NullableIntFieldUpdateOperationsInput | number | null
+    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EntityAttachmentUncheckedUpdateManyWithoutUploadedByUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    entityId?: StringFieldUpdateOperationsInput | string
+    type?: EnumEntityAttachmentTypeFieldUpdateOperationsInput | $Enums.EntityAttachmentType
+    name?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    mimeType?: NullableStringFieldUpdateOperationsInput | string | null
+    sizeBytes?: NullableIntFieldUpdateOperationsInput | number | null
+    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ChangeApprovalCreateManyChangeRequestInput = {
     id?: string
     approverId: string
@@ -30511,6 +32846,18 @@ export namespace Prisma {
     assignedAt?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type EntityAttachmentCreateManyEntityInput = {
+    id?: string
+    type: $Enums.EntityAttachmentType
+    name: string
+    url?: string | null
+    mimeType?: string | null
+    sizeBytes?: number | null
+    storagePath?: string | null
+    uploadedBy?: string | null
+    createdAt?: Date | string
   }
 
   export type EntityVariableUpdateWithoutEntityInput = {
@@ -30632,6 +32979,42 @@ export namespace Prisma {
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EntityAttachmentUpdateWithoutEntityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumEntityAttachmentTypeFieldUpdateOperationsInput | $Enums.EntityAttachmentType
+    name?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    mimeType?: NullableStringFieldUpdateOperationsInput | string | null
+    sizeBytes?: NullableIntFieldUpdateOperationsInput | number | null
+    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    uploadedByUser?: UserUpdateOneWithoutUploadedEntityAttachmentsNestedInput
+  }
+
+  export type EntityAttachmentUncheckedUpdateWithoutEntityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumEntityAttachmentTypeFieldUpdateOperationsInput | $Enums.EntityAttachmentType
+    name?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    mimeType?: NullableStringFieldUpdateOperationsInput | string | null
+    sizeBytes?: NullableIntFieldUpdateOperationsInput | number | null
+    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    uploadedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EntityAttachmentUncheckedUpdateManyWithoutEntityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumEntityAttachmentTypeFieldUpdateOperationsInput | $Enums.EntityAttachmentType
+    name?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    mimeType?: NullableStringFieldUpdateOperationsInput | string | null
+    sizeBytes?: NullableIntFieldUpdateOperationsInput | number | null
+    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    uploadedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EntityVariableValueCreateManyEntityVariableInput = {

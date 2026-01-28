@@ -1,7 +1,11 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
 generator web_client {
   provider = "prisma-client-js"
-  output   = "."
-  binaryTargets = ["native", "debian-openssl-3.0.x"]
+  output   = "../web/src/generated/prisma-client"
 }
 
 datasource db {
@@ -339,9 +343,9 @@ model EntityAttachment {
   type        EntityAttachmentType
   name        String
   url         String?
-  mimeType    String?  @map("mime_type")
-  sizeBytes   Int?     @map("size_bytes")
-  storagePath String?  @map("storage_path")
+  mimeType    String?              @map("mime_type")
+  sizeBytes   Int?                 @map("size_bytes")
+  storagePath String?              @map("storage_path")
 
   uploadedBy     String? @map("uploaded_by")
   uploadedByUser User?   @relation("EntityAttachmentUploadedBy", fields: [uploadedBy], references: [id], onDelete: SetNull)

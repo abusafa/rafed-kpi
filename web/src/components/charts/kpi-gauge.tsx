@@ -53,7 +53,7 @@ export function KpiGauge({
     const cRed = "#ef4444";
     const cAmber = "#f59e0b";
     const cGreen = "#10b981";
-    const cNeutral = "#64748b";
+    const cBlue = "#60a5fa";
 
     const status =
       !hasValue
@@ -69,7 +69,7 @@ export function KpiGauge({
                 : "—";
 
     const statusColor =
-      !hasValue ? cNeutral : ratio === null ? cNeutral : ratio >= amber ? cGreen : ratio >= red ? cAmber : cRed;
+      !hasValue ? cBlue : ratio === null ? cBlue : ratio >= amber ? cGreen : ratio >= red ? cAmber : cRed;
 
     const fmt = (n: number) => {
       if (!Number.isFinite(n)) return "0";
