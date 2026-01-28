@@ -1,110 +1,105 @@
 # Mosa Group - Raw Data Overview
 
-This folder contains the raw data for the Mosa Group strategic framework, including objectives, departments, and their associated KPIs.
+This folder contains the raw data for the Mosa Group strategic framework, including pillars, strategic goals (objectives), initiatives, departments, and their KPI definitions/references.
 
 ## Data Structure Summary
 
-### Strategic Framework Components
+### Files
 
-- **Objectives**: 7 strategic objectives
-- **Initiatives**: 11 strategic initiatives
-- **Departments**: 8 organizational departments
-- **Total KPIs**: 109
-  - Department KPIs: 66
-  - Objective KPIs: 20
-  - Initiative KPIs: 23
+- **`pillars.json`**
+  - Maps strategic pillars to strategic goals (`goal_id`)
+- **`objectives.json`**
+  - Defines the 7 strategic goals and their objective KPIs
+- **`initiatives.json`**
+  - Defines initiatives, links them to goals, and lists their KPI references
+- **`deprtments/`**
+  - Contains one JSON file per department and its KPI definitions
 
-## Database Schema
+### Current counts (computed from JSON)
 
-The data should be structured in the database as follows:
+- **Strategic goals**: 7
+- **Objective KPIs**: 29
+- **Initiatives**: 11
+- **Initiative KPI references**: 37
+  - Operational initiative KPIs: 23 (unique)
+  - Linked KPI references: 14 (references to existing objective/department KPIs)
+- **Departments**: 8
+- **Department KPIs**: 66
 
-### 1. Objectives (7 Total)
-Strategic objectives that guide the organization's direction and goals.
+## Naming Conventions (formula-safe codes)
 
-**Location**: `objectives.json`
+### Objective KPI codes
 
-### 2. Departments (8 Total)
+- **Objective KPI code field**: `kpi_code`
+- **Format**: `objective_kpi_<goal>_<indicator>`
+- **Example**: objective KPI `7.3` => `objective_kpi_7_3`
 
-Organizational departments that implement the strategic objectives:
+### Initiative codes
 
-1. **Strategy Department** (قطاع الاستراتيجية)
-   - KPIs: 6
-   - File: `deprtments/strategy-department.json`
+- **Initiative code field**: `initiative_code`
+- **Format**: `initiative_<initiative_id>_<slug>`
+- **Example**: `initiative_11_develop_and_activate_digital_transformation_strategy`
 
-2. **Investment Department** (قطاع الاستثمار)
-   - KPIs: 10
-   - File: `deprtments/investment-department.json`
+### Initiative KPI codes
 
-3. **Finance Department** (قطاع المالية)
-   - KPIs: 9
-   - File: `deprtments/finance-department.json`
+- **Initiative KPI code field**: `kpi_code`
+- **Operational initiative KPIs**: `initiative_<initiative_id>_kpi_<n>`
+- **Linked initiative KPIs**: reuse existing variable names (`objective_kpi_*` or `<dept>_dept_kpi_*`)
 
-4. **Support Services Department** (قطاع الخدمات المساندة)
-   - KPIs: 8
-   - File: `deprtments/support-services-department.json`
+### Department KPI codes
 
-5. **Internal Audit Department** (إدارة المراجعة الداخلية)
-   - KPIs: 8
-   - File: `deprtments/internal-audit-department.json`
+- **Department KPI code field**: `kpi_code`
+- **Format**: `<dept>_dept_kpi_<n>`
+- **Department prefixes**:
+  - `strategy`
+  - `investment`
+  - `finance`
+  - `support_services`
+  - `internal_audit`
+  - `governance`
+  - `communication`
+  - `legal`
 
-6. **Governance, Compliance & Risk Management Department** (إدارة الحوكمة والالتزام والمخاطر)
-   - KPIs: 8
-   - File: `deprtments/governance-department.json`
+## Formulas
 
-7. **Communication Department** (إدارة التواصل)
-   - KPIs: 9
-   - File: `deprtments/communication-department.json`
+### Strategic goal formulas (`objectives.json`)
 
-8. **Legal Department** (قسم القانونية)
-   - KPIs: 8
-   - File: `deprtments/legal-department.json`
+- Each goal has `formula` and `formula_description`.
+- The formula is the weighted average of its objective KPIs.
+- Linked initiatives are intentionally included as `initiative_* * 0` so they are referenced but do not affect calculations.
 
-### 3. Initiatives (11 Total)
+### Initiative formulas (`initiatives.json`)
 
-Strategic initiatives linked to strategic goals and optionally linked to objective KPIs.
+- Each initiative has `formula` and `formula_description`.
+- The formula currently uses an average of the initiative's KPI codes (operational + linked references).
 
-**Location**: `initiatives.json`
+### Department formulas (`deprtments/*.json`)
 
-- Total initiatives: 11
-- Total initiative KPIs (operational only): 23
-
-### 4. KPIs (109 Total)
-
-#### Department KPIs: 66
-Performance indicators assigned to departments to measure operational and strategic performance.
-
-**Distribution by Department**:
-- Strategy: 6 KPIs
-- Investment: 10 KPIs
-- Finance: 9 KPIs
-- Support Services: 8 KPIs
-- Internal Audit: 8 KPIs
-- Governance: 8 KPIs
-- Communication: 9 KPIs
-- Legal: 8 KPIs
-
-#### Objective KPIs: 20
-High-level performance indicators linked directly to strategic objectives.
+- Each department file includes top-level `formula` and `formula_description`.
+- The formula is a weighted average using each KPI's `weight`.
+- Note: `support-services-department.json` divides by `0.90` (weights sum to 90% in the source).
 
 ## Data Relationships
 
 ```
-Objectives (7)
+Pillars (4)
     ↓
-    └─→ Objective KPIs (20)
-
-Departments (8)
-    ↓
-    └─→ Department KPIs (66)
+    └─→ Strategic Goals (7)
             ↓
-            └─→ Link to Strategic Goals
-            └─→ Link to Performance Indicators
+            ├─→ Objective KPIs (29)
+            ├─→ Initiatives (11)
+            │       └─→ Initiative KPI references (37)
+            │             - Operational initiative KPIs (23)
+            │             - Linked KPI references (14)
+            └─→ Departments (8)
+                    └─→ Department KPIs (66)
 ```
 
 ## Files in this Directory
 
-- `objectives.json` - Contains the 7 strategic objectives and their 20 associated KPIs
-- `initiatives.json` - Contains the 11 strategic initiatives and their linked/operational KPI references
+- `pillars.json` - Maps pillars to strategic goals
+- `objectives.json` - Contains the 7 strategic goals and their objective KPIs
+- `initiatives.json` - Contains the 11 strategic initiatives and their KPI references (operational + linked)
 - `deprtments/` - Folder containing JSON files for each of the 8 departments
   - Each department file contains sector information and its respective KPIs
 
