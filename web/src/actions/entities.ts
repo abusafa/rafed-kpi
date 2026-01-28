@@ -10,7 +10,7 @@ import {
   KpiValueStatus,
   Role,
   Status,
-} from "@/generated/prisma-client";
+} from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { getOrgKpiApprovalLevel, requireOrgAdmin, requireOrgMember } from "@/lib/server-action-auth";
 import { ActionValidationIssue } from "@/types/actions";
