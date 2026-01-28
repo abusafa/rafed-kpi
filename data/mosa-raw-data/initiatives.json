@@ -2,6 +2,7 @@
   "initiatives_mapping": [
     {
       "initiative_id": "1",
+      "initiative_code": "initiative_1_design_investment_frameworks",
       "initiative_name_ar": "تصميم اطر الاستثمار",
       "initiative_name_en": "Design Investment Frameworks",
       "linked_strategic_goals": ["1", "2"],
@@ -24,6 +25,7 @@
     },
     {
       "initiative_id": "2",
+      "initiative_code": "initiative_2_execute_investment_frameworks",
       "initiative_name_ar": "تنفيذ اطر الاستثمار",
       "initiative_name_en": "Execute Investment Frameworks",
       "linked_strategic_goals": ["2"],
@@ -60,6 +62,7 @@
     },
     {
       "initiative_id": "3",
+      "initiative_code": "initiative_3_market_research_business_intelligence_setup",
       "initiative_name_ar": "إعداد الدراسات وأبحاث السوق وتأسيس ذكاء الأعمال",
       "initiative_name_en": "Market Research & Business Intelligence Setup",
       "linked_strategic_goals": ["1", "2"],
@@ -85,6 +88,7 @@
     },
     {
       "initiative_id": "4",
+      "initiative_code": "initiative_4_enhance_financial_integration_and_compliance",
       "initiative_name_ar": "تعزيز التكامل والامتثال المالي بين المجموعة والشركات التابعة",
       "initiative_name_en": "Enhance Financial Integration and Compliance",
       "linked_strategic_goals": ["4"],
@@ -103,6 +107,7 @@
     },
     {
       "initiative_id": "5",
+      "initiative_code": "initiative_5_review_capital_structure_and_financial_flows",
       "initiative_name_ar": "مراجعة هيكلة رأس المال والتدفقات المالية",
       "initiative_name_en": "Review Capital Structure and Financial Flows",
       "linked_strategic_goals": ["4"],
@@ -116,6 +121,7 @@
     },
     {
       "initiative_id": "6",
+      "initiative_code": "initiative_6_activate_risk_and_internal_audit_plans",
       "initiative_name_ar": "تفعيل الخطط المتعلقة بالمخاطر والمراجعة الداخلية",
       "initiative_name_en": "Activate Risk and Internal Audit Plans",
       "linked_strategic_goals": ["5"],
@@ -134,6 +140,7 @@
     },
     {
       "initiative_id": "7",
+      "initiative_code": "initiative_7_activate_approved_operating_model",
       "initiative_name_ar": "تفعيل النموذج التشغيلي المعتمد",
       "initiative_name_en": "Activate Approved Operating Model",
       "linked_strategic_goals": ["5"],
@@ -157,6 +164,7 @@
     },
     {
       "initiative_id": "8",
+      "initiative_code": "initiative_8_enable_subsidiaries_and_operational_independence",
       "initiative_name_ar": "مبادرة تمكين الشركات التابعة وتفعيل استقلاليتها التشغيلية",
       "initiative_name_en": "Enable Subsidiaries and Activate Operational Independence",
       "linked_strategic_goals": ["5"],
@@ -179,6 +187,7 @@
     },
     {
       "initiative_id": "9",
+      "initiative_code": "initiative_9_human_resources_development",
       "initiative_name_ar": "تطوير وتنمية الموارد البشرية في المجموعة والشركات التابعة",
       "initiative_name_en": "Human Resources Development",
       "linked_strategic_goals": ["6"],
@@ -213,6 +222,7 @@
     },
     {
       "initiative_id": "10",
+      "initiative_code": "initiative_10_update_and_execute_comprehensive_communication_strategy",
       "initiative_name_ar": "تحديث وتنفيذ استراتيجية شاملة للتواصل والتسويق",
       "initiative_name_en": "Update and Execute Comprehensive Communication Strategy",
       "linked_strategic_goals": ["7"],
@@ -246,6 +256,7 @@
     },
     {
       "initiative_id": "11",
+      "initiative_code": "initiative_11_develop_and_activate_digital_transformation_strategy",
       "initiative_name_ar": "تطوير وتفعيل استراتيجية التحول الرقمي",
       "initiative_name_en": "Develop and Activate Digital Transformation Strategy",
       "linked_strategic_goals": ["5", "7"],
