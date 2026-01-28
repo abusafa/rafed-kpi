@@ -4,9 +4,12 @@
     "name_en": "Communication Department",
     "source_pages": [20]
   },
+  "formula": "(communication_dept_kpi_1 * 0.15 + communication_dept_kpi_2 * 0.10 + communication_dept_kpi_3 * 0.10 + communication_dept_kpi_4 * 0.15 + communication_dept_kpi_5 * 0.10 + communication_dept_kpi_6 * 0.10 + communication_dept_kpi_7 * 0.10 + communication_dept_kpi_8 * 0.10 + communication_dept_kpi_9 * 0.10) / 1.00",
+  "formula_description": "Weighted average of department KPIs using each KPI's weight",
   "indicators": [
     {
       "page": 20,
+      "kpi_code": "communication_dept_kpi_1",
       "scope_ar": "تحسين كفاءة وفعالية التواصل الداخلي والخارجي",
       "scope_en": "Improving efficiency and effectiveness of internal and external communication",
       "weight": "15%",
@@ -22,6 +25,7 @@
     },
     {
       "page": 20,
+      "kpi_code": "communication_dept_kpi_2",
       "scope_ar": "تحسين كفاءة وفعالية التواصل الداخلي والخارجي",
       "scope_en": "Improving efficiency and effectiveness of internal and external communication",
       "weight": "10%",
@@ -37,6 +41,7 @@
     },
     {
       "page": 20,
+      "kpi_code": "communication_dept_kpi_3",
       "scope_ar": "تحسين كفاءة وفعالية التواصل الداخلي والخارجي",
       "scope_en": "Improving efficiency and effectiveness of internal and external communication",
       "weight": "10%",
@@ -52,6 +57,7 @@
     },
     {
       "page": 20,
+      "kpi_code": "communication_dept_kpi_4",
       "scope_ar": "تعزيز رضا المستفيدين وأصحاب المصلحة",
       "scope_en": "Enhancing beneficiary and stakeholder satisfaction",
       "weight": "15%",
@@ -67,6 +73,7 @@
     },
     {
       "page": 20,
+      "kpi_code": "communication_dept_kpi_5",
       "scope_ar": "تعزيز رضا المستفيدين وأصحاب المصلحة",
       "scope_en": "Enhancing beneficiary and stakeholder satisfaction",
       "weight": "10%",
@@ -82,6 +89,7 @@
     },
     {
       "page": 20,
+      "kpi_code": "communication_dept_kpi_6",
       "scope_ar": "تعزيز رضا المستفيدين وأصحاب المصلحة",
       "scope_en": "Enhancing beneficiary and stakeholder satisfaction",
       "weight": "10%",
@@ -97,6 +105,7 @@
     },
     {
       "page": 20,
+      "kpi_code": "communication_dept_kpi_7",
       "scope_ar": "رفع اثر الحملات والمبادرات الإعلامية",
       "scope_en": "Raising the impact of media campaigns and initiatives",
       "weight": "10%",
@@ -112,6 +121,7 @@
     },
     {
       "page": 20,
+      "kpi_code": "communication_dept_kpi_8",
       "scope_ar": "رفع اثر الحملات والمبادرات الإعلامية",
       "scope_en": "Raising the impact of media campaigns and initiatives",
       "weight": "10%",
@@ -127,6 +137,7 @@
     },
     {
       "page": 20,
+      "kpi_code": "communication_dept_kpi_9",
       "scope_ar": "رفع اثر الحملات والمبادرات الإعلامية",
       "scope_en": "Raising the impact of media campaigns and initiatives",
       "weight": "10%",

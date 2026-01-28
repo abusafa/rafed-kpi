@@ -4,9 +4,12 @@
     "name_en": "Finance Sector",
     "source_pages": [12]
   },
+  "formula": "(finance_dept_kpi_1 * 0.10 + finance_dept_kpi_2 * 0.10 + finance_dept_kpi_3 * 0.10 + finance_dept_kpi_4 * 0.10 + finance_dept_kpi_5 * 0.20 + finance_dept_kpi_6 * 0.10 + finance_dept_kpi_7 * 0.10 + finance_dept_kpi_8 * 0.10 + finance_dept_kpi_9 * 0.10) / 1.00",
+  "formula_description": "Weighted average of department KPIs using each KPI's weight",
   "indicators": [
     {
       "page": 12,
+      "kpi_code": "finance_dept_kpi_1",
       "scope_ar": "الرقابة المالية وكفاءة استخدام الميزانية",
       "scope_en": "Financial Control and Budget Efficiency",
       "weight": "10%",
@@ -22,6 +25,7 @@
     },
     {
       "page": 12,
+      "kpi_code": "finance_dept_kpi_2",
       "scope_ar": "الرقابة المالية وكفاءة استخدام الميزانية",
       "scope_en": "Financial Control and Budget Efficiency",
       "weight": "10%",
@@ -37,6 +41,7 @@
     },
     {
       "page": 12,
+      "kpi_code": "finance_dept_kpi_3",
       "scope_ar": "الرقابة المالية وكفاءة استخدام الميزانية",
       "scope_en": "Financial Control and Budget Efficiency",
       "weight": "10%",
@@ -52,6 +57,7 @@
     },
     {
       "page": 12,
+      "kpi_code": "finance_dept_kpi_4",
       "scope_ar": "تعزيز السيولة والكفاءة المالية",
       "scope_en": "Enhancing Liquidity and Financial Efficiency",
       "weight": "10%",
@@ -67,6 +73,7 @@
     },
     {
       "page": 12,
+      "kpi_code": "finance_dept_kpi_5",
       "scope_ar": "تعزيز السيولة والكفاءة المالية",
       "scope_en": "Enhancing Liquidity and Financial Efficiency",
       "weight": "20%",
@@ -82,6 +89,7 @@
     },
     {
       "page": 12,
+      "kpi_code": "finance_dept_kpi_6",
       "scope_ar": "تعزيز السيولة والكفاءة المالية",
       "scope_en": "Enhancing Liquidity and Financial Efficiency",
       "weight": "10%",
@@ -97,6 +105,7 @@
     },
     {
       "page": 12,
+      "kpi_code": "finance_dept_kpi_7",
       "scope_ar": "إدارة الأصول",
       "scope_en": "Asset Management",
       "weight": "10%",
@@ -112,6 +121,7 @@
     },
     {
       "page": 12,
+      "kpi_code": "finance_dept_kpi_8",
       "scope_ar": "إدارة الأصول",
       "scope_en": "Asset Management",
       "weight": "10%",
@@ -127,6 +137,7 @@
     },
     {
       "page": 12,
+      "kpi_code": "finance_dept_kpi_9",
       "scope_ar": "إدارة الأصول",
       "scope_en": "Asset Management",
       "weight": "10%",

@@ -4,9 +4,12 @@
     "name_en": "Internal Audit Department",
     "source_pages": [16]
   },
+  "formula": "(internal_audit_dept_kpi_1 * 0.20 + internal_audit_dept_kpi_2 * 0.15 + internal_audit_dept_kpi_3 * 0.15 + internal_audit_dept_kpi_4 * 0.10 + internal_audit_dept_kpi_5 * 0.10 + internal_audit_dept_kpi_6 * 0.10 + internal_audit_dept_kpi_7 * 0.10 + internal_audit_dept_kpi_8 * 0.10) / 1.00",
+  "formula_description": "Weighted average of department KPIs using each KPI's weight",
   "indicators": [
     {
       "page": 16,
+      "kpi_code": "internal_audit_dept_kpi_1",
       "scope_ar": "تعزيز جودة وكفاءة عمليات التدقيق الداخلي",
       "scope_en": "Enhancing the quality and efficiency of internal audit operations",
       "weight": "20%",
@@ -22,6 +25,7 @@
     },
     {
       "page": 16,
+      "kpi_code": "internal_audit_dept_kpi_2",
       "scope_ar": "تعزيز جودة وكفاءة عمليات التدقيق الداخلي",
       "scope_en": "Enhancing the quality and efficiency of internal audit operations",
       "weight": "15%",
@@ -37,6 +41,7 @@
     },
     {
       "page": 16,
+      "kpi_code": "internal_audit_dept_kpi_3",
       "scope_ar": "تعزيز جودة وكفاءة عمليات التدقيق الداخلي",
       "scope_en": "Enhancing the quality and efficiency of internal audit operations",
       "weight": "15%",
@@ -52,6 +57,7 @@
     },
     {
       "page": 16,
+      "kpi_code": "internal_audit_dept_kpi_4",
       "scope_ar": "تحسين الامتثال والسيطرة الداخلية",
       "scope_en": "Improving compliance and internal control",
       "weight": "10%",
@@ -67,6 +73,7 @@
     },
     {
       "page": 16,
+      "kpi_code": "internal_audit_dept_kpi_5",
       "scope_ar": "تحسين الامتثال والسيطرة الداخلية",
       "scope_en": "Improving compliance and internal control",
       "weight": "10%",
@@ -82,6 +89,7 @@
     },
     {
       "page": 16,
+      "kpi_code": "internal_audit_dept_kpi_6",
       "scope_ar": "تحسين الامتثال والسيطرة الداخلية",
       "scope_en": "Improving compliance and internal control",
       "weight": "10%",
@@ -97,6 +105,7 @@
     },
     {
       "page": 16,
+      "kpi_code": "internal_audit_dept_kpi_7",
       "scope_ar": "رفع فعالية معالجة الملاحظات",
       "scope_en": "Raising the effectiveness of addressing observations",
       "weight": "10%",
@@ -112,6 +121,7 @@
     },
     {
       "page": 16,
+      "kpi_code": "internal_audit_dept_kpi_8",
       "scope_ar": "رفع فعالية معالجة الملاحظات",
       "scope_en": "Raising the effectiveness of addressing observations",
       "weight": "10%",

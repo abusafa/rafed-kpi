@@ -4,9 +4,12 @@
     "name_en": "Governance, Compliance, and Risk Management Department",
     "source_pages": [18]
   },
+  "formula": "(governance_dept_kpi_1 * 0.20 + governance_dept_kpi_2 * 0.15 + governance_dept_kpi_3 * 0.15 + governance_dept_kpi_4 * 0.15 + governance_dept_kpi_5 * 0.15 + governance_dept_kpi_6 * 0.10 + governance_dept_kpi_7 * 0.05 + governance_dept_kpi_8 * 0.05) / 1.00",
+  "formula_description": "Weighted average of department KPIs using each KPI's weight",
   "indicators": [
     {
       "page": 18,
+      "kpi_code": "governance_dept_kpi_1",
       "scope_ar": "تعزيز الالتزام بالسياسات والإجراءات",
       "scope_en": "Enhancing compliance with policies and procedures",
       "weight": "20%",
@@ -22,6 +25,7 @@
     },
     {
       "page": 18,
+      "kpi_code": "governance_dept_kpi_2",
       "scope_ar": "تعزيز الالتزام بالسياسات والإجراءات",
       "scope_en": "Enhancing compliance with policies and procedures",
       "weight": "15%",
@@ -37,6 +41,7 @@
     },
     {
       "page": 18,
+      "kpi_code": "governance_dept_kpi_3",
       "scope_ar": "تعزيز الالتزام بالسياسات والإجراءات",
       "scope_en": "Enhancing compliance with policies and procedures",
       "weight": "15%",
@@ -52,6 +57,7 @@
     },
     {
       "page": 18,
+      "kpi_code": "governance_dept_kpi_4",
       "scope_ar": "إدارة المخاطر بفاعلية",
       "scope_en": "Effective Risk Management",
       "weight": "15%",
@@ -67,6 +73,7 @@
     },
     {
       "page": 18,
+      "kpi_code": "governance_dept_kpi_5",
       "scope_ar": "إدارة المخاطر بفاعلية",
       "scope_en": "Effective Risk Management",
       "weight": "15%",
@@ -82,6 +89,7 @@
     },
     {
       "page": 18,
+      "kpi_code": "governance_dept_kpi_6",
       "scope_ar": "إدارة المخاطر بفاعلية",
       "scope_en": "Effective Risk Management",
       "weight": "10%",
@@ -97,6 +105,7 @@
     },
     {
       "page": 18,
+      "kpi_code": "governance_dept_kpi_7",
       "scope_ar": "رفع الوعي المؤسسي بالحوكمة والالتزام",
       "scope_en": "Raising institutional awareness of governance and compliance",
       "weight": "5%",
@@ -112,6 +121,7 @@
     },
     {
       "page": 18,
+      "kpi_code": "governance_dept_kpi_8",
       "scope_ar": "رفع الوعي المؤسسي بالحوكمة والالتزام",
       "scope_en": "Raising institutional awareness of governance and compliance",
       "weight": "5%",

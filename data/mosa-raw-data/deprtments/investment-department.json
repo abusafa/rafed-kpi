@@ -4,9 +4,12 @@
     "name_en": "Investment Sector",
     "source_pages": [9, 10]
   },
+  "formula": "(investment_dept_kpi_1 * 0.10 + investment_dept_kpi_2 * 0.10 + investment_dept_kpi_3 * 0.10 + investment_dept_kpi_4 * 0.10 + investment_dept_kpi_5 * 0.10 + investment_dept_kpi_6 * 0.10 + investment_dept_kpi_7 * 0.10 + investment_dept_kpi_8 * 0.10 + investment_dept_kpi_9 * 0.10 + investment_dept_kpi_10 * 0.10) / 1.00",
+  "formula_description": "Weighted average of department KPIs using each KPI's weight",
   "indicators": [
     {
       "page": 9,
+      "kpi_code": "investment_dept_kpi_1",
       "scope_ar": "زيادة الاستثمارات والمبادرات الجديدة",
       "scope_en": "Increase in investments and new initiatives",
       "weight": "10%",
@@ -22,6 +25,7 @@
     },
     {
       "page": 9,
+      "kpi_code": "investment_dept_kpi_2",
       "scope_ar": "زيادة الاستثمارات والمبادرات الجديدة",
       "scope_en": "Increase in investments and new initiatives",
       "weight": "10%",
@@ -37,6 +41,7 @@
     },
     {
       "page": 9,
+      "kpi_code": "investment_dept_kpi_3",
       "scope_ar": "زيادة الاستثمارات والمبادرات الجديدة",
       "scope_en": "Increase in investments and new initiatives",
       "weight": "10%",
@@ -52,6 +57,7 @@
     },
     {
       "page": 9,
+      "kpi_code": "investment_dept_kpi_4",
       "scope_ar": "زيادة الاستثمارات والمبادرات الجديدة",
       "scope_en": "Increase in investments and new initiatives",
       "weight": "10%",
@@ -67,6 +73,7 @@
     },
     {
       "page": 9,
+      "kpi_code": "investment_dept_kpi_5",
       "scope_ar": "تحسين العائد على الاستثمارات والمشاريع",
       "scope_en": "Improving return on investments and projects",
       "weight": "10%",
@@ -82,6 +89,7 @@
     },
     {
       "page": 9,
+      "kpi_code": "investment_dept_kpi_6",
       "scope_ar": "تحسين العائد على الاستثمارات والمشاريع",
       "scope_en": "Improving return on investments and projects",
       "weight": "10%",
@@ -97,6 +105,7 @@
     },
     {
       "page": 9,
+      "kpi_code": "investment_dept_kpi_7",
       "scope_ar": "تحسين العائد على الاستثمارات والمشاريع",
       "scope_en": "Improving return on investments and projects",
       "weight": "10%",
@@ -112,6 +121,7 @@
     },
     {
       "page": 10,
+      "kpi_code": "investment_dept_kpi_8",
       "scope_ar": "كفاءة تنفيذ الصفقات والمشاريع الاستثمارية",
       "scope_en": "Efficiency of executing investment deals and projects",
       "weight": "10%",
@@ -127,6 +137,7 @@
     },
     {
       "page": 10,
+      "kpi_code": "investment_dept_kpi_9",
       "scope_ar": "كفاءة تنفيذ الصفقات والمشاريع الاستثمارية",
       "scope_en": "Efficiency of executing investment deals and projects",
       "weight": "10%",
@@ -142,6 +153,7 @@
     },
     {
       "page": 10,
+      "kpi_code": "investment_dept_kpi_10",
       "scope_ar": "كفاءة تنفيذ الصفقات والمشاريع الاستثمارية",
       "scope_en": "Efficiency of executing investment deals and projects",
       "weight": "10%",

@@ -4,9 +4,12 @@
     "name_en": "Support Services Sector",
     "source_pages": [14]
   },
+  "formula": "(support_services_dept_kpi_1 * 0.15 + support_services_dept_kpi_2 * 0.10 + support_services_dept_kpi_3 * 0.10 + support_services_dept_kpi_4 * 0.15 + support_services_dept_kpi_5 * 0.10 + support_services_dept_kpi_6 * 0.10 + support_services_dept_kpi_7 * 0.10 + support_services_dept_kpi_8 * 0.10) / 0.90",
+  "formula_description": "Weighted average of department KPIs using each KPI's weight",
   "indicators": [
     {
       "page": 14,
+      "kpi_code": "support_services_dept_kpi_1",
       "scope_ar": "رفع جودة وموثوقية الخدمات المساندة",
       "scope_en": "Raising the quality and reliability of support services",
       "weight": "15%",
@@ -22,6 +25,7 @@
     },
     {
       "page": 14,
+      "kpi_code": "support_services_dept_kpi_2",
       "scope_ar": "رفع جودة وموثوقية الخدمات المساندة",
       "scope_en": "Raising the quality and reliability of support services",
       "weight": "10%",
@@ -37,6 +41,7 @@
     },
     {
       "page": 14,
+      "kpi_code": "support_services_dept_kpi_3",
       "scope_ar": "رفع جودة وموثوقية الخدمات المساندة",
       "scope_en": "Raising the quality and reliability of support services",
       "weight": "10%",
@@ -52,6 +57,7 @@
     },
     {
       "page": 14,
+      "kpi_code": "support_services_dept_kpi_4",
       "scope_ar": "تحسين كفاءة السياسات والعمليات والإجراءات",
       "scope_en": "Improving the efficiency of policies, operations, and procedures",
       "weight": "15%",
@@ -67,6 +73,7 @@
     },
     {
       "page": 14,
+      "kpi_code": "support_services_dept_kpi_5",
       "scope_ar": "تحسين كفاءة السياسات والعمليات والإجراءات",
       "scope_en": "Improving the efficiency of policies, operations, and procedures",
       "weight": "10%",
@@ -82,6 +89,7 @@
     },
     {
       "page": 14,
+      "kpi_code": "support_services_dept_kpi_6",
       "scope_ar": "تعزيز الكفاءة المالية والالتزام بالحوكمة",
       "scope_en": "Enhancing financial efficiency and governance compliance",
       "weight": "10%",
@@ -97,6 +105,7 @@
     },
     {
       "page": 14,
+      "kpi_code": "support_services_dept_kpi_7",
       "scope_ar": "تعزيز الكفاءة المالية والالتزام بالحوكمة",
       "scope_en": "Enhancing financial efficiency and governance compliance",
       "weight": "10%",
@@ -112,6 +121,7 @@
     },
     {
       "page": 14,
+      "kpi_code": "support_services_dept_kpi_8",
       "scope_ar": "تعزيز الكفاءة المالية والالتزام بالحوكمة",
       "scope_en": "Enhancing financial efficiency and governance compliance",
       "weight": "10%",

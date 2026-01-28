@@ -4,9 +4,12 @@
     "name_en": "Strategy Sector",
     "source_pages": [7]
   },
+  "formula": "(strategy_dept_kpi_1 * 0.30 + strategy_dept_kpi_2 * 0.25 + strategy_dept_kpi_3 * 0.10 + strategy_dept_kpi_4 * 0.10 + strategy_dept_kpi_5 * 0.15 + strategy_dept_kpi_6 * 0.10) / 1.00",
+  "formula_description": "Weighted average of department KPIs using each KPI's weight",
   "indicators": [
     {
       "page": 7,
+      "kpi_code": "strategy_dept_kpi_1",
       "scope_ar": "مواءمة الأهداف الاستراتيجية مع الخطة التشغيلية",
       "scope_en": "Alignment of strategic goals with the operational plan",
       "weight": "30%",
@@ -22,6 +25,7 @@
     },
     {
       "page": 7,
+      "kpi_code": "strategy_dept_kpi_2",
       "scope_ar": "مواءمة الأهداف الاستراتيجية مع الخطة التشغيلية",
       "scope_en": "Alignment of strategic goals with the operational plan",
       "weight": "25%",
@@ -37,6 +41,7 @@
     },
     {
       "page": 7,
+      "kpi_code": "strategy_dept_kpi_3",
       "scope_ar": "إدارة الأداء المؤسسي بكفاءة",
       "scope_en": "Efficient Institutional Performance Management",
       "weight": "10%",
@@ -52,6 +57,7 @@
     },
     {
       "page": 7,
+      "kpi_code": "strategy_dept_kpi_4",
       "scope_ar": "إدارة الأداء المؤسسي بكفاءة",
       "scope_en": "Efficient Institutional Performance Management",
       "weight": "10%",
@@ -67,6 +73,7 @@
     },
     {
       "page": 7,
+      "kpi_code": "strategy_dept_kpi_5",
       "scope_ar": "التميز المؤسسي",
       "scope_en": "Institutional Excellence",
       "weight": "15%",
@@ -82,6 +89,7 @@
     },
     {
       "page": 7,
+      "kpi_code": "strategy_dept_kpi_6",
       "scope_ar": "التميز المؤسسي",
       "scope_en": "Institutional Excellence",
       "weight": "10%",
