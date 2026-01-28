@@ -1,0 +1,1002 @@
+{
+  "strategic_objectives_map": [
+    {
+      "goal_id": 1,
+      "goal_title": "توسيع المحفظة الاستثمارية عبر الدخول في 5 قطاعات جديدة بنهاية عام 2028",
+      "strategic_kpis": [
+        {
+          "id": "1.1",
+          "title": "عدد القطاعات الجديدة",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "عدد القطاعات الجديدة",
+              "weight": "10%",
+              "unit": "عدد",
+              "frequency": "ربع سنوي/سنوي",
+              "page_source": 9
+            }
+          ]
+        },
+        {
+          "id": "1.2",
+          "title": "نسبة مساهمة القطاعات الجديدة في إجمالي المحفظة",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "عدد القطاعات الجديدة",
+              "weight": "10%",
+              "unit": "عدد",
+              "frequency": "ربع سنوي/سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة تحقيق العائد الاستثماري المستهدف",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي/سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة فجوة تحقيق العائد الاستثماري",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة نجاح المشاريع الاستثمارية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "سنوي",
+              "page_source": 10
+            },
+            {
+              "department_kpi_name": "نسبة المشاريع غير الناجحة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 10
+            }
+          ]
+        },
+        {
+          "id": "1.3",
+          "title": "عدد الشراكات أو المشاريع الاستثمارية الجديدة",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "عدد القطاعات الجديدة",
+              "weight": "10%",
+              "unit": "عدد",
+              "frequency": "ربع سنوي/سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة نجاح المشاريع الاستثمارية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "سنوي",
+              "page_source": 10
+            },
+            {
+              "department_kpi_name": "نسبة المشاريع غير الناجحة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 10
+            }
+          ]
+        },
+        {
+          "id": "1.4",
+          "title": "العائد على الاستثمارات الجديدة (ROI)",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "عدد القطاعات الجديدة",
+              "weight": "10%",
+              "unit": "عدد",
+              "frequency": "ربع سنوي/سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة تحقيق العائد الاستثماري المستهدف",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي/سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة فجوة تحقيق العائد الاستثماري",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "goal_id": 2,
+      "goal_title": "تعزيز الريادة الاستثمارية عبر إدارة محفظة استثمارية تحقق عائداً استثمارياً بنسبة 20% بنهاية عام 2028",
+      "strategic_kpis": [
+        {
+          "id": "2.1",
+          "title": "العائد على الاستثمار",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "العائد على الأصول",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي/ سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "نسبة نمو قيمة الأصول",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "نسبة الأصول غير المستغلة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "اجمالي الاستثمارات الجديدة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي/سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة الفرص الاستثمارية غير المستغلة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "شهري/ ربع سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة تحقيق العائد الاستثماري المستهدف",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي/سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة فجوة تحقيق العائد الاستثماري",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة النمو في المحفظة الاستثمارية",
+              "weight": "10%",
+              "unit": "ريال",
+              "frequency": "نصف سنوي/سنوي",
+              "page_source": 9
+            }
+          ]
+        },
+        {
+          "id": "2.2",
+          "title": "العائد المركب السنوي",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "العائد على الأصول",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي/ سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "نسبة نمو قيمة الأصول",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "نسبة الأصول غير المستغلة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "اجمالي الاستثمارات الجديدة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي/سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة الفرص الاستثمارية غير المستغلة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "شهري/ ربع سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة تحقيق العائد الاستثماري المستهدف",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي/سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة فجوة تحقيق العائد الاستثماري",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة النمو في المحفظة الاستثمارية",
+              "weight": "10%",
+              "unit": "ريال",
+              "frequency": "نصف سنوي/سنوي",
+              "page_source": 9
+            }
+          ]
+        },
+        {
+          "id": "2.3",
+          "title": "نسبة التنوع",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "اجمالي الاستثمارات الجديدة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي/سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة الفرص الاستثمارية غير المستغلة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "شهري/ ربع سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة نجاح المشاريع الاستثمارية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "سنوي",
+              "page_source": 10
+            },
+            {
+              "department_kpi_name": "نسبة المشاريع غير الناجحة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 10
+            }
+          ]
+        },
+        {
+          "id": "2.4",
+          "title": "نسبة مساهمة الاستثمارات الجديدة",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "اجمالي الاستثمارات الجديدة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي/سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة الفرص الاستثمارية غير المستغلة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "شهري/ ربع سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة تحقيق العائد الاستثماري المستهدف",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي/سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة فجوة تحقيق العائد الاستثماري",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة النمو في المحفظة الاستثمارية",
+              "weight": "10%",
+              "unit": "ريال",
+              "frequency": "نصف سنوي/سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة نجاح المشاريع الاستثمارية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "سنوي",
+              "page_source": 10
+            },
+            {
+              "department_kpi_name": "نسبة المشاريع غير الناجحة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 10
+            }
+          ]
+        },
+        {
+          "id": "2.5",
+          "title": "عدد الاستثمارات التي تحقق العائد",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "اجمالي الاستثمارات الجديدة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي/سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة الفرص الاستثمارية غير المستغلة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "شهري/ ربع سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة تحقيق العائد الاستثماري المستهدف",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي/سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة فجوة تحقيق العائد الاستثماري",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة النمو في المحفظة الاستثمارية",
+              "weight": "10%",
+              "unit": "ريال",
+              "frequency": "نصف سنوي/سنوي",
+              "page_source": 9
+            },
+            {
+              "department_kpi_name": "نسبة نجاح المشاريع الاستثمارية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "سنوي",
+              "page_source": 10
+            },
+            {
+              "department_kpi_name": "نسبة المشاريع غير الناجحة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "goal_id": 3,
+      "goal_title": "رفع الإيرادات المستدامة للمجموعة لتصل إلى 200 مليون ريال بنهاية عام 2028",
+      "strategic_kpis": [
+        {
+          "id": "3.1",
+          "title": "إجمالي الإيرادات السنوية",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "نمو الإيرادات المستدامة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي/سنوي",
+              "page_source": 9
+            }
+          ]
+        },
+        {
+          "id": "3.2",
+          "title": "نسبة الإيرادات المستدامة",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "نمو الإيرادات المستدامة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي/سنوي",
+              "page_source": 9
+            }
+          ]
+        },
+        {
+          "id": "3.3",
+          "title": "نسبة الانحراف عن المستهدف",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "نمو الإيرادات المستدامة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي/سنوي",
+              "page_source": 9
+            }
+          ]
+        },
+        {
+          "id": "3.4",
+          "title": "نسبة مساهمة القطاعات الجديدة في الإيرادات المستدامة",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "نمو الإيرادات المستدامة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي/سنوي",
+              "page_source": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "goal_id": 4,
+      "goal_title": "تعزيز الانضباط المالي من خلال تعظيم كفاءة رأس المال وتطبيق نظام موحد لكفاءة الإنفاق",
+      "strategic_kpis": [
+        {
+          "id": "4.1",
+          "title": "نسبة الالتزام بتطبيق النظام",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "نسبة انحراف الميزانية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "شهري/ ربع سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "نسبة الالتزام بالميزانية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي/ سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "مؤشر Z للتنبؤ بالإفلاس",
+              "weight": "10%",
+              "unit": "درجة",
+              "frequency": "نصف سنوي/ سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "نسبة السيولة الجارية",
+              "weight": "10%",
+              "unit": "نسبة",
+              "frequency": "ربع سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "عدد التوصيات لتحسين الكفاءة المالية",
+              "weight": "20%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "عدد اللوائح والإجراءات التي تم تحسينها / عدد التوصيات",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "نصف سنوي",
+              "page_source": 12
+            }
+          ]
+        },
+        {
+          "id": "4.2",
+          "title": "نسبة الانحرافات المالية",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "نسبة انحراف الميزانية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "شهري/ ربع سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "نسبة الالتزام بالميزانية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي/ سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "مؤشر Z للتنبؤ بالإفلاس",
+              "weight": "10%",
+              "unit": "درجة",
+              "frequency": "نصف سنوي/ سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "نسبة السيولة الجارية",
+              "weight": "10%",
+              "unit": "نسبة",
+              "frequency": "ربع سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "عدد التوصيات لتحسين الكفاءة المالية",
+              "weight": "20%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "عدد اللوائح والإجراءات التي تم تحسينها / عدد التوصيات",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "نصف سنوي",
+              "page_source": 12
+            }
+          ]
+        },
+        {
+          "id": "4.3",
+          "title": "معدل خفض الانحرافات المالية",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "نسبة انحراف الميزانية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "شهري/ ربع سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "نسبة الالتزام بالميزانية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي/ سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "مؤشر Z للتنبؤ بالإفلاس",
+              "weight": "10%",
+              "unit": "درجة",
+              "frequency": "نصف سنوي/ سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "نسبة السيولة الجارية",
+              "weight": "10%",
+              "unit": "نسبة",
+              "frequency": "ربع سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "عدد التوصيات لتحسين الكفاءة المالية",
+              "weight": "20%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "عدد اللوائح والإجراءات التي تم تحسينها / عدد التوصيات",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "نصف سنوي",
+              "page_source": 12
+            }
+          ]
+        },
+        {
+          "id": "4.4",
+          "title": "معدل الانخفاض في المصروفات غير المبررة",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "نسبة انحراف الميزانية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "شهري/ ربع سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "نسبة الالتزام بالميزانية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي/ سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "مؤشر Z للتنبؤ بالإفلاس",
+              "weight": "10%",
+              "unit": "درجة",
+              "frequency": "نصف سنوي/ سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "نسبة السيولة الجارية",
+              "weight": "10%",
+              "unit": "نسبة",
+              "frequency": "ربع سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "عدد التوصيات لتحسين الكفاءة المالية",
+              "weight": "20%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "عدد اللوائح والإجراءات التي تم تحسينها / عدد التوصيات",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "نصف سنوي",
+              "page_source": 12
+            }
+          ]
+        },
+        {
+          "id": "4.5",
+          "title": "عدد التقارير المالية الموحدة",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "نسبة انحراف الميزانية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "شهري/ ربع سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "نسبة الالتزام بالميزانية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي/ سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "مؤشر Z للتنبؤ بالإفلاس",
+              "weight": "10%",
+              "unit": "درجة",
+              "frequency": "نصف سنوي/ سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "نسبة السيولة الجارية",
+              "weight": "10%",
+              "unit": "نسبة",
+              "frequency": "ربع سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "عدد التوصيات لتحسين الكفاءة المالية",
+              "weight": "20%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 12
+            },
+            {
+              "department_kpi_name": "عدد اللوائح والإجراءات التي تم تحسينها / عدد التوصيات",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "نصف سنوي",
+              "page_source": 12
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "goal_id": 5,
+      "goal_title": "رفع الجاهزية للإدراج من خلال رفع مستوى الحوكمة وتفعيل النموذج التشغيلي بحلول 2027",
+      "strategic_kpis": [
+        {
+          "id": "5.1",
+          "title": "نسبة الامتثال لمتطلبات تقرير الجاهزية للإدراج",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "عدد السياسات الداخلية المعتمدة",
+              "weight": "20%",
+              "unit": "عدد",
+              "frequency": "نصف سنوي / سنوي",
+              "page_source": 18
+            },
+            {
+              "department_kpi_name": "نسبة الامتثال الداخلي للسياسات",
+              "weight": "15%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 18
+            },
+            {
+              "department_kpi_name": "نسبة التقارير التي أعدتها الإدارة وتمت الموافقة عليها/اجمالي التقارير",
+              "weight": "5%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 18
+            },
+            {
+              "department_kpi_name": "مؤشر الالتزام بمعايير الجودة المؤسسية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "نصف سنوي/سنوي",
+              "page_source": 7
+            },
+            {
+              "department_kpi_name": "نسبة عدم الالتزام بمعايير الجودة المؤسسية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 7
+            },
+            {
+              "department_kpi_name": "نسبة السياسات والإجراءات المعتمدة",
+              "weight": "15%",
+              "unit": "يوم",
+              "frequency": "شهري",
+              "page_source": 14
+            },
+            {
+              "department_kpi_name": "توافر واستمرارية الأنظمة التقنية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "شهري/ ربع سنوي",
+              "page_source": 14
+            },
+            {
+              "department_kpi_name": "نسبة المبادرات التحسينية أو التحسينات المنفذة في الخدمات المساندة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "سنوي",
+              "page_source": 14
+            }
+          ]
+        },
+        {
+          "id": "5.2",
+          "title": "نسبة تفعيل النموذج التشغيلي",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "نسبة الامتثال الداخلي للسياسات",
+              "weight": "15%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 18
+            },
+            {
+              "department_kpi_name": "مؤشر الالتزام بمعايير الجودة المؤسسية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "نصف سنوي/سنوي",
+              "page_source": 7
+            },
+            {
+              "department_kpi_name": "نسبة عدم الالتزام بمعايير الجودة المؤسسية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 7
+            },
+            {
+              "department_kpi_name": "نسبة السياسات والإجراءات المعتمدة",
+              "weight": "15%",
+              "unit": "يوم",
+              "frequency": "شهري",
+              "page_source": 14
+            },
+            {
+              "department_kpi_name": "توافر واستمرارية الأنظمة التقنية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "شهري/ ربع سنوي",
+              "page_source": 14
+            },
+            {
+              "department_kpi_name": "نسبة المبادرات التحسينية أو التحسينات المنفذة في الخدمات المساندة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "سنوي",
+              "page_source": 14
+            }
+          ]
+        },
+        {
+          "id": "5.3",
+          "title": "عدد المراجعات الداخلية والخارجية الناجحة",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "نسبة خطط التدقيق المنجزة",
+              "weight": "20%",
+              "unit": "%",
+              "frequency": "ربع سنوي / سنوي",
+              "page_source": 16
+            },
+            {
+              "department_kpi_name": "عدد التقارير المعتمدة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي / سنوي",
+              "page_source": 16
+            },
+            {
+              "department_kpi_name": "نسبة التوصيات المنفذة ضمن المدة المحددة",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 16
+            },
+            {
+              "department_kpi_name": "عدد اللوائح والإجراءات التي تم تحسينها / عدد توصيات التحسين او تجنب المخاطر",
+              "weight": "10%",
+              "unit": "يوم",
+              "frequency": "نصف سنوي / سنوي",
+              "page_source": 16
+            },
+            {
+              "department_kpi_name": "مؤشر الالتزام بمعايير الجودة المؤسسية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "نصف سنوي/سنوي",
+              "page_source": 7
+            },
+            {
+              "department_kpi_name": "نسبة عدم الالتزام بمعايير الجودة المؤسسية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "goal_id": 7,
+      "goal_title": "تعزيز الوعي بالعلامة التجارية",
+      "strategic_kpis": [
+        {
+          "id": "7.1",
+          "title": "مؤشر الوعي بالعلامة التجارية",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "نسبة الالتزام بخطط وجدول التواصل",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 20
+            },
+            {
+              "department_kpi_name": "مؤشر رضا المستفيدين عن وضوح التواصل",
+              "weight": "15%",
+              "unit": "%",
+              "frequency": "نصف سنوي / سنوي",
+              "page_source": 20
+            },
+            {
+              "department_kpi_name": "مؤشر رضا المستفيدين عن التواصل العام",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "نصف سنوي / سنوي",
+              "page_source": 20
+            },
+            {
+              "department_kpi_name": "نسبة تحقيق أهداف الحملات الاتصالية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 20
+            },
+            {
+              "department_kpi_name": "متوسط معدل التفاعل مع الحملات الإعلامية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "شهري / ربع سنوي",
+              "page_source": 20
+            },
+            {
+              "department_kpi_name": "المشاركات في الفعاليات والمؤتمرات",
+              "weight": "10%",
+              "unit": "عدد",
+              "frequency": "ربع سنوي",
+              "page_source": 20
+            }
+          ]
+        },
+        {
+          "id": "7.2",
+          "title": "عدد المشاركات في الفعاليات والمؤتمرات",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "نسبة تحقيق أهداف الحملات الاتصالية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 20
+            },
+            {
+              "department_kpi_name": "متوسط معدل التفاعل مع الحملات الإعلامية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "شهري / ربع سنوي",
+              "page_source": 20
+            },
+            {
+              "department_kpi_name": "المشاركات في الفعاليات والمؤتمرات",
+              "weight": "10%",
+              "unit": "عدد",
+              "frequency": "ربع سنوي",
+              "page_source": 20
+            }
+          ]
+        },
+        {
+          "id": "7.3",
+          "title": "معدل التفاعل الرقمي",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "متوسط زمن الاستجابة للرسائل والاستفسارات",
+              "weight": "10%",
+              "unit": "ساعة",
+              "frequency": "شهري",
+              "page_source": 20
+            },
+            {
+              "department_kpi_name": "نسبة الالتزام بخطط وجدول التواصل",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 20
+            },
+            {
+              "department_kpi_name": "مؤشر رضا المستفيدين عن وضوح التواصل",
+              "weight": "15%",
+              "unit": "%",
+              "frequency": "نصف سنوي / سنوي",
+              "page_source": 20
+            },
+            {
+              "department_kpi_name": "مؤشر رضا المستفيدين عن التواصل العام",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "نصف سنوي / سنوي",
+              "page_source": 20
+            },
+            {
+              "department_kpi_name": "نسبة تحقيق أهداف الحملات الاتصالية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 20
+            },
+            {
+              "department_kpi_name": "متوسط معدل التفاعل مع الحملات الإعلامية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "شهري / ربع سنوي",
+              "page_source": 20
+            }
+          ]
+        },
+        {
+          "id": "7.4",
+          "title": "عدد الحملات التسويقية المنفذة سنوياً",
+          "formula_avg_KPIs": [
+            {
+              "department_kpi_name": "نسبة تحقيق أهداف الحملات الاتصالية",
+              "weight": "10%",
+              "unit": "%",
+              "frequency": "ربع سنوي",
+              "page_source": 20
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,262 @@
+{
+  "page_info": {
+    "page_number": 4,
+    "title_ar": "الأهداف الاستراتيجية للمجموعة",
+    "title_en": "Group Strategic Goals",
+    "description": "Overview of strategic goals and their associated performance indicators."
+  },
+  "strategic_goals": [
+    {
+      "goal_id": "1",
+      "title_ar": "توسيع المحفظة الاستثمارية عبر الدخول في 5 قطاعات جديدة بنهاية عام 2028",
+      "title_en": "Expand the investment portfolio by entering 5 new sectors by the end of 2028",
+      "indicators": [
+        {
+          "code": "1.1",
+          "name_ar": "عدد القطاعات الجديدة",
+          "name_en": "Number of new sectors",
+          "formula": "(investment_dept_kpi_1 * 0.10) / 0.10",
+          "formula_description": "Weighted average of: Investment Dept - عدد القطاعات الجديدة (10%)"
+        },
+        {
+          "code": "1.2",
+          "name_ar": "نسبة مساهمة القطاعات الجديدة في إجمالي المحفظة",
+          "name_en": "Contribution percentage of new sectors to the total portfolio",
+          "formula": "(investment_dept_kpi_1 * 0.10 + investment_dept_kpi_5 * 0.10 + investment_dept_kpi_6 * 0.10 + investment_dept_kpi_8 * 0.10 + investment_dept_kpi_9 * 0.10) / 0.50",
+          "formula_description": "Weighted average of: Investment Dept - عدد القطاعات الجديدة (10%), نسبة تحقيق العائد الاستثماري المستهدف (10%), نسبة فجوة تحقيق العائد الاستثماري (10%), نسبة نجاح المشاريع الاستثمارية (10%), نسبة المشاريع غير الناجحة (10%)"
+        },
+        {
+          "code": "1.3",
+          "name_ar": "عدد الشراكات أو المشاريع الاستثمارية الجديدة",
+          "name_en": "Number of new partnerships or investment projects",
+          "formula": "(investment_dept_kpi_1 * 0.10 + investment_dept_kpi_8 * 0.10 + investment_dept_kpi_9 * 0.10) / 0.30",
+          "formula_description": "Weighted average of: Investment Dept - عدد القطاعات الجديدة (10%), نسبة نجاح المشاريع الاستثمارية (10%), نسبة المشاريع غير الناجحة (10%)"
+        },
+        {
+          "code": "1.4",
+          "name_ar": "العائد على الاستثمارات الجديدة (ROI)",
+          "name_en": "Return on Investment (ROI) for new investments",
+          "formula": "(investment_dept_kpi_1 * 0.10 + investment_dept_kpi_5 * 0.10 + investment_dept_kpi_6 * 0.10) / 0.30",
+          "formula_description": "Weighted average of: Investment Dept - عدد القطاعات الجديدة (10%), نسبة تحقيق العائد الاستثماري المستهدف (10%), نسبة فجوة تحقيق العائد الاستثماري (10%)"
+        }
+      ]
+    },
+    {
+      "goal_id": "2",
+      "title_ar": "تعزيز الريادة الاستثمارية عبر إدارة محفظة استثمارية تحقق عائداً استثمارياً بنسبة 20% بنهاية عام 2028",
+      "title_en": "Enhance investment leadership by managing an investment portfolio achieving a 20% ROI by the end of 2028",
+      "indicators": [
+        {
+          "code": "2.1",
+          "name_ar": "العائد على الاستثمار",
+          "name_en": "Return on Investment",
+          "formula": "(investment_dept_kpi_2 * 0.10 + investment_dept_kpi_3 * 0.10 + investment_dept_kpi_5 * 0.10 + investment_dept_kpi_6 * 0.10 + investment_dept_kpi_7 * 0.10 + finance_dept_kpi_7 * 0.10 + finance_dept_kpi_8 * 0.10) / 0.70",
+          "formula_description": "Weighted average of: Investment Dept - اجمالي الاستثمارات الجديدة (10%), نسبة الفرص الاستثمارية غير المستغلة (10%), نسبة تحقيق العائد الاستثماري المستهدف (10%), نسبة فجوة تحقيق العائد الاستثماري (10%), نسبة النمو في المحفظة الاستثمارية (10%); Finance Dept - العائد على الأصول (10%), نسبة نمو قيمة الأصول (10%)"
+        },
+        {
+          "code": "2.2",
+          "name_ar": "العائد المركب السنوي",
+          "name_en": "Annual Compound Return",
+          "formula": "(investment_dept_kpi_2 * 0.10 + investment_dept_kpi_3 * 0.10 + investment_dept_kpi_5 * 0.10 + investment_dept_kpi_6 * 0.10 + investment_dept_kpi_7 * 0.10 + finance_dept_kpi_7 * 0.10 + finance_dept_kpi_8 * 0.10) / 0.70",
+          "formula_description": "Weighted average of: Investment Dept - اجمالي الاستثمارات الجديدة (10%), نسبة الفرص الاستثمارية غير المستغلة (10%), نسبة تحقيق العائد الاستثماري المستهدف (10%), نسبة فجوة تحقيق العائد الاستثماري (10%), نسبة النمو في المحفظة الاستثمارية (10%); Finance Dept - العائد على الأصول (10%), نسبة نمو قيمة الأصول (10%)"
+        },
+        {
+          "code": "2.3",
+          "name_ar": "نسبة التنوع",
+          "name_en": "Diversification Ratio",
+          "formula": "(investment_dept_kpi_2 * 0.10 + investment_dept_kpi_3 * 0.10 + investment_dept_kpi_8 * 0.10 + investment_dept_kpi_9 * 0.10) / 0.40",
+          "formula_description": "Weighted average of: Investment Dept - اجمالي الاستثمارات الجديدة (10%), نسبة الفرص الاستثمارية غير المستغلة (10%), نسبة نجاح المشاريع الاستثمارية (10%), نسبة المشاريع غير الناجحة (10%)"
+        },
+        {
+          "code": "2.4",
+          "name_ar": "نسبة مساهمة الاستثمارات الجديدة",
+          "name_en": "Contribution percentage of new investments",
+          "formula": "(investment_dept_kpi_2 * 0.10 + investment_dept_kpi_3 * 0.10 + investment_dept_kpi_5 * 0.10 + investment_dept_kpi_6 * 0.10 + investment_dept_kpi_7 * 0.10 + investment_dept_kpi_8 * 0.10 + investment_dept_kpi_9 * 0.10) / 0.70",
+          "formula_description": "Weighted average of: Investment Dept - اجمالي الاستثمارات الجديدة (10%), نسبة الفرص الاستثمارية غير المستغلة (10%), نسبة تحقيق العائد الاستثماري المستهدف (10%), نسبة فجوة تحقيق العائد الاستثماري (10%), نسبة النمو في المحفظة الاستثمارية (10%), نسبة نجاح المشاريع الاستثمارية (10%), نسبة المشاريع غير الناجحة (10%)"
+        },
+        {
+          "code": "2.5",
+          "name_ar": "عدد الاستثمارات التي تحقق العائد",
+          "name_en": "Number of investments achieving the return",
+          "formula": "(investment_dept_kpi_2 * 0.10 + investment_dept_kpi_3 * 0.10 + investment_dept_kpi_5 * 0.10 + investment_dept_kpi_6 * 0.10 + investment_dept_kpi_7 * 0.10 + investment_dept_kpi_8 * 0.10 + investment_dept_kpi_9 * 0.10) / 0.70",
+          "formula_description": "Weighted average of: Investment Dept - اجمالي الاستثمارات الجديدة (10%), نسبة الفرص الاستثمارية غير المستغلة (10%), نسبة تحقيق العائد الاستثماري المستهدف (10%), نسبة فجوة تحقيق العائد الاستثماري (10%), نسبة النمو في المحفظة الاستثمارية (10%), نسبة نجاح المشاريع الاستثمارية (10%), نسبة المشاريع غير الناجحة (10%)"
+        }
+      ]
+    },
+    {
+      "goal_id": "3",
+      "title_ar": "رفع الإيرادات المستدامة للمجموعة لتصل إلى 200 مليون ريال بنهاية عام 2028",
+      "title_en": "Raise the group's sustainable revenues to reach 200 million SAR by the end of 2028",
+      "indicators": [
+        {
+          "code": "3.1",
+          "name_ar": "إجمالي الإيرادات السنوية",
+          "name_en": "Total Annual Revenues",
+          "formula": "(investment_dept_kpi_4 * 0.10) / 0.10",
+          "formula_description": "Weighted average of: Investment Dept - نمو الإيرادات المستدامة (10%)"
+        },
+        {
+          "code": "3.2",
+          "name_ar": "نسبة الإيرادات المستدامة",
+          "name_en": "Percentage of Sustainable Revenues",
+          "formula": "(investment_dept_kpi_4 * 0.10) / 0.10",
+          "formula_description": "Weighted average of: Investment Dept - نمو الإيرادات المستدامة (10%)"
+        },
+        {
+          "code": "3.3",
+          "name_ar": "نسبة الانحراف عن المستهدف",
+          "name_en": "Percentage deviation from target",
+          "formula": "(investment_dept_kpi_4 * 0.10) / 0.10",
+          "formula_description": "Weighted average of: Investment Dept - نمو الإيرادات المستدامة (10%)"
+        },
+        {
+          "code": "3.4",
+          "name_ar": "نسبة مساهمة القطاعات الجديدة في الإيرادات المستدامة",
+          "name_en": "Contribution percentage of new sectors to sustainable revenues",
+          "formula": "(investment_dept_kpi_4 * 0.10) / 0.10",
+          "formula_description": "Weighted average of: Investment Dept - نمو الإيرادات المستدامة (10%)"
+        }
+      ]
+    },
+    {
+      "goal_id": "4",
+      "title_ar": "تعزيز الانضباط المالي من خلال تعظيم كفاءة رأس المال وتطبيق نظام موحد لكفاءة الإنفاق",
+      "title_en": "Enhance financial discipline by maximizing capital efficiency and implementing a unified spending efficiency system",
+      "indicators": [
+        {
+          "code": "4.1",
+          "name_ar": "نسبة الالتزام بتطبيق النظام",
+          "name_en": "System application compliance rate",
+          "formula": "(finance_dept_kpi_1 * 0.10 + finance_dept_kpi_2 * 0.10 + finance_dept_kpi_3 * 0.10 + finance_dept_kpi_4 * 0.10 + finance_dept_kpi_5 * 0.20 + finance_dept_kpi_6 * 0.10) / 0.70",
+          "formula_description": "Weighted average of: Finance Dept - نسبة انحراف الميزانية (10%), نسبة الالتزام بالميزانية (10%), مؤشر Z للتنبؤ بالإفلاس (10%), نسبة السيولة الجارية (10%), عدد التوصيات لتحسين الكفاءة المالية (20%), عدد اللوائح والإجراءات التي تم تحسينها / عدد التوصيات (10%)"
+        },
+        {
+          "code": "4.2",
+          "name_ar": "نسبة الانحرافات المالية",
+          "name_en": "Financial deviations percentage",
+          "formula": "(finance_dept_kpi_1 * 0.10 + finance_dept_kpi_2 * 0.10 + finance_dept_kpi_3 * 0.10 + finance_dept_kpi_4 * 0.10 + finance_dept_kpi_5 * 0.20 + finance_dept_kpi_6 * 0.10) / 0.70",
+          "formula_description": "Weighted average of: Finance Dept - نسبة انحراف الميزانية (10%), نسبة الالتزام بالميزانية (10%), مؤشر Z للتنبؤ بالإفلاس (10%), نسبة السيولة الجارية (10%), عدد التوصيات لتحسين الكفاءة المالية (20%), عدد اللوائح والإجراءات التي تم تحسينها / عدد التوصيات (10%)"
+        },
+        {
+          "code": "4.3",
+          "name_ar": "معدل خفض الانحرافات المالية",
+          "name_en": "Rate of reduction in financial deviations",
+          "formula": "(finance_dept_kpi_1 * 0.10 + finance_dept_kpi_2 * 0.10 + finance_dept_kpi_3 * 0.10 + finance_dept_kpi_4 * 0.10 + finance_dept_kpi_5 * 0.20 + finance_dept_kpi_6 * 0.10) / 0.70",
+          "formula_description": "Weighted average of: Finance Dept - نسبة انحراف الميزانية (10%), نسبة الالتزام بالميزانية (10%), مؤشر Z للتنبؤ بالإفلاس (10%), نسبة السيولة الجارية (10%), عدد التوصيات لتحسين الكفاءة المالية (20%), عدد اللوائح والإجراءات التي تم تحسينها / عدد التوصيات (10%)"
+        },
+        {
+          "code": "4.4",
+          "name_ar": "معدل الانخفاض في المصروفات غير المبررة",
+          "name_en": "Rate of decrease in unjustified expenses",
+          "formula": "(finance_dept_kpi_1 * 0.10 + finance_dept_kpi_2 * 0.10 + finance_dept_kpi_3 * 0.10 + finance_dept_kpi_4 * 0.10 + finance_dept_kpi_5 * 0.20 + finance_dept_kpi_6 * 0.10) / 0.70",
+          "formula_description": "Weighted average of: Finance Dept - نسبة انحراف الميزانية (10%), نسبة الالتزام بالميزانية (10%), مؤشر Z للتنبؤ بالإفلاس (10%), نسبة السيولة الجارية (10%), عدد التوصيات لتحسين الكفاءة المالية (20%), عدد اللوائح والإجراءات التي تم تحسينها / عدد التوصيات (10%)"
+        },
+        {
+          "code": "4.5",
+          "name_ar": "عدد التقارير المالية الموحدة",
+          "name_en": "Number of unified financial reports",
+          "formula": "(finance_dept_kpi_1 * 0.10 + finance_dept_kpi_2 * 0.10 + finance_dept_kpi_3 * 0.10 + finance_dept_kpi_4 * 0.10 + finance_dept_kpi_5 * 0.20 + finance_dept_kpi_6 * 0.10) / 0.70",
+          "formula_description": "Weighted average of: Finance Dept - نسبة انحراف الميزانية (10%), نسبة الالتزام بالميزانية (10%), مؤشر Z للتنبؤ بالإفلاس (10%), نسبة السيولة الجارية (10%), عدد التوصيات لتحسين الكفاءة المالية (20%), عدد اللوائح والإجراءات التي تم تحسينها / عدد التوصيات (10%)"
+        }
+      ]
+    },
+    {
+      "goal_id": "5",
+      "title_ar": "رفع الجاهزية للإدراج من خلال رفع مستوى الحوكمة وتفعيل النموذج التشغيلي بحلول 2027",
+      "title_en": "Raise readiness for listing by raising the governance level and activating the operational model by 2027",
+      "indicators": [
+        {
+          "code": "5.1",
+          "name_ar": "نسبة الامتثال لمتطلبات الجاهزية للإدراج",
+          "name_en": "Compliance rate with listing readiness requirements",
+          "formula": "(governance_dept_kpi_1 * 0.20 + governance_dept_kpi_3 * 0.15 + governance_dept_kpi_7 * 0.05 + support_services_dept_kpi_4 * 0.15 + support_services_dept_kpi_6 * 0.10 + support_services_dept_kpi_8 * 0.10 + strategy_dept_kpi_3 * 0.10 + strategy_dept_kpi_4 * 0.10) / 0.95",
+          "formula_description": "Weighted average of: Governance Dept - عدد السياسات الداخلية المعتمدة (20%), نسبة الامتثال الداخلي للسياسات (15%), نسبة التقارير التي أعدتها الإدارة وتمت الموافقة عليها/اجمالي التقارير (5%); Support Services - نسبة السياسات والإجراءات المعتمدة (15%), توافر واستمرارية الأنظمة التقنية (10%), نسبة المبادرات التحسينية أو التحسينات المنفذة في الخدمات المساندة (10%); Strategy Dept - مؤشر الالتزام بمعايير الجودة المؤسسية (10%), نسبة عدم الالتزام بمعايير الجودة المؤسسية (10%)"
+        },
+        {
+          "code": "5.2",
+          "name_ar": "نسبة تفعيل النموذج التشغيلي",
+          "name_en": "Operating model activation percentage",
+          "formula": "(governance_dept_kpi_3 * 0.15 + support_services_dept_kpi_4 * 0.15 + support_services_dept_kpi_6 * 0.10 + support_services_dept_kpi_8 * 0.10 + strategy_dept_kpi_3 * 0.10 + strategy_dept_kpi_4 * 0.10) / 0.70",
+          "formula_description": "Weighted average of: Governance Dept - نسبة الامتثال الداخلي للسياسات (15%); Support Services - نسبة السياسات والإجراءات المعتمدة (15%), توافر واستمرارية الأنظمة التقنية (10%), نسبة المبادرات التحسينية أو التحسينات المنفذة في الخدمات المساندة (10%); Strategy Dept - مؤشر الالتزام بمعايير الجودة المؤسسية (10%), نسبة عدم الالتزام بمعايير الجودة المؤسسية (10%)"
+        },
+        {
+          "code": "5.3",
+          "name_ar": "عدد المراجعات الداخلية والخارجية الناجحة",
+          "name_en": "Number of successful internal and external reviews",
+          "formula": "(internal_audit_dept_kpi_1 * 0.20 + internal_audit_dept_kpi_4 * 0.10 + internal_audit_dept_kpi_6 * 0.10 + internal_audit_dept_kpi_7 * 0.10 + strategy_dept_kpi_3 * 0.10 + strategy_dept_kpi_4 * 0.10) / 0.70",
+          "formula_description": "Weighted average of: Internal Audit Dept - نسبة خطط التدقيق المنجزة (20%), عدد التقارير المعتمدة (10%), نسبة التوصيات المنفذة ضمن المدة المحددة (10%), عدد اللوائح والإجراءات التي تم تحسينها / عدد توصيات التحسين او تجنب المخاطر (10%); Strategy Dept - مؤشر الالتزام بمعايير الجودة المؤسسية (10%), نسبة عدم الالتزام بمعايير الجودة المؤسسية (10%)"
+        }
+      ]
+    },
+    {
+      "goal_id": "6",
+      "title_ar": "رفع مستوى الإنتاجية للموظفين بنسبة 85% بنهاية 2028",
+      "title_en": "Raise employee productivity level by 85% by the end of 2028",
+      "indicators": [
+        {
+          "code": "6.1",
+          "name_ar": "معدل المشاركة في الدورات التدريبية",
+          "name_en": "Participation rate in training courses",
+          "formula": "No department KPIs mapped to this indicator",
+          "formula_description": "No department KPIs found with link to indicator 6.1"
+        },
+        {
+          "code": "6.2",
+          "name_ar": "نسبة التحسن في إنتاجية الموظفين بعد التدريب",
+          "name_en": "Improvement rate in employee productivity after training",
+          "formula": "No department KPIs mapped to this indicator",
+          "formula_description": "No department KPIs found with link to indicator 6.2"
+        },
+        {
+          "code": "6.3",
+          "name_ar": "نسبة الالتزام بالمدة الزمنية لتنفيذ المهام",
+          "name_en": "Commitment rate to the timeline for task execution",
+          "formula": "No department KPIs mapped to this indicator",
+          "formula_description": "No department KPIs found with link to indicator 6.3"
+        },
+        {
+          "code": "6.4",
+          "name_ar": "مؤشر الثقافة التنظيمية",
+          "name_en": "Organizational Culture Index",
+          "formula": "No department KPIs mapped to this indicator",
+          "formula_description": "No department KPIs found with link to indicator 6.4"
+        }
+      ]
+    },
+    {
+      "goal_id": "7",
+      "title_ar": "تعزيز الوعي بالعلامة التجارية",
+      "title_en": "Enhance Brand Awareness",
+      "indicators": [
+        {
+          "code": "7.1",
+          "name_ar": "مؤشر الوعي بالعلامة التجارية",
+          "name_en": "Brand Awareness Index",
+          "formula": "(communication_dept_kpi_3 * 0.10 + communication_dept_kpi_4 * 0.15 + communication_dept_kpi_6 * 0.10 + communication_dept_kpi_7 * 0.10 + communication_dept_kpi_8 * 0.10 + communication_dept_kpi_9 * 0.10) / 0.65",
+          "formula_description": "Weighted average of: Communication Dept - نسبة الالتزام بخطط وجدول التواصل (10%), مؤشر رضا المستفيدين عن وضوح التواصل (15%), مؤشر رضا المستفيدين عن التواصل العام (10%), نسبة تحقيق أهداف الحملات الاتصالية (10%), متوسط معدل التفاعل مع الحملات الإعلامية (10%), المشاركات في الفعاليات والمؤتمرات (10%)"
+        },
+        {
+          "code": "7.2",
+          "name_ar": "عدد المشاركات في الفعاليات والمؤتمرات",
+          "name_en": "Number of participations in events and conferences",
+          "formula": "(communication_dept_kpi_7 * 0.10 + communication_dept_kpi_8 * 0.10 + communication_dept_kpi_9 * 0.10) / 0.30",
+          "formula_description": "Weighted average of: Communication Dept - نسبة تحقيق أهداف الحملات الاتصالية (10%), متوسط معدل التفاعل مع الحملات الإعلامية (10%), المشاركات في الفعاليات والمؤتمرات (10%)"
+        },
+        {
+          "code": "7.3",
+          "name_ar": "معدل التفاعل الرقمي",
+          "name_en": "Digital Interaction Rate",
+          "formula": "(communication_dept_kpi_2 * 0.10 + communication_dept_kpi_3 * 0.10 + communication_dept_kpi_4 * 0.15 + communication_dept_kpi_6 * 0.10 + communication_dept_kpi_7 * 0.10 + communication_dept_kpi_8 * 0.10) / 0.65",
+          "formula_description": "Weighted average of: Communication Dept - متوسط زمن الاستجابة للرسائل والاستفسارات (10%), نسبة الالتزام بخطط وجدول التواصل (10%), مؤشر رضا المستفيدين عن وضوح التواصل (15%), مؤشر رضا المستفيدين عن التواصل العام (10%), نسبة تحقيق أهداف الحملات الاتصالية (10%), متوسط معدل التفاعل مع الحملات الإعلامية (10%)"
+        },
+        {
+          "code": "7.4",
+          "name_ar": "عدد الحملات التسويقية المنفذة سنوياً",
+          "name_en": "Number of marketing campaigns executed annually",
+          "formula": "(communication_dept_kpi_7 * 0.10) / 0.10",
+          "formula_description": "Weighted average of: Communication Dept - نسبة تحقيق أهداف الحملات الاتصالية (10%)"
+        }
+      ]
+    }
+  ]
+}

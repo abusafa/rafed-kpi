@@ -1,0 +1,99 @@
+{
+  "sector_info": {
+    "name_ar": "قطاع الاستراتيجية",
+    "name_en": "Strategy Sector",
+    "source_pages": [7]
+  },
+  "indicators": [
+    {
+      "page": 7,
+      "scope_ar": "مواءمة الأهداف الاستراتيجية مع الخطة التشغيلية",
+      "scope_en": "Alignment of strategic goals with the operational plan",
+      "weight": "30%",
+      "measurement_indicator": "نسبة انجاز الأهداف الاستراتيجية",
+      "measurement_indicator_en": "Percentage of strategic goals achievement",
+      "classification": "استراتيجي",
+      "classification_en": "Strategic",
+      "link_to_strategic_goals": "جميع الأهداف",
+      "link_to_performance_indicators": "مؤشر شمولي يقيس تحقق الأهداف السبعة مباشرة",
+      "frequency": "ربع سنوي/سنوي",
+      "unit": "%",
+      "unit_en": "%"
+    },
+    {
+      "page": 7,
+      "scope_ar": "مواءمة الأهداف الاستراتيجية مع الخطة التشغيلية",
+      "scope_en": "Alignment of strategic goals with the operational plan",
+      "weight": "25%",
+      "measurement_indicator": "نسبة المبادرات/المشاريع الاستراتيجية المنجزة ضمن الاطار الزمني",
+      "measurement_indicator_en": "Percentage of strategic initiatives/projects completed within the timeframe",
+      "classification": "استراتيجي",
+      "classification_en": "Strategic",
+      "link_to_strategic_goals": "جميع الأهداف",
+      "link_to_performance_indicators": "مؤشر شمولي يقيس تحقق الأهداف السبعة مباشرة",
+      "frequency": "شهري/ربع سنوي",
+      "unit": "%",
+      "unit_en": "%"
+    },
+    {
+      "page": 7,
+      "scope_ar": "إدارة الأداء المؤسسي بكفاءة",
+      "scope_en": "Efficient Institutional Performance Management",
+      "weight": "10%",
+      "measurement_indicator": "مؤشر الالتزام بمعايير الجودة المؤسسية",
+      "measurement_indicator_en": "Institutional quality standards compliance index",
+      "classification": "استراتيجي",
+      "classification_en": "Strategic",
+      "link_to_strategic_goals": "رفع الجاهزية للإدراج",
+      "link_to_performance_indicators": "5.1 – 5.2 – 5.3",
+      "frequency": "نصف سنوي/سنوي",
+      "unit": "%",
+      "unit_en": "%"
+    },
+    {
+      "page": 7,
+      "scope_ar": "إدارة الأداء المؤسسي بكفاءة",
+      "scope_en": "Efficient Institutional Performance Management",
+      "weight": "10%",
+      "measurement_indicator": "نسبة عدم الالتزام بمعايير الجودة المؤسسية",
+      "measurement_indicator_en": "Non-compliance rate with institutional quality standards",
+      "classification": "استراتيجي",
+      "classification_en": "Strategic",
+      "link_to_strategic_goals": "رفع الجاهزية للإدراج",
+      "link_to_performance_indicators": "5.1 – 5.2 – 5.3",
+      "frequency": "ربع سنوي",
+      "unit": "%",
+      "unit_en": "%"
+    },
+    {
+      "page": 7,
+      "scope_ar": "التميز المؤسسي",
+      "scope_en": "Institutional Excellence",
+      "weight": "15%",
+      "measurement_indicator": "نسبة التحسينات او مبادرات التميز المؤسسي المكتملة",
+      "measurement_indicator_en": "Percentage of completed improvements or institutional excellence initiatives",
+      "classification": "تشغيلي",
+      "classification_en": "Operational",
+      "link_to_strategic_goals": null,
+      "link_to_performance_indicators": null,
+      "frequency": "سنوي",
+      "unit": "%",
+      "unit_en": "%"
+    },
+    {
+      "page": 7,
+      "scope_ar": "التميز المؤسسي",
+      "scope_en": "Institutional Excellence",
+      "weight": "10%",
+      "measurement_indicator": "عدد المبادرات غير المنفذة او الفائتة من الخطة",
+      "measurement_indicator_en": "Number of unimplemented or missed initiatives from the plan",
+      "classification": "تشغيلي",
+      "classification_en": "Operational",
+      "link_to_strategic_goals": null,
+      "link_to_performance_indicators": null,
+      "frequency": "شهري",
+      "unit": "عدد المبادرات",
+      "unit_en": "Number of initiatives"
+    }
+  ]
+}
