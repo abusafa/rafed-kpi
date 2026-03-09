@@ -1,18 +1,29 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { Icon } from "@/components/icon";
 import { PageHeader } from "@/components/page-header";
-import { RagBadge, StatusBadge } from "@/components/rag-badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { pillars } from "@/lib/mock-data";
 import { useLocale } from "@/providers/locale-provider";
+import { getOrgEntitiesByTypeCode } from "@/actions/entities";
+
+type ProjectRow = Awaited<ReturnType<typeof getOrgEntitiesByTypeCode>>["items"][number];
 
 export default function ProjectsPage() {
   const { locale, t, isArabic } = useLocale();
-  const projects = pillars.flatMap((pillar) => pillar.initiatives.flatMap((initiative) => initiative.projects));
+  const [projects, setProjects] = useState<ProjectRow[]>([]);
+  const [q, setQ] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    getOrgEntitiesByTypeCode({ entityTypeCode: "project", q: q || undefined, pageSize: 200 })
+      .then((res) => setProjects(res.items))
+      .finally(() => setLoading(false));
+  }, [q]);
 
   return (
     <div className="space-y-8">
@@ -33,7 +44,12 @@ export default function ProjectsPage() {
               <CardDescription className="text-muted-foreground">{t("projectPortfolioDesc")}</CardDescription>
             </div>
             <div className="w-full max-w-xs">
-              <Input placeholder={t("searchDemoPlaceholder")} className="border-border bg-muted/30 text-foreground placeholder:text-muted-foreground" />
+              <Input
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+                placeholder={t("searchDemoPlaceholder")}
+                className="border-border bg-muted/30 text-foreground placeholder:text-muted-foreground"
+              />
             </div>
           </div>
         </CardHeader>
@@ -41,35 +57,42 @@ export default function ProjectsPage() {
           <div className="overflow-hidden rounded-xl border border-border">
             <Table>
               <TableHeader>
-                <TableRow className="border-border hover:bg-white/0">
+                <TableRow className="border-border hover:bg-transparent">
                   <TableHead className="text-muted-foreground">{t("project")}</TableHead>
-                  <TableHead className="text-muted-foreground">{t("owner")}</TableHead>
                   <TableHead className="text-muted-foreground">{t("status")}</TableHead>
-                  <TableHead className="text-muted-foreground">{t("health")}</TableHead>
-                  <TableHead className="text-right text-muted-foreground">{t("milestones")}</TableHead>
+                  <TableHead className="text-muted-foreground">{t("code")}</TableHead>
+                  <TableHead className="text-muted-foreground">{t("description")}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {projects.map((project) => (
-                  <TableRow key={project.id} className="border-border hover:bg-card/50">
-                    <TableCell className="font-medium text-foreground">
-                      <Link href={`/${locale}/projects/${project.id}`} className="hover:underline">
-                        {isArabic ? project.titleAr ?? project.title : project.title}
-                      </Link>
-                      <p className="mt-1 text-xs text-muted-foreground">{project.tags?.join(" • ")}</p>
-                    </TableCell>
-                    <TableCell className="text-muted-foreground">{project.owner}</TableCell>
-                    <TableCell>
-                      <StatusBadge status={project.status} />
-                    </TableCell>
-                    <TableCell>
-                      <RagBadge health={project.health} />
-                    </TableCell>
-                    <TableCell className="text-right text-muted-foreground">
-                      {project.milestonesComplete}/{project.milestonesTotal}
+                {loading ? (
+                  <TableRow>
+                    <TableCell colSpan={4} className="text-center text-sm text-muted-foreground py-8">
+                      {t("loading")}
                     </TableCell>
                   </TableRow>
-                ))}
+                ) : projects.length === 0 ? (
+                  <TableRow>
+                    <TableCell colSpan={4} className="text-center text-sm text-muted-foreground py-8">
+                      {t("noItemsYet")}
+                    </TableCell>
+                  </TableRow>
+                ) : (
+                  projects.map((project) => (
+                    <TableRow key={project.id} className="border-border hover:bg-card/50">
+                      <TableCell className="font-medium text-foreground">
+                        <Link href={`/${locale}/entities/project/${project.id}`} className="hover:underline">
+                          {isArabic ? project.titleAr ?? project.title : project.title}
+                        </Link>
+                      </TableCell>
+                      <TableCell className="text-foreground">{project.status}</TableCell>
+                      <TableCell className="text-muted-foreground">{project.key ?? "—"}</TableCell>
+                      <TableCell className="text-muted-foreground">
+                        {(isArabic ? project.descriptionAr ?? project.description : project.description) ?? "—"}
+                      </TableCell>
+                    </TableRow>
+                  ))
+                )}
               </TableBody>
             </Table>
           </div>

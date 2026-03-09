@@ -107,6 +107,7 @@ export default function EditEntityPage() {
   const [maxValue, setMaxValue] = useState("");
   const [weight, setWeight] = useState("");
   const [formula, setFormula] = useState("");
+  const [showMeasurement, setShowMeasurement] = useState(isKpiType);
 
   const [variables, setVariables] = useState<VariableDraft[]>([]);
 
@@ -153,6 +154,19 @@ export default function EditEntityPage() {
           setMaxValue(typeof e.maxValue === "number" ? String(e.maxValue) : "");
           setWeight(typeof e.weight === "number" ? String(e.weight) : "");
           setFormula(e.formula ? String(e.formula) : "");
+
+          // Show measurement section if entity has formula, variables, or numeric fields
+          if (!isKpiType) {
+            const hasFormula = !!e.formula;
+            const hasVariables = !!(e.variables && e.variables.length > 0);
+            const hasNumericFields =
+              typeof e.targetValue === "number" ||
+              typeof e.baselineValue === "number" ||
+              typeof e.weight === "number";
+            if (hasFormula || hasVariables || hasNumericFields) {
+              setShowMeasurement(true);
+            }
+          }
 
           // Load variables
           if (e.variables && e.variables.length > 0) {
@@ -422,7 +436,7 @@ export default function EditEntityPage() {
               </div>
             </div>
 
-            {isKpiType && (
+            {showMeasurement && (
             <div className="rounded-2xl border border-border bg-muted/20 p-4 space-y-4">
               <div className="space-y-1">
                 <p className="text-sm font-semibold">{tr("Measurement", "القياس")}</p>

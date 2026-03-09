@@ -1,20 +1,29 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { Icon } from "@/components/icon";
 import { PageHeader } from "@/components/page-header";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { pillars } from "@/lib/mock-data";
 import { useLocale } from "@/providers/locale-provider";
-import { getEffectiveRisk } from "@/lib/prototype-store";
+import { getOrgEntitiesByTypeCode } from "@/actions/entities";
+
+type RiskRow = Awaited<ReturnType<typeof getOrgEntitiesByTypeCode>>["items"][number];
 
 export default function RisksPage() {
   const { locale, t, isArabic } = useLocale();
-  const risks = pillars
-    .flatMap((pillar) => pillar.initiatives.flatMap((initiative) => initiative.risks))
-    .map((risk) => getEffectiveRisk(risk.id) ?? risk);
+  const [risks, setRisks] = useState<RiskRow[]>([]);
+  const [q, setQ] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    getOrgEntitiesByTypeCode({ entityTypeCode: "risk", q: q || undefined, pageSize: 200 })
+      .then((res) => setRisks(res.items))
+      .finally(() => setLoading(false));
+  }, [q]);
 
   return (
     <div className="space-y-8">
@@ -35,7 +44,12 @@ export default function RisksPage() {
               <CardDescription className="text-muted-foreground">{t("riskRegisterDesc")}</CardDescription>
             </div>
             <div className="w-full max-w-xs">
-              <Input placeholder={t("searchDemoPlaceholder")} className="border-border bg-muted/30 text-foreground placeholder:text-muted-foreground" />
+              <Input
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+                placeholder={t("searchDemoPlaceholder")}
+                className="border-border bg-muted/30 text-foreground placeholder:text-muted-foreground"
+              />
             </div>
           </div>
         </CardHeader>
@@ -43,33 +57,42 @@ export default function RisksPage() {
           <div className="overflow-hidden rounded-xl border border-border">
             <Table>
               <TableHeader>
-                <TableRow className="border-border hover:bg-white/0">
+                <TableRow className="border-border hover:bg-transparent">
                   <TableHead className="text-muted-foreground">{t("risk")}</TableHead>
-                  <TableHead className="text-muted-foreground">{t("severity")}</TableHead>
-                  <TableHead className="text-muted-foreground">{t("owner")}</TableHead>
-                  <TableHead className="text-muted-foreground">{t("context")}</TableHead>
-                  <TableHead className="text-right text-muted-foreground">{t("escalated")}</TableHead>
+                  <TableHead className="text-muted-foreground">{t("status")}</TableHead>
+                  <TableHead className="text-muted-foreground">{t("code")}</TableHead>
+                  <TableHead className="text-muted-foreground">{t("description")}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {risks.map((risk) => (
-                  <TableRow key={risk.id} className="border-border hover:bg-card/50">
-                    <TableCell className="font-medium text-foreground">
-                      <Link href={`/${locale}/risks/${risk.id}`} className="hover:underline">
-                        {isArabic ? risk.titleAr ?? risk.title : risk.title}
-                      </Link>
+                {loading ? (
+                  <TableRow>
+                    <TableCell colSpan={4} className="text-center text-sm text-muted-foreground py-8">
+                      {t("loading")}
                     </TableCell>
-                    <TableCell className="text-foreground">{risk.severity}</TableCell>
-                    <TableCell className="text-muted-foreground">{risk.owner}</TableCell>
-                    <TableCell className="text-muted-foreground">
-                      {(isArabic ? risk.context.projectAr : risk.context.project) ??
-                        (isArabic ? risk.context.initiativeAr : risk.context.initiative) ??
-                        (isArabic ? risk.context.pillarAr : risk.context.pillar) ??
-                        "—"}
-                    </TableCell>
-                    <TableCell className="text-right text-muted-foreground">{risk.escalated ? t("yes") : t("no")}</TableCell>
                   </TableRow>
-                ))}
+                ) : risks.length === 0 ? (
+                  <TableRow>
+                    <TableCell colSpan={4} className="text-center text-sm text-muted-foreground py-8">
+                      {t("noItemsYet")}
+                    </TableCell>
+                  </TableRow>
+                ) : (
+                  risks.map((risk) => (
+                    <TableRow key={risk.id} className="border-border hover:bg-card/50">
+                      <TableCell className="font-medium text-foreground">
+                        <Link href={`/${locale}/entities/risk/${risk.id}`} className="hover:underline">
+                          {isArabic ? risk.titleAr ?? risk.title : risk.title}
+                        </Link>
+                      </TableCell>
+                      <TableCell className="text-foreground">{risk.status}</TableCell>
+                      <TableCell className="text-muted-foreground">{risk.key ?? "—"}</TableCell>
+                      <TableCell className="text-muted-foreground">
+                        {(isArabic ? risk.descriptionAr ?? risk.description : risk.description) ?? "—"}
+                      </TableCell>
+                    </TableRow>
+                  ))
+                )}
               </TableBody>
             </Table>
           </div>

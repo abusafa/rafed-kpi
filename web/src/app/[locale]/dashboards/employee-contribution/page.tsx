@@ -1,18 +1,25 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { PageHeader } from "@/components/page-header";
 import { Icon } from "@/components/icon";
 import { SparkLine } from "@/components/charts/dashboard-charts";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { contributionTrend } from "@/lib/dashboard-metrics";
-import { pillars } from "@/lib/mock-data";
 import { useLocale } from "@/providers/locale-provider";
+import { getOrgEntitiesByTypeCode } from "@/actions/entities";
+
+type EntityRow = Awaited<ReturnType<typeof getOrgEntitiesByTypeCode>>["items"][number];
 
 export default function EmployeeContributionDashboardPage() {
   const { locale, t, isArabic } = useLocale();
-  const initiatives = pillars.flatMap((pillar) => pillar.initiatives);
-  const projects = initiatives.flatMap((initiative) => initiative.projects);
+  const [projects, setProjects] = useState<EntityRow[]>([]);
+
+  useEffect(() => {
+    getOrgEntitiesByTypeCode({ entityTypeCode: "project", pageSize: 200 })
+      .then((res) => setProjects(res.items));
+  }, []);
 
   return (
     <div className="space-y-8">
@@ -53,7 +60,7 @@ export default function EmployeeContributionDashboardPage() {
                 className="block rounded-xl border border-border bg-muted/30 px-4 py-3 transition hover:bg-card/50"
               >
                 <p className="text-sm font-semibold text-foreground">{isArabic ? project.titleAr ?? project.title : project.title}</p>
-                <p className="mt-1 text-xs text-muted-foreground">{project.owner}</p>
+                <p className="mt-1 text-xs text-muted-foreground">{project.key ?? project.status}</p>
               </Link>
             ))}
           </CardContent>

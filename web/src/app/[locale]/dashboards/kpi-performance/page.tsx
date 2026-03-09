@@ -106,7 +106,7 @@ export default function KPIPerformanceDashboardPage() {
               <div className="overflow-hidden rounded-xl border border-border">
                 <Table>
                   <TableHeader>
-                    <TableRow className="border-border hover:bg-white/0">
+                    <TableRow className="border-border hover:bg-transparent">
                       <TableHead className="text-muted-foreground">{t("kpi")}</TableHead>
                       <TableHead className="text-muted-foreground">{t("owner")}</TableHead>
                       <TableHead className="text-muted-foreground">{t("current")}</TableHead>

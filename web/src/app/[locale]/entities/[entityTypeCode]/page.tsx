@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Activity, AlignJustify, ArrowDownAZ, ArrowUpAZ, ChevronDown, Filter, Gauge, Pencil, Plus, Trash2, X } from "lucide-react";
+import { Activity, AlignJustify, ArrowDownAZ, ArrowUpAZ, ChevronDown, Filter, Gauge, Pencil, Plus, Table2, Trash2, X } from "lucide-react";
 import { PageHeader } from "@/components/page-header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
@@ -54,7 +55,7 @@ export default function EntitiesByTypePage() {
   const [deleteError, setDeleteError] = useState<string | null>(null);
 
   const [selected, setSelected] = useState<EntityRow | null>(null);
-  const [viewMode, setViewMode] = useState<"gauge" | "ring" | "line">("ring");
+  const [viewMode, setViewMode] = useState<"gauge" | "ring" | "line" | "table">("ring");
 
   // Filter / sort / group state
   const [filterStatus, setFilterStatus] = useState<string>("ALL");
@@ -373,6 +374,17 @@ export default function EntitiesByTypePage() {
                 <AlignJustify className="h-3.5 w-3.5" />
                 <span className="hidden sm:inline">{tr("Line", "شريط")}</span>
               </button>
+              <button
+                type="button"
+                onClick={() => setViewMode("table")}
+                className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors ${
+                  viewMode === "table" ? "bg-card shadow-sm text-foreground" : "text-muted-foreground hover:text-foreground"
+                }`}
+                aria-label="Table view"
+              >
+                <Table2 className="h-3.5 w-3.5" />
+                <span className="hidden sm:inline">{tr("Table", "جدول")}</span>
+              </button>
             </div>
           </div>
 
@@ -593,7 +605,100 @@ export default function EntitiesByTypePage() {
             </div>
           ) : (
             <div className="space-y-6">
-              {groupedRows.map((group) => (
+              {viewMode === "table" ? (
+                <div className="overflow-hidden rounded-xl border border-border">
+                  <Table>
+                    <TableHeader>
+                      <TableRow className="border-border hover:bg-transparent">
+                        <TableHead className="text-muted-foreground">{t("entity")}</TableHead>
+                        <TableHead className="text-muted-foreground">{t("status")}</TableHead>
+                        <TableHead className="text-muted-foreground">{t("periodFilter")}</TableHead>
+                        <TableHead className="text-muted-foreground">{t("value")}</TableHead>
+                        <TableHead className="text-muted-foreground">{t("target")}</TableHead>
+                        <TableHead className="text-muted-foreground">{tr("Achievement", "الإنجاز")}</TableHead>
+                        <TableHead className="text-muted-foreground">{t("valueStatusAll")}</TableHead>
+                        {canAdmin ? <TableHead className="text-right text-muted-foreground">{t("actions")}</TableHead> : null}
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {processedRows.map((e) => {
+                        const latest = latestEntityValue(e);
+                        const unit = df(e.unit, e.unitAr) || undefined;
+                        const gaugeTarget = typeof e.targetValue === "number" ? e.targetValue : null;
+                        const valStatus = String(e.values?.[0]?.status ?? "");
+                        const entStatus = String(e.status ?? "");
+                        const period = String(e.periodType ?? "");
+                        const achievement = latest !== null && gaugeTarget !== null && gaugeTarget !== 0
+                          ? Math.round((latest / gaugeTarget) * 1000) / 10
+                          : null;
+                        return (
+                          <TableRow key={e.id} className="border-border hover:bg-card/50">
+                            <TableCell className="font-medium text-foreground">
+                              <Link href={`/${locale}/entities/${entityTypeCode}/${e.id}`} className="hover:underline">
+                                {df(e.title, e.titleAr)}
+                              </Link>
+                              {e.key ? <p className="mt-0.5 text-xs text-muted-foreground">{e.key}</p> : null}
+                            </TableCell>
+                            <TableCell>
+                              {entStatus ? (
+                                <span className={`inline-flex items-center rounded-md border px-1.5 py-0.5 text-[10px] font-medium ${entityStatusColor(entStatus)}`}>
+                                  {entityStatusLabel(entStatus)}
+                                </span>
+                              ) : "—"}
+                            </TableCell>
+                            <TableCell className="text-muted-foreground">
+                              {period ? periodLabel(period) : "—"}
+                            </TableCell>
+                            <TableCell className="text-foreground tabular-nums" dir="ltr">
+                              {latest !== null ? `${formatNumber(Math.round(latest * 10) / 10)}${unit ? ` ${unit}` : ""}` : "—"}
+                            </TableCell>
+                            <TableCell className="text-muted-foreground tabular-nums" dir="ltr">
+                              {gaugeTarget !== null ? `${formatNumber(gaugeTarget)}${unit ? ` ${unit}` : ""}` : "—"}
+                            </TableCell>
+                            <TableCell className="tabular-nums" dir="ltr">
+                              {achievement !== null ? (
+                                <span className={`font-medium ${
+                                  achievement >= 100 ? "text-emerald-600 dark:text-emerald-400" :
+                                  achievement >= 75 ? "text-amber-600 dark:text-amber-400" :
+                                  "text-rose-600 dark:text-rose-400"
+                                }`}>
+                                  {achievement}%
+                                </span>
+                              ) : "—"}
+                            </TableCell>
+                            <TableCell>
+                              {valStatus ? (
+                                <span className={`inline-flex items-center rounded-md border px-1.5 py-0.5 text-[10px] font-medium ${valueStatusColor(valStatus)}`}>
+                                  {kpiValueStatusLabel(valStatus)}
+                                </span>
+                              ) : (
+                                <span className="text-xs text-muted-foreground/60">{t("noData")}</span>
+                              )}
+                            </TableCell>
+                            {canAdmin ? (
+                              <TableCell className="text-right">
+                                <div className="flex items-center justify-end gap-1">
+                                  <Button size="icon" variant="ghost" className="h-7 w-7"
+                                    onClick={() => router.push(`/${locale}/entities/${entityTypeCode}/${e.id}/edit`)}
+                                    aria-label={t("edit")}>
+                                    <Pencil className="h-3.5 w-3.5" />
+                                  </Button>
+                                  <Button size="icon" variant="ghost" className="h-7 w-7 text-destructive hover:text-destructive"
+                                    onClick={() => { setSelected(e); setDeleteError(null); setDeleteOpen(true); }}
+                                    aria-label={t("delete")}>
+                                    <Trash2 className="h-3.5 w-3.5" />
+                                  </Button>
+                                </div>
+                              </TableCell>
+                            ) : null}
+                          </TableRow>
+                        );
+                      })}
+                    </TableBody>
+                  </Table>
+                </div>
+              ) : (
+              <>{groupedRows.map((group) => (
                 <div key={group.key}>
                   {/* Group header */}
                   {groupBy !== "none" && (
@@ -719,7 +824,8 @@ export default function EntitiesByTypePage() {
                   </div>
                   )}
                 </div>
-              ))}
+              ))}</>
+              )}
             </div>
           )}
         </CardContent>

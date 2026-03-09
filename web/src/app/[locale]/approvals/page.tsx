@@ -97,7 +97,7 @@ export default function ApprovalsPage() {
           </div>
 
           {error ? (
-            <div className="mb-4 rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-200 whitespace-pre-wrap">
+            <div className="mb-4 rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-700 dark:text-rose-300 whitespace-pre-wrap">
               {error}
             </div>
           ) : null}
@@ -105,7 +105,7 @@ export default function ApprovalsPage() {
           <div className="overflow-hidden rounded-xl border border-border">
             <Table>
               <TableHeader>
-                <TableRow className="border-border hover:bg-white/0">
+                <TableRow className="border-border hover:bg-transparent">
                   <TableHead className="text-muted-foreground">{t("entity")}</TableHead>
                   <TableHead className="text-muted-foreground">{t("period")}</TableHead>
                   <TableHead className="text-muted-foreground">{t("value")}</TableHead>

@@ -1088,5 +1088,13 @@
   "changeRequestsApproved": "Approved",
   "changeRequestsRejected": "Rejected",
   "specificDashboards": "Specific Dashboards",
-  "specificDashboardsSubtitle": "Drill into role-focused and topic-specific dashboards."
+  "specificDashboardsSubtitle": "Drill into role-focused and topic-specific dashboards.",
+  "reports": "Reports",
+  "reportsSubtitle": "Tabular KPI performance report with filters and CSV export.",
+  "tabularReport": "Tabular Report",
+  "tabularReportSubtitle": "Cross-entity KPI performance view with filters and CSV export.",
+  "exportCsv": "Export CSV",
+  "allKpis": "All KPIs",
+  "avgAchievement": "Avg Achievement",
+  "achievementFilter": "Achievement"
 }
