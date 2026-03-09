@@ -282,9 +282,9 @@ export default function ResponsibilitiesPage() {
       ) : null}
 
       <Tabs value={viewMode} onValueChange={(v) => setViewMode(v as "entities" | "users")}>
-        <TabsList>
-          <TabsTrigger value="entities">{tr("By Entity", "حسب الكيان")}</TabsTrigger>
+        <TabsList dir="ltr">
           <TabsTrigger value="users">{tr("By User", "حسب المستخدم")}</TabsTrigger>
+          <TabsTrigger value="entities">{tr("By Entity", "حسب الكيان")}</TabsTrigger>
         </TabsList>
 
         <TabsContent value="entities" className="space-y-4 mt-6">
@@ -441,23 +441,23 @@ export default function ResponsibilitiesPage() {
                     return (
                       <Card key={user.id} className="bg-card/50">
                         <CardHeader>
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold">
+                          <div className="flex items-center justify-between gap-4">
+                            <div className="flex items-center gap-3 min-w-0">
+                              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold">
                                 {user.name.charAt(0).toUpperCase()}
                               </div>
-                              <div>
+                              <div className="min-w-0">
                                 <div className="font-semibold">{user.name}</div>
-                                <div className="text-sm text-muted-foreground">{user.email}</div>
+                                <div className="text-sm text-muted-foreground truncate">{user.email}</div>
                                 <Badge variant="outline" className={`text-xs mt-1 ${getRoleBadgeColor(String(user.role))}`}>
                                   {getRoleLabel(String(user.role))}
                                 </Badge>
                               </div>
                             </div>
-                            <div className="flex items-center gap-2">
+                            <div className="flex shrink-0 items-center gap-2">
                               <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
                                 <CheckCircle2 className="h-4 w-4 shrink-0" />
-                                <span>{userEntities.length} {tr("assigned", "معين")}</span>
+                                <span dir="ltr">{userEntities.length} {tr("assigned", "معين")}</span>
                               </div>
                               {canAdmin && (
                                 <Button size="sm" onClick={() => openEntityAssignDialog(user)}>
@@ -477,8 +477,8 @@ export default function ResponsibilitiesPage() {
                                   href={`/${locale}/entities/${entity.orgEntityType.code}/${entity.id}`}
                                   className="block rounded-lg border border-border bg-background/50 px-3 py-2 text-sm hover:bg-accent transition-colors"
                                 >
-                                  <div className="font-medium">{df(entity.title, entity.titleAr)}</div>
-                                  <div className="text-xs text-muted-foreground">
+                                  <div className="font-medium" dir="auto">{df(entity.title, entity.titleAr)}</div>
+                                  <div className="text-xs text-muted-foreground" dir="auto">
                                     {df(entity.orgEntityType.name, entity.orgEntityType.nameAr)}
                                   </div>
                                 </Link>

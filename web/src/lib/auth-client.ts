@@ -5,7 +5,7 @@ export const authClient = createAuthClient({
   fetchOptions: {
     credentials: "include",
     onError(context) {
-      console.error("Auth client error:", context.error);
+      console.error("Auth client error:", context.error?.status, context.error?.message, context.error);
     },
   },
 });
