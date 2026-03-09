@@ -609,7 +609,7 @@ export function AppShell({ children, showLogo = true }: { children: React.ReactN
         ) : null}
 
         <div className="flex min-w-0 flex-1 flex-col">
-          <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
+          {!isAuthRoute && <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
             <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:max-w-none">
               {isMarketingRoute ? (
                 <div className="flex items-center gap-6">
@@ -626,16 +626,16 @@ export function AppShell({ children, showLogo = true }: { children: React.ReactN
                       "hidden items-center gap-5 text-sm text-muted-foreground lg:flex",
                     )}
                   >
-                    <Link href={`/${locale}#features`} className="hover:text-foreground">
+                    <Link href={`/${locale}#features`} className="hover:text-foreground transition-colors">
                       {t("features")}
                     </Link>
-                    <Link href={`/${locale}/pricing`} className="hover:text-foreground">
-                      {t("pricing")}
+                    <Link href={`/${locale}#how-it-works`} className="hover:text-foreground transition-colors">
+                      {t("howItWorks")}
                     </Link>
-                    <Link href={`/${locale}/faq`} className="hover:text-foreground">
+                    <Link href={`/${locale}#faq`} className="hover:text-foreground transition-colors">
                       {t("faq")}
                     </Link>
-                    <Link href={`/${locale}/contact`} className="hover:text-foreground">
+                    <Link href={`/${locale}/contact`} className="hover:text-foreground transition-colors">
                       {t("contact")}
                     </Link>
                   </nav>
@@ -679,7 +679,10 @@ export function AppShell({ children, showLogo = true }: { children: React.ReactN
                     <Icon name="tabler:menu-2" />
                   </Button>
                 ) : null}
-                {showAppNav ? null : <LanguageToggle />}
+                {showAppNav ? null : <>
+                  <ThemeToggle />
+                  <LanguageToggle />
+                </>}
                 {isAuthRoute ? null : showAppNav ? null : !authReady ? null : user ? (
                   <>
                     <Button asChild variant="secondary">
@@ -706,9 +709,9 @@ export function AppShell({ children, showLogo = true }: { children: React.ReactN
                 )}
               </div>
             </div>
-          </header>
+          </header>}
 
-          <main className="relative mx-auto grid w-full max-w-7xl gap-6 px-6 pb-12 pt-8 lg:px-8">
+          <main className={isAuthRoute ? "contents" : "relative mx-auto grid w-full max-w-7xl gap-6 px-6 pb-12 pt-8 lg:px-8"}>
             {children}
           </main>
         </div>

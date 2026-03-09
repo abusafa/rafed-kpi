@@ -4,9 +4,9 @@
     "author": "Abdullah Al-Hamad",
     "authorAr": "عبدالله الحمد",
     "role": "CEO, Future Corp",
-    "roleAr": "الرئيس التنفيذي، شركة المستقبل",
+    "roleAr": "الرئيس التنفيذي، مجموعة المستقبل",
     "quote": "Murtakaz transformed how we track our strategic initiatives. The visibility is unmatched.",
-    "quoteAr": "لقد غيّر مرتكز كيفية تتبعنا لمبادراتنا الاستراتيجية. الوضوح الذي يوفره لا مثيل له.",
+    "quoteAr": "أحدث مرتكز نقلة نوعية في طريقة متابعتنا للمبادرات الاستراتيجية؛ مستوى الوضوح والشفافية الذي يوفره لم نجده في أي أداة أخرى.",
     "image": "/images/avatar-1.svg"
   },
   {
@@ -14,9 +14,9 @@
     "author": "Sarah Al-Otaibi",
     "authorAr": "سارة العتيبي",
     "role": "Head of Strategy",
-    "roleAr": "رئيسة الاستراتيجية",
+    "roleAr": "رئيسة قطاع الاستراتيجية والتطوير",
     "quote": "Finally, a tool that connects our daily projects to our long-term vision effortlessly.",
-    "quoteAr": "أخيرًا، أداة تربط مشاريعنا اليومية برؤيتنا طويلة المدى بكل سهولة.",
+    "quoteAr": "أخيراً وجدنا منصة تربط مشاريعنا التشغيلية اليومية بأهدافنا الاستراتيجية بعيدة المدى بسلاسة تامة دون تعقيدات.",
     "image": "/images/avatar-2.svg"
   },
   {
@@ -24,9 +24,9 @@
     "author": "Omar Khalil",
     "authorAr": "عمر خليل",
     "role": "Director of PMO",
-    "roleAr": "مدير مكتب إدارة المشاريع",
+    "roleAr": "مدير مكتب إدارة المشاريع والتميز المؤسسي",
     "quote": "The bilingual support and RTL design made adoption seamless for our entire team.",
-    "quoteAr": "الدعم ثنائي اللغة وتصميم الواجهة العربية جعل تبني النظام سلساً لكامل فريقنا.",
+    "quoteAr": "الدعم الكامل للغة العربية وتصميم الواجهة وفق معايير RTL جعل تبني النظام من قِبل الفريق بأكمله أمراً سلساً ومريحاً.",
     "image": "/images/avatar-3.svg"
   }
 ]

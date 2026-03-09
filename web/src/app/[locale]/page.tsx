@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { LazyMotion, domAnimation, m, useReducedMotion } from "framer-motion";
+import { useState } from "react";
+import { LazyMotion, domAnimation, m, useReducedMotion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Icon } from "@/components/icon";
@@ -20,6 +21,9 @@ function iconForFeature(icon: string) {
   if (icon === "target") return "tabler:target";
   if (icon === "chart-bar") return "tabler:chart-bar";
   if (icon === "shield-check") return "tabler:shield-check";
+  if (icon === "dashboard") return "tabler:layout-dashboard";
+  if (icon === "alert") return "tabler:alert-triangle";
+  if (icon === "language") return "tabler:language";
   return "tabler:sparkles";
 }
 
@@ -52,6 +56,7 @@ export default function LandingPage() {
   const { locale, isArabic, t } = useLocale();
   const { user, loading } = useAuth();
   const shouldReduceMotion = useReducedMotion();
+  const [openFaq, setOpenFaq] = useState<string | null>(null);
 
   const heroTitle = isArabic ? landing.hero.titleAr : landing.hero.title;
   const heroSubtitle = isArabic ? landing.hero.subtitleAr : landing.hero.subtitle;
@@ -81,9 +86,10 @@ export default function LandingPage() {
       };
 
   return (
+    <>
     <LazyMotion features={domAnimation}>
       <m.div
-        className="space-y-24 pb-24"
+        className="mx-auto max-w-7xl space-y-24 px-6 pb-24 pt-10 lg:px-8"
         initial={shouldReduceMotion ? false : "hidden"}
         animate={shouldReduceMotion ? undefined : "show"}
         variants={{
@@ -207,6 +213,24 @@ export default function LandingPage() {
           </m.div>
         </section>
 
+      {/* Stats bar */}
+      <m.section
+        className="rounded-2xl border border-border bg-card/40 backdrop-blur-sm"
+        variants={cardVariants}
+        initial={shouldReduceMotion ? false : "hidden"}
+        whileInView={shouldReduceMotion ? undefined : "show"}
+        viewport={{ once: true, amount: 0.5 }}
+      >
+        <div className={cn("grid divide-border sm:grid-cols-2 lg:grid-cols-4 sm:divide-x", isArabic && "direction-rtl")}>
+          {landing.stats.map((stat, i) => (
+            <div key={i} className={cn("flex flex-col items-center gap-1 px-6 py-8 text-center", i > 0 && "border-t border-border sm:border-t-0")}>
+              <span className="text-4xl font-bold tracking-tight text-foreground">{stat.value}</span>
+              <span className="text-sm text-muted-foreground">{isArabic ? stat.labelAr : stat.label}</span>
+            </div>
+          ))}
+        </div>
+      </m.section>
+
       <section id="features" className="space-y-12 scroll-mt-28">
         <m.div variants={cardVariants} className="text-center">
           <SectionHeading
@@ -217,7 +241,7 @@ export default function LandingPage() {
           />
         </m.div>
 
-        <m.div className="grid gap-8 md:grid-cols-3" variants={gridVariants} initial={shouldReduceMotion ? false : "hidden"} whileInView={shouldReduceMotion ? undefined : "show"} viewport={{ once: true, amount: 0.25 }}>
+        <m.div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" variants={gridVariants} initial={shouldReduceMotion ? false : "hidden"} whileInView={shouldReduceMotion ? undefined : "show"} viewport={{ once: true, amount: 0.2 }}>
           {landing.features.map((feature) => (
             <m.div key={feature.id} variants={cardVariants} whileHover={shouldReduceMotion ? undefined : { y: -8 }} transition={{ duration: 0.3, ease: "easeOut" }}>
               <Card className="h-full border-border bg-card/50 p-6 backdrop-blur-sm transition-colors hover:border-primary/30 hover:bg-card/80">
@@ -256,19 +280,25 @@ export default function LandingPage() {
             {
               icon: "tabler:target-arrow",
               title: t("defineStrategy"),
-              body: t("defineStrategyDesc"),
+              body: isArabic
+                ? "أنشئ الركائز والأهداف والمبادرات والمشاريع في هيكل هرمي واضح. عيّن مالكين وحدد أُطرًا زمنية وتابع الحالة من المخطط حتى الإنجاز."
+                : "Create pillars, goals, initiatives, and projects in a clear hierarchy. Assign owners, set timeframes, and track status from planned to complete.",
               step: "01"
             },
             {
               icon: "tabler:chart-line",
               title: t("trackPerformance"),
-              body: t("trackPerformanceDesc"),
+              body: isArabic
+                ? "عرّف مؤشرات الأداء بأهداف وترددات وصيغ محاسبية. تُحدَّث لوحات المعلومات التنفيذية آليًا وتكشف المبادرات المعرضة للخطر وانحراف الأداء."
+                : "Define KPIs with targets, frequencies, and calculation formulas. Executive dashboards update automatically, surfacing at-risk initiatives and performance variance.",
               step: "02"
             },
             {
               icon: "tabler:gavel",
               title: t("governAndComply"),
-              body: t("governAndComplyDesc"),
+              body: isArabic
+                ? "تسلك تغييرات الصيغة والهدف وقوائم الموافقات. يسجّل سجل التدقيق الثابت كل إجراء مع المنفذ والوقت والتفاصيل قبل وبعد التغيير."
+                : "Formula and target changes flow through approval queues. The immutable audit log records every action with actor, timestamp, and before/after detail.",
               step: "03"
             },
           ].map((step) => (
@@ -350,42 +380,59 @@ export default function LandingPage() {
         </m.div>
 
         <m.div
-          className="mx-auto max-w-3xl grid gap-4"
+          className="mx-auto max-w-3xl grid gap-3"
           variants={gridVariants}
           initial={shouldReduceMotion ? false : "hidden"}
           whileInView={shouldReduceMotion ? undefined : "show"}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.15 }}
         >
-          {faqs.map((item) => (
-            <m.details
-              key={item.id}
-              className="group rounded-2xl border border-border bg-card/30 px-6 py-5 shadow-sm backdrop-blur-sm transition-all hover:bg-card/50 open:bg-card/60 open:ring-1 open:ring-border"
-              variants={cardVariants}
-              whileHover={shouldReduceMotion ? undefined : { y: -2 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-            >
-              <summary className={cn("flex cursor-pointer list-none items-center justify-between gap-6")}>
-                <span className={cn("text-lg font-medium", isArabic && "text-right")}>{isArabic ? item.questionAr : item.question}</span>
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border bg-card/50 transition-colors group-hover:bg-muted/30">
-                   <Icon
-                    name={isArabic ? "tabler:chevron-left" : "tabler:chevron-right"}
-                    className={cn("h-5 w-5 text-muted-foreground transition-transform duration-300", isArabic ? "group-open:-rotate-90" : "group-open:rotate-90")}
-                  />
-                </span>
-              </summary>
+          {faqs.map((item) => {
+            const isOpen = openFaq === item.id;
+            return (
               <m.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="overflow-hidden"
+                key={item.id}
+                variants={cardVariants}
+                className={cn(
+                  "rounded-2xl border border-border bg-card/30 px-6 shadow-sm backdrop-blur-sm transition-colors hover:bg-card/50",
+                  isOpen && "bg-card/60 ring-1 ring-border"
+                )}
               >
-                  <p className={cn("mt-4 text-base leading-relaxed text-muted-foreground", isArabic && "text-right")}>
-                    {isArabic ? item.answerAr : item.answer}
-                  </p>
+                <button
+                  type="button"
+                  aria-expanded={isOpen}
+                  className={cn(
+                    "flex w-full cursor-pointer items-center justify-between gap-6 py-5 text-start",
+                    isArabic && "text-right"
+                  )}
+                  onClick={() => setOpenFaq(isOpen ? null : item.id)}
+                >
+                  <span className="text-base font-medium text-foreground">{isArabic ? item.questionAr : item.question}</span>
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border bg-card/50 transition-colors hover:bg-muted/30">
+                    <Icon
+                      name="tabler:chevron-down"
+                      className={cn("h-4 w-4 text-muted-foreground transition-transform duration-300", isOpen && "rotate-180")}
+                    />
+                  </span>
+                </button>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <m.div
+                      key="answer"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.28, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <p className={cn("pb-5 text-sm leading-relaxed text-muted-foreground", isArabic && "text-right")}>
+                        {isArabic ? item.answerAr : item.answer}
+                      </p>
+                    </m.div>
+                  )}
+                </AnimatePresence>
               </m.div>
-            </m.details>
-          ))}
+            );
+          })}
         </m.div>
       </section>
 
@@ -414,8 +461,13 @@ export default function LandingPage() {
 
       <footer className="border-t border-border pt-16 pb-8">
         <div className={cn("grid gap-8 lg:grid-cols-4", isArabic && "text-right")}>
-          <div className="space-y-2">
-            <p className="text-sm font-semibold text-foreground">{isArabic ? footer.company.nameAr : footer.company.name}</p>
+          <div className="space-y-3">
+            <div className="flex items-center gap-2">
+              <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary">
+                <Icon name="tabler:chart-arrows-vertical" className="h-4 w-4 text-primary-foreground" />
+              </div>
+              <p className="text-sm font-bold text-foreground">{isArabic ? footer.company.nameAr : footer.company.name}</p>
+            </div>
             <p className="text-sm text-muted-foreground">{isArabic ? footer.company.descriptionAr : footer.company.description}</p>
           </div>
           {footer.links.map((group) => (
@@ -437,5 +489,6 @@ export default function LandingPage() {
       </footer>
       </m.div>
     </LazyMotion>
+    </>
   );
 }

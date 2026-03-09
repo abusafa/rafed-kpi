@@ -8,7 +8,7 @@
     "prisma:generate": "prisma generate --schema=../prisma/schema.prisma",
     "prebuild": "pnpm run prisma:generate",
     "build": "next build",
-    "start": "sh -c 'next start -H 0.0.0.0 -p ${PORT:-3000}'",
+    "start": "sh -c 'next start -H 0.0.0.0 -p ${PORT:-9988}'",
     "lint": "next lint"
   },
   "pnpm": {

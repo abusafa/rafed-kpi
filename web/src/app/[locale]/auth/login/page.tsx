@@ -2,18 +2,19 @@
 
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { Eye, EyeOff } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Eye, EyeOff, BarChart3, ShieldCheck, TrendingUp, Layers } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { authClient } from "@/lib/auth-client";
 import { useLocale } from "@/providers/locale-provider";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function LoginPage() {
   const searchParams = useSearchParams();
   const { locale, t } = useLocale();
+  const isRtl = locale === "ar";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -64,19 +65,97 @@ export default function LoginPage() {
     }
   }
 
+  const features = [
+    { icon: BarChart3, labelKey: "appTagline" as const },
+    { icon: TrendingUp, labelKey: "bilingualRtlSupport" as const },
+    { icon: ShieldCheck, labelKey: "auditableDecisions" as const },
+    { icon: Layers, labelKey: "approveRejectWorkflowDesc" as const },
+  ];
+
   return (
-    <div className="mx-auto grid max-w-md place-items-center py-10">
-      <Card className="w-full border-border bg-card/50 shadow-sm">
-        <CardHeader className="space-y-2">
-          <CardTitle className="text-2xl">{t("signIn")}</CardTitle>
-          <CardDescription className="text-muted-foreground">
-            {t("signInSubtitle")}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <form onSubmit={handleLogin} className="space-y-4">
+    <div className="flex min-h-screen w-full">
+      {/* Branding panel */}
+      <div
+        className={`hidden lg:flex lg:w-[52%] flex-col justify-between p-10 xl:p-14 relative overflow-hidden
+          bg-[hsl(215,62%,22%)] dark:bg-[hsl(215,62%,14%)]
+          ${isRtl ? "order-last" : "order-first"}`}
+      >
+        {/* Subtle grid overlay */}
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px]" />
+        {/* Radial glow */}
+        <div className="pointer-events-none absolute -top-32 -start-32 h-96 w-96 rounded-full bg-white/5 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-0 end-0 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
+
+        {/* Logo area */}
+        <div className="relative z-10 flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm">
+            <BarChart3 className="h-5 w-5 text-white" />
+          </div>
+          <div className="leading-tight">
+            <p className="text-[11px] uppercase tracking-[0.22em] text-white/50">{t("appTitle")}</p>
+            <p className="text-sm font-semibold text-white">{t("appShortTitle")}</p>
+          </div>
+        </div>
+
+        {/* Center content */}
+        <div className="relative z-10 flex flex-col gap-8">
+          <div className="space-y-3">
+            <h1 className="text-3xl xl:text-4xl font-bold text-white leading-snug">
+              {t("appTagline")}
+            </h1>
+            <p className="text-base text-white/60 max-w-sm leading-relaxed">
+              {t("aboutProductDesc")}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-3">
+            {features.map(({ icon: Icon, labelKey }) => (
+              <div key={labelKey} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-sm">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/10">
+                  <Icon className="h-4 w-4 text-white/80" />
+                </div>
+                <p className="text-sm text-white/75">{t(labelKey)}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom logo */}
+        <div className="relative z-10">
+          <Image
+            src="/AlmosaLogoWhite.png"
+            alt="Logo"
+            width={120}
+            height={40}
+            className="opacity-60 object-contain"
+          />
+        </div>
+      </div>
+
+      {/* Form panel */}
+      <div className="flex flex-1 flex-col items-center justify-center px-6 py-12 sm:px-10">
+        {/* Mobile logo */}
+        <div className="mb-8 flex items-center gap-3 lg:hidden">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-muted/60">
+            <BarChart3 className="h-5 w-5 text-foreground" />
+          </div>
+          <div className="leading-tight">
+            <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">{t("appTitle")}</p>
+            <p className="text-sm font-semibold text-foreground">{t("appShortTitle")}</p>
+          </div>
+        </div>
+
+        <div className="w-full max-w-sm space-y-8">
+          {/* Header */}
+          <div className="space-y-1">
+            <h2 className="text-2xl font-bold tracking-tight text-foreground">{t("signIn")}</h2>
+            <p className="text-sm text-muted-foreground">{t("signInSubtitle")}</p>
+          </div>
+
+          {/* Form */}
+          <form onSubmit={handleLogin} className="space-y-5">
             <div className="space-y-2">
-              <Label htmlFor="email">{t("email")}</Label>
+              <Label htmlFor="email" className="text-sm font-medium">{t("email")}</Label>
               <Input
                 id="email"
                 type="email"
@@ -84,15 +163,17 @@ export default function LoginPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="name@example.com"
                 required
-                className="border-border bg-muted/30 text-foreground placeholder:text-muted-foreground"
+                autoComplete="email"
+                className="h-11 border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary/40"
               />
             </div>
+
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label htmlFor="password">{t("password")}</Label>
+                <Label htmlFor="password" className="text-sm font-medium">{t("password")}</Label>
                 <Link
                   href={`/${locale}/auth/forgot-password`}
-                  className="text-xs font-semibold text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+                  className="text-xs font-medium text-primary hover:text-primary/80 transition-colors"
                 >
                   {t("forgotPassword")}
                 </Link>
@@ -104,7 +185,8 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="border-border bg-muted/30 text-foreground pe-10"
+                  autoComplete="current-password"
+                  className="h-11 border-border bg-background text-foreground pe-10 focus-visible:ring-primary/40"
                 />
                 <button
                   type="button"
@@ -119,20 +201,27 @@ export default function LoginPage() {
             </div>
 
             {error && (
-              <p className="text-sm text-red-400">{error}</p>
+              <div className="flex items-center gap-2 rounded-lg border border-destructive/30 bg-destructive/10 px-3 py-2.5">
+                <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-destructive" />
+                <p className="text-sm text-destructive">{error}</p>
+              </div>
             )}
 
             <Button
               type="submit"
               disabled={loading}
-              variant="secondary"
-              className="w-full"
+              className="h-11 w-full bg-[hsl(215,62%,28%)] text-white hover:bg-[hsl(215,62%,24%)] dark:bg-primary dark:hover:bg-primary/90 transition-all font-semibold shadow-sm"
             >
-              {loading ? t("signingIn") : t("signIn")}
+              {loading ? (
+                <span className="flex items-center gap-2">
+                  <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                  {t("signingIn")}
+                </span>
+              ) : t("signIn")}
             </Button>
           </form>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }
