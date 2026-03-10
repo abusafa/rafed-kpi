@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Icon } from "@/components/icon";
 import { useLocale } from "@/providers/locale-provider";
 import { cn } from "@/lib/utils";
+import { AiMarkdown } from "./ai-markdown";
 
 type Message = {
   id: string;
@@ -193,7 +194,13 @@ export function AiChatPanel() {
                     : "bg-muted text-foreground rounded-bl-sm",
                 )}
               >
-                {msg.content || (
+                {msg.content ? (
+                  msg.role === "assistant" ? (
+                    <AiMarkdown content={msg.content} dir={isArabic ? "rtl" : "ltr"} />
+                  ) : (
+                    msg.content
+                  )
+                ) : (
                   <span className="inline-flex items-center gap-1 text-muted-foreground">
                     <span className="h-1.5 w-1.5 rounded-full bg-current animate-bounce [animation-delay:0ms]" />
                     <span className="h-1.5 w-1.5 rounded-full bg-current animate-bounce [animation-delay:150ms]" />

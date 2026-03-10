@@ -59,27 +59,36 @@ export function EntityDependencyDiagram({ tree, locale, loading }: EntityDepende
     const nodes = Array.from(nodesById.values()).map((n) => {
       const title = locale === "ar" && n.titleAr ? n.titleAr : n.title;
       const typeLabel = locale === "ar" && n.entityType?.nameAr ? n.entityType.nameAr : n.entityType?.name;
-      const label = [String(title ?? ""), String(typeLabel ?? "")].filter(Boolean).join("\n");
+      const tooltipName = [String(title ?? ""), String(typeLabel ?? "")].filter(Boolean).join(" · ");
+      const displayLabel = String(title ?? "");
       const categoryName = String(n.entityType?.code ?? "");
+      const isRoot = n.id === tree.id;
 
       return {
         id: n.id,
-        name: label,
+        name: tooltipName,
         category: categoryIndex.get(categoryName) ?? 0,
-        symbolSize: n.id === tree.id ? 70 : 52,
+        symbolSize: isRoot ? 62 : 38,
         value: n.key,
+        label: {
+          show: true,
+          formatter: displayLabel.length > 16 ? displayLabel.slice(0, 16) + "…" : displayLabel,
+        },
+        itemStyle: isRoot ? { borderWidth: 3, borderColor: "rgba(255,255,255,0.55)" } : {},
       };
     });
 
     return { nodes, links, categories };
   }, [locale, tree]);
 
-  const labelColor = isDark ? "#e2e8f0" : "#0f172a";
-  const legendColor = isDark ? "rgba(226,232,240,0.85)" : "rgba(15,23,42,0.75)";
-  const lineColor = isDark ? "rgba(148,163,184,0.50)" : "rgba(15,23,42,0.30)";
-  const tooltipBg = isDark ? "rgba(2,6,23,0.92)" : "rgba(255,255,255,0.95)";
-  const tooltipBorder = isDark ? "rgba(255,255,255,0.12)" : "rgba(2,6,23,0.10)";
-  const tooltipText = isDark ? "rgba(226,232,240,0.92)" : "rgba(15,23,42,0.92)";
+  const bgColor      = isDark ? "#0d1117" : "#f1f5f9";
+  const dotColor     = isDark ? "#1e293b" : "#cbd5e1";
+  const labelColor   = isDark ? "#e2e8f0" : "#1e293b";
+  const legendColor  = isDark ? "rgba(226,232,240,0.85)" : "rgba(15,23,42,0.75)";
+  const lineColor    = isDark ? "rgba(148,163,184,0.35)" : "rgba(100,116,139,0.40)";
+  const tooltipBg    = isDark ? "rgba(2,6,23,0.95)" : "rgba(255,255,255,0.97)";
+  const tooltipBorder= isDark ? "rgba(255,255,255,0.12)" : "rgba(2,6,23,0.10)";
+  const tooltipText  = isDark ? "rgba(226,232,240,0.92)" : "rgba(15,23,42,0.92)";
 
   const option = useMemo<EChartsOption>(() => {
     if (!graph || !tree) {
@@ -115,29 +124,32 @@ export function EntityDependencyDiagram({ tree, locale, loading }: EntityDepende
           data: graph.nodes,
           links: graph.links,
           categories: graph.categories,
-          edgeSymbol: ["circle", "arrow"],
-          edgeSymbolSize: [4, 10],
+          edgeSymbol: ["none", "arrow"],
+          edgeSymbolSize: [0, 8],
           lineStyle: {
-            width: 2,
-            opacity: 0.7,
-            curveness: 0.22,
+            width: 1.5,
+            opacity: 0.55,
+            curveness: 0.32,
             color: lineColor,
           },
           label: {
             show: true,
+            position: "right",
+            distance: 6,
             color: labelColor,
-            fontSize: 10,
-            overflow: "truncate",
-            width: 120,
+            fontSize: 11,
+            fontWeight: "normal",
           },
           emphasis: {
-            label: { show: true },
-            lineStyle: { width: 4, opacity: 0.9 },
+            focus: "adjacency",
+            label: { show: true, fontWeight: "bold" },
+            lineStyle: { width: 3, opacity: 0.85 },
           },
           force: {
-            repulsion: 900,
-            edgeLength: 140,
-            gravity: 0.1,
+            repulsion: 1400,
+            edgeLength: [130, 200],
+            gravity: 0.08,
+            layoutAnimation: true,
           },
         },
       ],
@@ -160,5 +172,16 @@ export function EntityDependencyDiagram({ tree, locale, loading }: EntityDepende
     );
   }
 
-  return <EChart option={option} height={520} className="rounded-lg border border-border bg-muted/20" />;
+  return (
+    <div
+      className="rounded-xl border border-border overflow-hidden"
+      style={{
+        backgroundColor: bgColor,
+        backgroundImage: `radial-gradient(circle, ${dotColor} 1.2px, transparent 1.2px)`,
+        backgroundSize: "22px 22px",
+      }}
+    >
+      <EChart option={option} height={520} />
+    </div>
+  );
 }

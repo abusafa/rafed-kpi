@@ -1,5 +1,48 @@
 import { NextRequest, NextResponse } from "next/server";
 
+function buildMockNote(params: {
+  entityTitle?: string;
+  enteredValue?: number;
+  historicalAvg?: number;
+  unit?: string;
+  locale?: string;
+}): string {
+  const { entityTitle, enteredValue, historicalAvg, unit = "", locale } = params;
+  const isAr = locale === "ar";
+  const title = entityTitle ?? (isAr ? "المؤشر" : "this KPI");
+
+  if (enteredValue == null || historicalAvg == null || historicalAvg === 0) {
+    return isAr
+      ? `تم إدخال القيمة بعد التحقق من مصادر البيانات المتاحة. يرجى مراجعة التقرير الداعم المرفق للتأكيد.`
+      : `The value was entered after reviewing available data sources. Please refer to the attached supporting report for confirmation.`;
+  }
+
+  const pct = Math.round(Math.abs(((enteredValue - historicalAvg) / historicalAvg) * 100));
+  const isLow = enteredValue < historicalAvg;
+
+  if (pct <= 5) {
+    return isAr
+      ? `القيمة المُدخلة لـ"${title}" (${enteredValue}${unit}) متسقة مع الأداء التاريخي. الانحراف ضئيل (${pct}%) ويقع ضمن نطاق التوقعات.`
+      : `The submitted value for "${title}" (${enteredValue}${unit}) is consistent with historical performance. The ${pct}% deviation is within the expected range.`;
+  }
+
+  if (isLow) {
+    const reasons = isAr
+      ? ["شهدت الفترة الحالية ظروفاً استثنائية أثّرت سلباً على الأداء.", "يُعزى الانخفاض إلى تغييرات تشغيلية مؤقتة جارٍ معالجتها.", "تأثّر المؤشر بعوامل خارجية خارجة عن نطاق السيطرة."]
+      : ["The current period experienced exceptional circumstances that negatively impacted performance.", "The decline is attributed to temporary operational changes currently being addressed.", "External factors outside the team's control contributed to this result."];
+    return isAr
+      ? `القيمة المُدخلة لـ"${title}" (${enteredValue}${unit}) أقل بنسبة ${pct}% من المتوسط التاريخي (${historicalAvg}${unit}). ${reasons[pct % 3]}`
+      : `The submitted value for "${title}" (${enteredValue}${unit}) is ${pct}% below the historical average of ${historicalAvg}${unit}. ${reasons[pct % 3]}`;
+  }
+
+  const reasons = isAr
+    ? ["يعكس الارتفاع نتائج مبادرات التحسين المُنفَّذة خلال هذه الفترة.", "تحسّن المؤشر نتيجة تغييرات إيجابية في العملية تم تطبيقها مؤخراً.", "يعكس الأداء المرتفع جهوداً استثنائية من الفريق خلال هذه الفترة."]
+    : ["The increase reflects outcomes from improvement initiatives implemented during this period.", "The KPI improved due to positive process changes recently applied.", "The higher-than-average performance reflects exceptional team effort during this period."];
+  return isAr
+    ? `القيمة المُدخلة لـ"${title}" (${enteredValue}${unit}) أعلى بنسبة ${pct}% من المتوسط التاريخي (${historicalAvg}${unit}). ${reasons[pct % 3]}`
+    : `The submitted value for "${title}" (${enteredValue}${unit}) is ${pct}% above the historical average of ${historicalAvg}${unit}. ${reasons[pct % 3]}`;
+}
+
 export async function POST(req: NextRequest) {
   if (process.env.NEXT_PUBLIC_AI_ENABLED !== "true") {
     return NextResponse.json({ error: "AI features are disabled." }, { status: 403 });
@@ -18,11 +61,7 @@ export async function POST(req: NextRequest) {
   const model = process.env.AI_MODEL ?? "gpt-4o";
 
   if (!apiKey) {
-    const fallback =
-      locale === "ar"
-        ? "القيمة المُدخلة تختلف عن المتوسط التاريخي. يرجى مراجعة البيانات والتحقق من صحتها."
-        : "The entered value differs significantly from the historical average. Please review the data and verify its accuracy.";
-    return NextResponse.json({ note: fallback });
+    return NextResponse.json({ note: buildMockNote({ entityTitle, enteredValue, historicalAvg, unit, locale }) });
   }
 
   const isArabic = locale === "ar";

@@ -358,22 +358,48 @@ AI suggests optimal entity assignments for new users based on:
 
 ---
 
+---
+
+## Category E–J — New Feature Proposals (March 2026)
+
+> See [10-new-feature-proposals.md](./10-new-feature-proposals.md) for full details on
+> 19 additional features proposed after reviewing the platform's expanded capabilities
+> (risks, projects, departments, dashboards, reports, responsibilities).
+
+### Highlights — Highest-Impact New Features
+
+| ID | Feature | Category | Priority | Complexity |
+|----|---------|----------|----------|------------|
+| **E1** | AI Root Cause Analysis | Root Cause & Correlation | P1 | M |
+| **F1** | Project Health Narrator | Project & Initiative | P1 | S |
+| **G1** | Risk Assessment Generator | Risk Intelligence | P1 | S |
+| **H1** | AI Report Narrator | Reports & Data | P1 | S |
+| **I1** | Smart Notifications Digest | UX & Productivity | P1 | S |
+| **I2** | Dashboard Insight Cards | UX & Productivity | P1 | S |
+| **J2** | Auto-Description from Title | Advanced | P1 | S |
+| **J4** | Change Request Impact Analysis | Advanced | P2 | S |
+
+---
+
 ## Feature Priority Matrix
 
 ```
                     HIGH IMPACT
                          │
-    B3 Auto-translate ───┤─── A1 Chat Assistant
-    B2 Formula Builder ──┤─── A2 Exec Summary
-    A3 Anomaly Alerts ───┤─── B1 KPI Wizard
+    J2 Auto-Description ─┤─── A1 Chat Assistant
+    B3 Auto-translate ───┤─── A2 Exec Summary
+    B2 Formula Builder ──┤─── E1 Root Cause Analysis
+    I2 Dashboard Insights┤─── B1 KPI Wizard
+    G1 Risk Assessment ──┤─── I1 Smart Digest
                          │
 LOW COMPLEXITY ──────────┼────────────────── HIGH COMPLEXITY
                          │
     A4 NL Search ────────┤─── C1 Forecasting
-    B4 Rejection Helper ─┤─── GAP-2 Rollup
+    B4 Rejection Helper ─┤─── E2 Correlation Detector
+    H1 Report Narrator ──┤─── E3 What-If Modeler
     D2 Gov Advisor ──────┤─── C3 Strategy Align
                          │
                     LOW IMPACT
 ```
 
-**Start here (high impact, low complexity):** A2, B3, B2, A3
+**Start here (high impact, low complexity):** A2, B3, B2, J2, I2, G1, F1

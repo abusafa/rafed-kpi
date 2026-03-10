@@ -1,5 +1,46 @@
 import { NextRequest, NextResponse } from "next/server";
 
+const EN_TO_AR: Record<string, string> = {
+  "customer satisfaction": "رضا العملاء",
+  "employee retention": "الاحتفاظ بالموظفين",
+  "revenue growth": "نمو الإيرادات",
+  "cost efficiency": "كفاءة التكلفة",
+  "project completion": "إنجاز المشروع",
+  "compliance rate": "معدل الامتثال",
+  "training hours": "ساعات التدريب",
+  "market share": "الحصة السوقية",
+  "quality rate": "معدل الجودة",
+  "response time": "وقت الاستجابة",
+  "on-time delivery": "التسليم في الموعد",
+  "net promoter score": "مؤشر صافي المروجين",
+  "%": "٪",
+  "percentage": "نسبة مئوية",
+  "score": "درجة",
+  "days": "أيام",
+  "hours": "ساعات",
+  "ratio": "نسبة",
+  "count": "عدد",
+};
+
+function mockTranslateToAr(fields: { title?: string; description?: string; unit?: string }) {
+  function tr(text?: string): string | undefined {
+    if (!text) return undefined;
+    const lower = text.toLowerCase();
+    for (const [en, ar] of Object.entries(EN_TO_AR)) {
+      if (lower === en) return ar;
+    }
+    for (const [en, ar] of Object.entries(EN_TO_AR)) {
+      if (lower.includes(en)) return text.replace(new RegExp(en, "gi"), ar);
+    }
+    return `ترجمة: ${text}`;
+  }
+  return {
+    ...(fields.title != null && { titleAr: tr(fields.title) }),
+    ...(fields.description != null && { descriptionAr: tr(fields.description) }),
+    ...(fields.unit != null && { unitAr: tr(fields.unit) ?? fields.unit }),
+  };
+}
+
 export async function POST(req: NextRequest) {
   if (process.env.NEXT_PUBLIC_AI_ENABLED !== "true") {
     return NextResponse.json({ error: "AI features are disabled." }, { status: 403 });
@@ -15,10 +56,13 @@ export async function POST(req: NextRequest) {
   const model = process.env.AI_MODEL ?? "gpt-4o";
 
   if (!apiKey) {
+    if (direction === "en_to_ar") {
+      return NextResponse.json(mockTranslateToAr(fields));
+    }
     return NextResponse.json({
-      titleAr: fields.title ? `[ترجمة] ${fields.title}` : undefined,
-      descriptionAr: fields.description ? `[ترجمة] ${fields.description}` : undefined,
-      unitAr: fields.unit ? `[ترجمة] ${fields.unit}` : undefined,
+      ...(fields.title != null && { title: fields.title }),
+      ...(fields.description != null && { description: fields.description }),
+      ...(fields.unit != null && { unit: fields.unit }),
     });
   }
 

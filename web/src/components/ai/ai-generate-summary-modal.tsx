@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dialog";
 import { useLocale } from "@/providers/locale-provider";
 import { cn } from "@/lib/utils";
+import { AiMarkdown } from "./ai-markdown";
 
 type ReportType = "full" | "digest";
 type ReportLang = "en" | "ar";
@@ -170,12 +171,11 @@ export function AiGenerateSummaryModal() {
             <div
               className={cn(
                 "max-h-[380px] overflow-y-auto rounded-xl border border-border bg-muted/20 p-4",
-                "text-sm leading-relaxed whitespace-pre-wrap font-sans",
                 reportLang === "ar" ? "text-right" : "text-left",
               )}
               dir={reportLang === "ar" ? "rtl" : "ltr"}
             >
-              {report}
+              <AiMarkdown content={report} />
               {generating && (
                 <span className="inline-flex ms-1 items-center gap-0.5">
                   <span className="h-1 w-1 rounded-full bg-foreground animate-bounce [animation-delay:0ms]" />

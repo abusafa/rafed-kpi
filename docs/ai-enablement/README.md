@@ -6,6 +6,30 @@ intelligence system** using Large Language Models (LLMs) and supporting AI techn
 
 ---
 
+## Current Implementation Status
+
+> **Last updated:** March 2026
+
+| Layer | Status | Details |
+|-------|--------|---------|
+| **Feature gate** | ✅ Done | `NEXT_PUBLIC_AI_ENABLED=true` env var via `web/src/lib/ai-features.ts` |
+| **API routes** | ✅ Done (5/5 Phase 1) | `chat`, `summary`, `formula`, `translate`, `suggest-note` |
+| **UI components** | ✅ Done (7 components) | Chat panel, summary modal, formula builder, translate button, review card, value entry assist, suggest note |
+| **Page integrations** | ✅ Done | App shell, overview, dashboards, entity edit/new, approvals |
+| **i18n keys** | ✅ Done | 70+ keys in both `en.json` and `ar.json` |
+| **Server-side AI lib** | ⬜ Not started | `web/src/lib/ai/` — context builder, prompt templates, guardrails |
+| **Vercel AI SDK** | ⬜ Not started | Currently using raw `fetch` to OpenAI-compatible APIs |
+| **Prisma AiInteraction** | ⬜ Not started | Audit log model not yet in schema |
+| **pgvector / RAG** | ⬜ Not started | Phase 2+ |
+
+### What Works Today
+The current frontend is a **thin proxy layer**: components call Next.js API routes that
+forward requests to any OpenAI-compatible endpoint (configured via `AI_API_KEY`,
+`AI_API_URL`, `AI_MODEL` env vars). There is no org-context injection, no RBAC-scoped
+prompts, and no audit logging yet. These are the next priorities.
+
+---
+
 ## Why AI for a KPI Platform?
 
 Rafed KPI already collects structured, governed, bilingual performance data across
@@ -31,25 +55,34 @@ The goal is not to replace human judgment, but to:
 | [04](./04-data-readiness.md) | Data Readiness | What data we have, what needs enriching, prompt context design |
 | [05](./05-implementation-roadmap.md) | Implementation Roadmap | Phased plan — from first prototype to full AI platform |
 | [06](./06-risks-and-guardrails.md) | Risks & Guardrails | Hallucination, privacy, bias, governance, and mitigations |
+| [07](./07-current-implementation.md) | Current Implementation | Inventory of what is already built — components, routes, integrations |
+| [08](./08-prompt-engineering-guide.md) | Prompt Engineering Guide | Detailed prompt design patterns for each feature, Arabic considerations |
+| [09](./09-testing-and-evaluation.md) | Testing & Evaluation | How to test AI features, quality metrics, evaluation framework |
+| [10](./10-new-feature-proposals.md) | New Feature Proposals | 19 additional AI features — root cause analysis, risk intelligence, project narration, dashboard insights |
+| — | [User Stories](./user-stories/) | Detailed user stories by role (Executive, Manager, Admin, Approver, Super Admin) |
 
 ---
 
-## Quick Summary: Proposed AI Feature Tiers
+## Quick Summary: AI Feature Tiers
 
-### Tier 1 — Conversational Intelligence (Months 1–3)
+### Tier 1 — Conversational Intelligence & Quick Wins (Months 1–3)
 > Chat with your KPI data in plain Arabic or English
 
-- **AI Strategy Analyst** — natural language Q&A over org performance data
-- **Auto-generated Executive Summary** — one-click narrative report from dashboard data
-- **Smart Anomaly Alerts** — proactive "something unusual happened" notifications
+- **AI Strategy Analyst** — natural language Q&A over org performance data ✅ *UI built*
+- **Auto-generated Executive Summary** — one-click narrative report from dashboard data ✅ *UI built*
+- **Smart Anomaly Alerts** — proactive "something unusual happened" notifications ✅ *UI built (value entry assist, review context)*
+- **Formula Builder Assistant** — describe the metric in words, AI writes the formula ✅ *UI built*
+- **Arabic/English Auto-translation** — AI fills `titleAr`/`descriptionAr` fields ✅ *UI built*
+- **AI-Suggested Submission Note** — AI suggests a note when value is anomalous ✅ *UI built*
 
 ### Tier 2 — Generative Assistance (Months 3–6)
 > AI helps users do their jobs faster
 
 - **KPI Definition Wizard** — AI suggests KPIs based on strategic pillars
-- **Formula Builder Assistant** — describe the metric in words, AI writes the formula
 - **Rejection Comment Generator** — structured feedback when approver rejects a value
-- **Arabic/English Auto-translation** — AI fills `titleAr`/`descriptionAr` fields
+- **Automated Period Report Writer** — AI generates end-of-period reports
+- **Smart Value Entry Assist** — expected range, anomaly warning, deadline reminder *(partial — UI built, needs server-side context)*
+- **Governance Health Advisor** — weekly AI governance report for Admins
 
 ### Tier 3 — Predictive Intelligence (Months 6–12)
 > AI predicts what will happen before it does
@@ -65,6 +98,22 @@ The goal is not to replace human judgment, but to:
 - **Correction Suggestions** — AI recommends target adjustments based on benchmarks
 - **Cross-org Benchmarking** — compare performance against anonymized peer orgs
 
+### Tier 5 — New Proposals (March 2026)
+> Cross-cutting AI features unlocked by platform maturity — risks, projects, dashboards
+
+- **AI Root Cause Analysis** — "why did this KPI drop?" with cross-entity investigation (E1) `P1`
+- **AI Dashboard Insight Cards** — one AI sentence per dashboard highlighting key takeaway (I2) `P1`
+- **Smart Notifications Digest** — AI-prioritized daily summary replacing notification noise (I1) `P1`
+- **Project Health Narrator** — plain-language project health from milestones + risks + KPIs (F1) `P1`
+- **Risk Assessment Generator** — severity, likelihood, mitigation, KPI impact from description (G1) `P1`
+- **Auto-Description from Title** — zero-click AI description + Arabic description on KPI create (J2) `P1`
+- **Report Narrator** — narrative layer on the Reports page for filtered data (H1) `P1`
+- **Change Request Impact Analysis** — downstream effect preview before CR approval (J4) `P2`
+- **Comparative Period Analysis** — Q-over-Q structured comparison (H3) `P2`
+- **What-If Scenario Modeler** — "what if this KPI drops to X?" cascading impact (E3) `P2`
+
+See [10-new-feature-proposals.md](./10-new-feature-proposals.md) for full details on all 19 new features.
+
 ---
 
 ## Recommended LLM Stack
@@ -77,3 +126,18 @@ The goal is not to replace human judgment, but to:
 | Vector DB | Postgres + `pgvector` (already in stack) | Pinecone |
 | Orchestration | Vercel AI SDK (fits Next.js) | LangChain.js |
 | Self-hosted option | Ollama + Llama 3.1 | vLLM |
+
+---
+
+## Environment Variables
+
+The current implementation uses three server-side env vars (provider-agnostic):
+
+```env
+NEXT_PUBLIC_AI_ENABLED=true   # Feature gate — must be "true" to enable AI UI
+AI_API_KEY=sk-...             # API key for any OpenAI-compatible provider
+AI_API_URL=https://api.openai.com/v1/chat/completions  # Override for alt providers
+AI_MODEL=gpt-4o              # Model to use
+```
+
+See `web/ai-env-example.txt` for a complete example.
